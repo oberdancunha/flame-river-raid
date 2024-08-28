@@ -1,0 +1,153 @@
+
+river_raid.png
+size: 1024, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+bridge
+  rotate: false
+  xy: 2, 34
+  size: 64, 22
+  orig: 64, 22
+  offset: 0, 0
+  index: -1
+bullet
+  rotate: true
+  xy: 68, 37
+  size: 2, 7
+  orig: 2, 7
+  offset: 0, 0
+  index: -1
+fighter_plane
+  rotate: false
+  xy: 551, 122
+  size: 16, 6
+  orig: 16, 6
+  offset: 0, 0
+  index: -1
+first_explosion
+  rotate: false
+  xy: 2, 2
+  size: 12, 8
+  orig: 12, 8
+  offset: 0, 0
+  index: -1
+fuel
+  rotate: false
+  xy: 636, 230
+  size: 14, 24
+  orig: 14, 24
+  offset: 0, 0
+  index: -1
+fuel_status_marker
+  rotate: true
+  xy: 30, 28
+  size: 4, 10
+  orig: 4, 10
+  offset: 0, 0
+  index: -1
+helicopter1
+  rotate: false
+  xy: 85, 46
+  size: 16, 10
+  orig: 16, 10
+  offset: 0, 0
+  index: -1
+helicopter2
+  rotate: false
+  xy: 2, 12
+  size: 16, 10
+  orig: 16, 10
+  offset: 0, 0
+  index: -1
+joystick_background
+  rotate: false
+  xy: 200, 58
+  size: 196, 196
+  orig: 196, 196
+  offset: 0, 0
+  index: -1
+joystick_button
+  rotate: false
+  xy: 517, 130
+  size: 117, 124
+  orig: 117, 124
+  offset: 0, 0
+  index: -1
+joystick_button_pressed
+  rotate: false
+  xy: 398, 117
+  size: 117, 137
+  orig: 117, 137
+  offset: 0, 0
+  index: -1
+joystick_knob
+  rotate: false
+  xy: 2, 58
+  size: 196, 196
+  orig: 196, 196
+  offset: 0, 0
+  index: -1
+plane
+  rotate: false
+  xy: 636, 214
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+plane_explosion
+  rotate: false
+  xy: 398, 74
+  size: 14, 11
+  orig: 14, 11
+  offset: 0, 0
+  index: -1
+plane_left
+  rotate: false
+  xy: 398, 87
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+plane_right
+  rotate: false
+  xy: 652, 240
+  size: 14, 14
+  orig: 14, 14
+  offset: 0, 0
+  index: -1
+river
+  rotate: false
+  xy: 68, 41
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+second_explosion
+  rotate: false
+  xy: 434, 103
+  size: 16, 12
+  orig: 16, 12
+  offset: 0, 0
+  index: -1
+ship
+  rotate: false
+  xy: 517, 120
+  size: 32, 8
+  orig: 32, 8
+  offset: 0, 0
+  index: -1
+ship_first_explosion
+  rotate: false
+  xy: 2, 24
+  size: 26, 8
+  orig: 26, 8
+  offset: 0, 0
+  index: -1
+ship_second_explosion
+  rotate: false
+  xy: 398, 103
+  size: 34, 12
+  orig: 34, 12
+  offset: 0, 0
+  index: -1

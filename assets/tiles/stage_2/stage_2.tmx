@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="68" tilewidth="15" tileheight="15" infinite="0" nextlayerid="7" nextobjectid="194">
+ <tileset firstgid="1" source="stage_2.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="68">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup id="2" name="Bridge" visible="0">
+  <object id="1" name="bridge" x="110" y="4" width="64" height="22"/>
+ </objectgroup>
+ <objectgroup id="3" name="Rivers" visible="0">
+  <object id="2" name="river" x="112" y="994" width="64" height="26"/>
+  <object id="3" name="river" x="104" y="992" width="80" height="2"/>
+  <object id="4" name="river" x="96" y="990" width="96" height="2"/>
+  <object id="5" name="river" x="88" y="988" width="112" height="2"/>
+  <object id="6" name="river" x="80" y="926" width="128" height="62"/>
+  <object id="7" name="river" x="72" y="924" width="144" height="2"/>
+  <object id="8" name="river" x="64" y="892" width="160" height="32.0218"/>
+  <object id="9" name="river" x="72" y="890" width="144" height="2"/>
+  <object id="10" name="river" x="80" y="806" width="128" height="83.999"/>
+  <object id="11" name="river" x="72" y="804" width="144" height="2"/>
+  <object id="12" name="river" x="64" y="802" width="160" height="2"/>
+  <object id="13" name="river" x="56" y="800" width="176" height="2"/>
+  <object id="14" name="river" x="48" y="798" width="192" height="2"/>
+  <object id="15" name="river" x="40" y="796" width="208" height="2"/>
+  <object id="16" name="river" x="32" y="734" width="224" height="62"/>
+  <object id="17" name="river" x="24" y="732" width="240" height="2"/>
+  <object id="18" name="river" x="16" y="700" width="256" height="31.847"/>
+  <object id="19" name="river" x="152" y="698" width="120" height="2"/>
+  <object id="20" name="river" x="16" y="698" width="120" height="2"/>
+  <object id="21" name="river" x="160" y="606" width="112" height="92"/>
+  <object id="22" name="river" x="16" y="606" width="112" height="92"/>
+  <object id="23" name="river" x="16" y="572" width="120" height="34"/>
+  <object id="24" name="river" x="152" y="572" width="120" height="34"/>
+  <object id="25" name="river" x="136" y="572" width="16.0114" height="32"/>
+  <object id="26" name="river" x="24" y="570" width="240" height="2"/>
+  <object id="27" name="river" x="32" y="568" width="224" height="2"/>
+  <object id="28" name="river" x="40" y="566" width="208" height="2"/>
+  <object id="29" name="river" x="48" y="564" width="192" height="2"/>
+  <object id="30" name="river" x="56" y="562" width="176" height="2"/>
+  <object id="31" name="river" x="64" y="560" width="160" height="2"/>
+  <object id="32" name="river" x="72" y="558" width="144" height="2"/>
+  <object id="33" name="river" x="80" y="484" width="128" height="74"/>
+  <object id="34" name="river" x="72" y="482" width="144" height="2"/>
+  <object id="35" name="river" x="64" y="480" width="160" height="2"/>
+  <object id="36" name="river" x="56" y="478" width="176" height="2"/>
+  <object id="37" name="river" x="48" y="476" width="192" height="2"/>
+  <object id="38" name="river" x="40" y="416" width="208" height="60"/>
+  <object id="39" name="river" x="32" y="414" width="224" height="2"/>
+  <object id="40" name="river" x="24" y="412" width="240" height="2"/>
+  <object id="41" name="river" x="16" y="380" width="256" height="32"/>
+  <object id="42" name="river" x="16" y="378" width="120" height="2"/>
+  <object id="43" name="river" x="152" y="378" width="120" height="2"/>
+  <object id="44" name="river" x="16" y="376" width="112" height="2"/>
+  <object id="45" name="river" x="160" y="376" width="112" height="2"/>
+  <object id="46" name="river" x="16" y="374" width="104" height="2"/>
+  <object id="47" name="river" x="168" y="374" width="104" height="2"/>
+  <object id="48" name="river" x="16" y="372" width="96" height="2"/>
+  <object id="49" name="river" x="176" y="372" width="96" height="2"/>
+  <object id="50" name="river" x="184" y="370" width="88" height="2"/>
+  <object id="51" name="river" x="16" y="370" width="88" height="2"/>
+  <object id="52" name="river" x="16" y="368" width="80" height="2"/>
+  <object id="53" name="river" x="192" y="368" width="80" height="2"/>
+  <object id="54" name="river" x="200" y="366" width="72" height="2"/>
+  <object id="55" name="river" x="16" y="366" width="72" height="2"/>
+  <object id="56" name="river" x="16" y="292" width="64" height="74"/>
+  <object id="57" name="river" x="208" y="292" width="64" height="74"/>
+  <object id="58" name="river" x="200" y="290" width="72" height="2"/>
+  <object id="59" name="river" x="16" y="290" width="72" height="2"/>
+  <object id="60" name="river" x="192" y="288" width="80" height="2"/>
+  <object id="61" name="river" x="16" y="288" width="80" height="2"/>
+  <object id="62" name="river" x="16" y="286" width="88" height="2"/>
+  <object id="63" name="river" x="184" y="286" width="88" height="2"/>
+  <object id="64" name="river" x="176" y="284" width="96" height="2"/>
+  <object id="65" name="river" x="16" y="284" width="96" height="2"/>
+  <object id="66" name="river" x="168" y="224" width="104" height="60"/>
+  <object id="67" name="river" x="16" y="224" width="104" height="60"/>
+  <object id="68" name="river" x="16" y="222" width="112" height="2"/>
+  <object id="69" name="river" x="160" y="222" width="112" height="2"/>
+  <object id="70" name="river" x="152" y="220" width="120" height="2"/>
+  <object id="71" name="river" x="16" y="220" width="120" height="2"/>
+  <object id="72" name="river" x="16" y="188" width="256" height="32"/>
+  <object id="73" name="river" x="24" y="186" width="240" height="2"/>
+  <object id="74" name="river" x="32" y="184" width="224" height="2"/>
+  <object id="75" name="river" x="40" y="182" width="208" height="2"/>
+  <object id="76" name="river" x="48" y="92" width="192" height="90"/>
+  <object id="77" name="river" x="40" y="60" width="208" height="32"/>
+  <object id="78" name="river" x="48" y="58" width="192" height="2"/>
+  <object id="79" name="river" x="56" y="56" width="176" height="2"/>
+  <object id="80" name="river" x="64" y="54" width="160" height="2"/>
+  <object id="81" name="river" x="72" y="52" width="144" height="2"/>
+  <object id="82" name="river" x="80" y="50" width="128" height="2"/>
+  <object id="83" name="river" x="88" y="48" width="112" height="2"/>
+  <object id="84" name="river" x="96" y="46" width="96" height="2"/>
+  <object id="85" name="river" x="104" y="44" width="80" height="2"/>
+  <object id="86" name="river" x="112" y="0" width="64" height="44"/>
+ </objectgroup>
+ <objectgroup id="4" name="Borders" visible="0">
+  <object id="87" name="border" x="111.95" y="994.05" width="0.05" height="25.95"/>
+  <object id="88" name="border" x="104" y="994" width="7.99536" height="0.05"/>
+  <object id="89" name="border" x="96" y="992" width="7.99536" height="2"/>
+  <object id="90" name="border" x="88" y="990" width="7.99536" height="2"/>
+  <object id="91" name="border" x="80" y="988" width="7.99536" height="2"/>
+  <object id="92" name="border" x="176" y="994.05" width="0.05" height="25.95"/>
+  <object id="93" name="border" x="176" y="994" width="7.99536" height="0.05"/>
+  <object id="94" name="border" x="184.002" y="992" width="7.99536" height="2"/>
+  <object id="95" name="border" x="192" y="990" width="7.99536" height="2"/>
+  <object id="96" name="border" x="200" y="988" width="7.99536" height="2"/>
+  <object id="97" name="border" x="79.9539" y="926.05" width="0.05" height="61.95"/>
+  <object id="98" name="border" x="208" y="926.05" width="0.05" height="61.95"/>
+  <object id="99" name="border" x="72" y="926" width="7.99536" height="0.05"/>
+  <object id="100" name="border" x="208" y="925.996" width="7.99536" height="0.05"/>
+  <object id="101" name="border" x="64" y="924" width="7.99536" height="2"/>
+  <object id="102" name="border" x="216" y="924" width="7.99536" height="2"/>
+  <object id="103" name="border" x="63.9586" y="892" width="0.05" height="32"/>
+  <object id="104" name="border" x="223.997" y="891.997" width="0.05" height="32"/>
+  <object id="105" name="border" x="64" y="890" width="7.99536" height="2"/>
+  <object id="106" name="border" x="216.004" y="890.001" width="7.99536" height="2"/>
+  <object id="107" name="border" x="72" y="889.952" width="7.99536" height="0.05"/>
+  <object id="108" name="border" x="208" y="889.95" width="7.99536" height="0.05"/>
+  <object id="109" name="border" x="79.95" y="806.05" width="0.05" height="83.9"/>
+  <object id="110" name="border" x="208.003" y="806.046" width="0.05" height="83.9"/>
+  <object id="111" name="border" x="71.9984" y="804" width="7.99536" height="2"/>
+  <object id="112" name="border" x="208" y="803.998" width="7.99536" height="2"/>
+  <object id="113" name="border" x="64" y="802" width="7.99536" height="2"/>
+  <object id="114" name="border" x="216" y="802" width="7.99536" height="2"/>
+  <object id="115" name="border" x="56" y="800" width="7.99536" height="2"/>
+  <object id="116" name="border" x="224" y="800" width="7.99536" height="2"/>
+  <object id="117" name="border" x="48" y="798" width="7.99536" height="2"/>
+  <object id="118" name="border" x="232" y="798" width="7.99536" height="2"/>
+  <object id="119" name="border" x="40" y="795.997" width="7.99536" height="2"/>
+  <object id="120" name="border" x="240" y="796" width="7.99536" height="2"/>
+  <object id="121" name="border" x="32" y="794" width="7.99536" height="2"/>
+  <object id="122" name="border" x="248" y="794" width="7.99536" height="2"/>
+  <object id="123" name="border" x="31.95" y="734.05" width="0.05" height="59.95"/>
+  <object id="124" name="border" x="255.995" y="734.047" width="0.05" height="59.95"/>
+  <object id="125" name="border" x="24" y="732" width="7.99536" height="2"/>
+  <object id="126" name="border" x="256" y="732" width="7.99536" height="2"/>
+  <object id="127" name="border" x="16" y="731.95" width="7.99536" height="0.05"/>
+  <object id="128" name="border" x="264.01" y="731.95" width="7.99536" height="0.05"/>
+  <object id="129" name="border" x="15.947" y="571.997" width="0.05" height="159.95"/>
+  <object id="130" name="border" x="272" y="571.998" width="0.05" height="159.95"/>
+  <object id="131" name="border" x="16" y="570.004" width="7.99536" height="2"/>
+  <object id="132" name="border" x="264" y="570.001" width="7.99536" height="2"/>
+  <object id="133" name="border" x="23.9967" y="568" width="7.99536" height="2"/>
+  <object id="134" name="border" x="256" y="568" width="7.99536" height="2"/>
+  <object id="135" name="border" x="32" y="565.984" width="7.99536" height="2"/>
+  <object id="136" name="border" x="248" y="566" width="7.99536" height="2"/>
+  <object id="137" name="border" x="39.9996" y="564" width="7.99536" height="2"/>
+  <object id="138" name="border" x="240" y="564" width="7.99536" height="2"/>
+  <object id="139" name="border" x="48" y="562" width="7.99536" height="2"/>
+  <object id="140" name="border" x="232" y="562" width="7.99536" height="2"/>
+  <object id="141" name="border" x="56" y="559.998" width="7.99536" height="2"/>
+  <object id="142" name="border" x="224" y="560.001" width="7.99536" height="2"/>
+  <object id="143" name="border" x="64" y="558" width="7.99536" height="2"/>
+  <object id="144" name="border" x="216" y="558" width="7.99536" height="2"/>
+  <object id="145" name="border" x="72" y="557.95" width="7.99536" height="0.05"/>
+  <object id="146" name="border" x="208" y="557.95" width="7.99536" height="0.05"/>
+  <object id="147" name="border" x="79.95" y="484" width="0.05" height="73.95"/>
+  <object id="148" name="border" x="208" y="484" width="0.05" height="73.95"/>
+  <object id="149" name="border" x="72" y="482" width="7.99536" height="2"/>
+  <object id="150" name="border" x="208" y="481.997" width="7.99536" height="2"/>
+  <object id="151" name="border" x="64" y="480.003" width="7.99536" height="2"/>
+  <object id="152" name="border" x="216" y="480" width="7.99536" height="2"/>
+  <object id="153" name="border" x="56" y="478" width="7.99536" height="2"/>
+  <object id="154" name="border" x="224" y="478.002" width="7.99536" height="2"/>
+  <object id="155" name="border" x="48" y="476" width="7.99536" height="2"/>
+  <object id="156" name="border" x="232" y="476" width="7.99536" height="2"/>
+  <object id="157" name="border" x="40" y="475.947" width="7.99536" height="0.05"/>
+  <object id="158" name="border" x="240" y="475.95" width="7.99536" height="0.05"/>
+  <object id="159" name="border" x="39.9489" y="416" width="0.05" height="59.95"/>
+  <object id="160" name="border" x="248" y="416" width="0.05" height="59.95"/>
+  <object id="161" name="border" x="32" y="414" width="7.99536" height="2"/>
+  <object id="162" name="border" x="248" y="414" width="7.99536" height="2"/>
+  <object id="163" name="border" x="24" y="412.005" width="7.99536" height="2"/>
+  <object id="164" name="border" x="256" y="412" width="7.99536" height="2"/>
+  <object id="165" name="border" x="15.9956" y="411.946" width="7.99536" height="0.05"/>
+  <object id="166" name="border" x="264" y="411.95" width="7.99536" height="0.05"/>
+  <object id="167" name="border" x="15.95" y="188.003" width="0.05" height="223.947"/>
+  <object id="168" name="border" x="272.003" y="188" width="0.05" height="223.947"/>
+  <object id="169" name="border" x="16.0045" y="186" width="7.99536" height="2"/>
+  <object id="170" name="border" x="264" y="186" width="7.99536" height="2"/>
+  <object id="171" name="border" x="24" y="184" width="7.99536" height="2"/>
+  <object id="172" name="border" x="255.997" y="184" width="7.99536" height="2"/>
+  <object id="173" name="border" x="32.001" y="181.999" width="7.99536" height="2"/>
+  <object id="174" name="border" x="248" y="182" width="7.99536" height="2"/>
+  <object id="175" name="border" x="40" y="181.95" width="7.99536" height="0.05"/>
+  <object id="176" name="border" x="240" y="181.949" width="7.99536" height="0.05"/>
+  <object id="177" name="border" x="47.9527" y="92" width="0.05" height="89.95"/>
+  <object id="178" name="border" x="240.004" y="91.9914" width="0.05" height="89.95"/>
+  <object id="179" name="border" x="40" y="91.95" width="7.99536" height="0.05"/>
+  <object id="180" name="border" x="240" y="91.946" width="7.99536" height="0.05"/>
+  <object id="181" name="border" x="39.948" y="59.9986" width="0.05" height="31.9474"/>
+  <object id="182" name="border" x="248" y="60" width="0.05" height="31.9474"/>
+  <object id="183" name="border" x="40" y="58" width="7.99536" height="2"/>
+  <object id="184" name="border" x="240" y="57.9999" width="7.99536" height="2"/>
+  <object id="185" name="border" x="48" y="56" width="7.99536" height="2"/>
+  <object id="186" name="border" x="232" y="56" width="7.99536" height="2"/>
+  <object id="187" name="border" x="56" y="54" width="7.99536" height="2"/>
+  <object id="188" name="border" x="224" y="54" width="7.99536" height="2"/>
+  <object id="189" name="border" x="64" y="52" width="7.99536" height="2"/>
+  <object id="190" name="border" x="216" y="52" width="7.99536" height="2"/>
+  <object id="191" name="border" x="72" y="50" width="7.99536" height="2"/>
+  <object id="192" name="border" x="208" y="50" width="7.99536" height="2"/>
+  <object id="193" name="border" x="80" y="48.0036" width="7.99536" height="2"/>
+  <object id="194" name="border" x="199.997" y="48" width="7.99536" height="2"/>
+  <object id="195" name="border" x="88" y="46" width="7.99536" height="2"/>
+  <object id="196" name="border" x="192" y="46" width="7.99536" height="2"/>
+  <object id="197" name="border" x="96" y="44" width="7.99536" height="2"/>
+  <object id="198" name="border" x="184" y="44" width="7.99536" height="2"/>
+  <object id="199" name="border" x="103.998" y="43.95" width="7.99536" height="0.05"/>
+  <object id="200" name="border" x="176" y="43.95" width="7.99536" height="0.05"/>
+  <object id="201" name="border" x="111.95" y="0.0004408" width="0.05" height="43.95"/>
+  <object id="202" name="border" x="176" y="0" width="0.05" height="43.95"/>
+  <object id="203" name="border" x="128" y="697.95" width="8" height="0.05"/>
+  <object id="204" name="border" x="136" y="698" width="16" height="2"/>
+  <object id="205" name="border" x="152" y="697.955" width="8" height="0.05"/>
+  <object id="206" name="border" x="128.001" y="606.05" width="0.05" height="91.95"/>
+  <object id="207" name="border" x="159.95" y="606.05" width="0.05" height="91.9"/>
+  <object id="208" name="border" x="127.998" y="606" width="8" height="0.05"/>
+  <object id="209" name="border" x="152.003" y="605.999" width="8" height="0.05"/>
+  <object id="210" name="border" x="136" y="604" width="16" height="2"/>
+  <object id="211" name="border" x="136" y="378" width="16" height="2"/>
+  <object id="212" name="border" x="128" y="376" width="8.01752" height="2"/>
+  <object id="213" name="border" x="152.001" y="376" width="8.01752" height="2"/>
+  <object id="214" name="border" x="120.002" y="374" width="8" height="2"/>
+  <object id="215" name="border" x="160" y="373.998" width="8" height="2"/>
+  <object id="216" name="border" x="111.973" y="372.031" width="8" height="2"/>
+  <object id="217" name="border" x="104" y="370" width="8" height="2"/>
+  <object id="218" name="border" x="168" y="371.997" width="8" height="2"/>
+  <object id="219" name="border" x="96" y="368" width="8" height="2"/>
+  <object id="220" name="border" x="176" y="370" width="8" height="2"/>
+  <object id="221" name="border" x="88" y="366" width="8" height="2"/>
+  <object id="222" name="border" x="184" y="368" width="8" height="2"/>
+  <object id="223" name="border" x="80" y="365.95" width="8" height="0.05"/>
+  <object id="224" name="border" x="200" y="365.95" width="8" height="0.05"/>
+  <object id="225" name="border" x="192" y="366" width="8" height="2"/>
+  <object id="226" name="border" x="80.001" y="292.05" width="0.05" height="73.9"/>
+  <object id="227" name="border" x="207.95" y="292.05" width="0.05" height="73.9"/>
+  <object id="228" name="border" x="80.0011" y="291.998" width="8" height="0.05"/>
+  <object id="229" name="border" x="88" y="290" width="8" height="2"/>
+  <object id="230" name="border" x="200.001" y="291.997" width="8" height="0.05"/>
+  <object id="231" name="border" x="192" y="290.002" width="8" height="2"/>
+  <object id="232" name="border" x="96" y="288" width="8" height="2"/>
+  <object id="233" name="border" x="184" y="288" width="8" height="2"/>
+  <object id="234" name="border" x="104" y="286" width="8" height="2"/>
+  <object id="235" name="border" x="176" y="286" width="8" height="2"/>
+  <object id="236" name="border" x="112" y="284" width="8" height="2"/>
+  <object id="237" name="border" x="168" y="284" width="8" height="2"/>
+  <object id="238" name="border" x="120" y="224.05" width="0.05" height="59.95"/>
+  <object id="239" name="border" x="167.95" y="224.05" width="0.05" height="59.95"/>
+  <object id="240" name="border" x="119.998" y="223.999" width="8" height="0.05"/>
+  <object id="241" name="border" x="160" y="224" width="8" height="0.05"/>
+  <object id="242" name="border" x="128" y="222" width="8" height="2"/>
+  <object id="243" name="border" x="152" y="222" width="8" height="2"/>
+  <object id="244" name="border" x="136" y="220" width="16" height="2"/>
+ </objectgroup>
+ <objectgroup id="5" name="Ships" visible="0">
+  <object id="245" name="ship" x="156" y="971.998" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="246" name="ship" x="172" y="908" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="247" name="ship" x="76" y="652" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="248" name="ship" x="176" y="620" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="249" name="ship" x="96" y="524" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="250" name="ship" x="156" y="492" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="251" name="ship" x="64" y="140" width="32" height="8">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Helicopters" visible="0">
+  <object id="252" name="helicopter" x="176.005" y="873" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="253" name="helicopter" x="96" y="809" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="254" name="helicopter" x="32" y="713" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="255" name="helicopter" x="32" y="585" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="256" name="helicopter" x="48" y="361" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="257" name="helicopter" x="184" y="233" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="258" name="helicopter" x="64" y="169" width="16" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="Fuels" visible="0">
+  <object id="259" name="fuel" x="178" y="834" width="14" height="24"/>
+  <object id="260" name="fuel" x="226" y="738" width="14" height="24"/>
+  <object id="261" name="fuel" x="98" y="674" width="14" height="24"/>
+  <object id="262" name="fuel" x="96" y="546" width="14" height="24"/>
+  <object id="263" name="fuel" x="242" y="386.003" width="14" height="24"/>
+  <object id="264" name="fuel" x="50" y="322" width="14" height="24"/>
+  <object id="265" name="fuel" x="242" y="194" width="14" height="24"/>
+  <object id="266" name="fuel" x="218" y="66" width="14" height="24"/>
+ </objectgroup>
+</map>

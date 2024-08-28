@@ -1,0 +1,26 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  plugins:
+    - custom_lint
+  errors:
+    library_private_types_in_public_api: ignore
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_classes_with_only_static_members
+    - avoid_positional_boolean_parameters
+    - cascade_invocations
+    - implicit_call_tearoffs
+    - overridden_fields
+    - parameter_assignments
+    - prefer_const_declarations
+    - prefer_expression_function_bodies
+    - prefer_relative_imports
+    - unnecessary_await_in_return
+    - unnecessary_lambdas
+
+custom_lint:
+  rules:
+    - prefer_new_line_before_return

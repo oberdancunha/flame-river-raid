@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="70" tilewidth="15" tileheight="15" infinite="0" nextlayerid="3" nextobjectid="9">
+ <tileset firstgid="1" source="stage_1.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="70">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <objectgroup id="2" name="Bridge" visible="0">
+  <object id="1" name="bridge" x="111" y="4" width="63.9955" height="22.0015"/>
+ </objectgroup>
+ <objectgroup id="3" name="Rivers" visible="0">
+  <object id="2" name="river" x="112" y="0" width="64" height="52"/>
+  <object id="3" name="river" x="104" y="52" width="79.9998" height="1.99142"/>
+  <object id="4" name="river" x="96" y="54" width="96" height="2"/>
+  <object id="5" name="river" x="88" y="56" width="112.001" height="2"/>
+  <object id="6" name="river" x="80" y="58" width="127.999" height="2"/>
+  <object id="7" name="river" x="72" y="60" width="144" height="925"/>
+  <object id="8" name="river" x="80" y="985" width="127.999" height="2"/>
+  <object id="9" name="river" x="88" y="987" width="112.001" height="2"/>
+  <object id="10" name="river" x="96" y="989" width="96" height="2"/>
+  <object id="11" name="river" x="104" y="991" width="79.9998" height="1.99142"/>
+  <object id="12" name="river" x="112" y="993" width="64" height="57"/>
+ </objectgroup>
+ <objectgroup id="4" name="Borders" visible="0">
+  <object id="13" name="border" x="112" y="993" width="0.05" height="57"/>
+  <object id="14" name="border" x="104" y="993" width="8" height="0.05"/>
+  <object id="15" name="border" x="176" y="993" width="7.99541" height="0.05"/>
+  <object id="16" name="border" x="176" y="993" width="0.05" height="57"/>
+  <object id="17" name="border" x="96" y="991" width="8" height="2"/>
+  <object id="18" name="border" x="88" y="989" width="8" height="2"/>
+  <object id="19" name="border" x="80" y="987" width="8" height="2"/>
+  <object id="20" name="border" x="72" y="985" width="8" height="2"/>
+  <object id="21" name="border" x="184" y="991" width="8" height="2"/>
+  <object id="22" name="border" x="192" y="989" width="8" height="2"/>
+  <object id="23" name="border" x="200" y="987" width="8" height="2"/>
+  <object id="24" name="border" x="208" y="985" width="8" height="2"/>
+  <object id="25" name="border" x="71.95" y="60" width="0.05" height="925"/>
+  <object id="26" name="border" x="216" y="60" width="0.05" height="925"/>
+  <object id="27" name="border" x="208" y="58" width="8" height="2"/>
+  <object id="28" name="border" x="200" y="56" width="8" height="2"/>
+  <object id="29" name="border" x="192" y="54" width="8" height="2"/>
+  <object id="30" name="border" x="184" y="52" width="8" height="2"/>
+  <object id="31" name="border" x="176" y="52" width="8" height="0.05"/>
+  <object id="32" name="border" x="104" y="52" width="8" height="0.05"/>
+  <object id="33" name="border" x="72" y="58" width="8" height="2"/>
+  <object id="34" name="border" x="80" y="56" width="8" height="2"/>
+  <object id="35" name="border" x="88" y="54" width="8" height="2"/>
+  <object id="36" name="border" x="96" y="52" width="8" height="2"/>
+  <object id="37" name="border" x="112" y="0" width="0.05" height="52"/>
+  <object id="38" name="border" x="176" y="0" width="0.05" height="52"/>
+ </objectgroup>
+ <objectgroup id="5" name="Plane" visible="0">
+  <object id="39" name="plane" x="138" y="1033" width="14" height="13"/>
+ </objectgroup>
+ <objectgroup id="6" name="Ships" visible="0">
+  <object id="40" name="ship" x="126" y="969" width="32.0076" height="8.00753">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="41" name="ship" x="166" y="524" width="32.0076" height="8.00753">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="42" name="ship" x="116" y="460" width="32.0076" height="8.00753">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="43" name="ship" x="166" y="204" width="32.0076" height="8.00753">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="44" name="ship" x="124" y="44" width="32.0076" height="8.00753">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="Helicopters" visible="0">
+  <object id="45" name="helicopter" x="116" y="905" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="46" name="helicopter" x="98" y="681" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="47" name="helicopter" x="132" y="617" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="48" name="helicopter" x="166" y="489" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="49" name="helicopter" x="184" y="393" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="50" name="helicopter" x="178" y="265" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="51" name="helicopter" x="170" y="169" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="false"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="52" name="helicopter" x="110" y="73" width="16.0036" height="10">
+   <properties>
+    <property name="hasMove" type="bool" value="true"/>
+    <property name="isReverse" type="bool" value="false"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="8" name="Fuels" visible="0">
+  <object id="53" name="fuel" x="166" y="927" width="14" height="24"/>
+  <object id="54" name="fuel" x="146" y="866" width="14" height="24"/>
+  <object id="55" name="fuel" x="184" y="834" width="14" height="24"/>
+  <object id="56" name="fuel" x="156" y="706" width="14" height="24"/>
+  <object id="57" name="fuel" x="110" y="642" width="14" height="24"/>
+  <object id="58" name="fuel" x="176" y="578" width="14" height="24"/>
+  <object id="59" name="fuel" x="146" y="418" width="14" height="24"/>
+  <object id="60" name="fuel" x="162" y="98" width="14" height="24"/>
+ </objectgroup>
+</map>
