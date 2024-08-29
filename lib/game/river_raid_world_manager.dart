@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'components/plane/plane.dart';
 import 'components/river_raid_component.dart';
 import 'components/stage/stage.dart';
+import 'river_raid_game.dart';
 import 'river_raid_world.dart';
 
 abstract interface class _IRiverRaidWorldManager {
@@ -57,7 +58,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
     final planeLayer = RiverRaidComponent.getLayer(tileMap, 'Plane');
     final planeObject = planeLayer.elementAt(0);
     final plane = PlaneComponent(
-      joystick: world.game.joystick,
+      joystick: RiverRaidGame.joystick,
       position: Vector2(planeObject.x, planeObject.y),
       size: Vector2(planeObject.width, planeObject.height),
       anchor: Anchor.center,

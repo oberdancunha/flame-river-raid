@@ -6,7 +6,7 @@ import 'package:flame/components.dart';
 import '../../river_raid_game.dart';
 import '../../river_raid_game_manager.dart';
 import '../fuel/fuel.dart';
-import '../joystick/joystick.dart';
+import '../hud/joystick/joystick.dart';
 import '../stage/stage.dart';
 import 'plane_controller_manager.dart';
 import 'plane_manager.dart';

@@ -4,7 +4,9 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
 
-import 'components/joystick/joystick.dart';
+import 'components/hud/hud.dart';
+import 'components/hud/joystick/joystick.dart';
+import 'components/hud/joystick/joystick_button.dart';
 import 'components/plane/plane.dart';
 import 'components/stage/stage.dart';
 import 'constants/globals.dart';
@@ -15,7 +17,11 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
   RiverRaidGame()
       : super(
           world: RiverRaidWorld(),
-          camera: CameraComponent()
+          camera: CameraComponent(
+            hudComponents: [
+              Hud(),
+            ],
+          )
             ..viewport.size = Globals.gameSize
             ..viewport.position = Vector2(0, -Globals.paddingVerticalStartPosition)
             ..viewfinder.visibleGameSize = Globals.gameSize
@@ -26,13 +32,13 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
   late PlaneComponent plane;
   late Stage stage;
   ValueNotifier<bool> isBridgeExploding = ValueNotifier<bool>(false);
-  final joystick = Joystick();
+  static final joystick = Joystick();
+  static final joystickButton = JoystickButton();
   var stages = <String>[];
   final stagesPositionInWord = <double>[];
 
   @override
   FutureOr<void> onLoad() async {
-    camera.viewport.add(joystick);
     riverRaidGameManager.listAllStagesAvailable();
 
     return super.onLoad();

@@ -66,7 +66,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
     }
 
     return (plane.position.y <=
-        (plane.maximumHeightPosition + (plane.currentStage.size.y / 2)) + 10);
+        (plane.maximumHeightPosition + (plane.currentStage.size.y / 2)) - 56);
   }
 
   @override

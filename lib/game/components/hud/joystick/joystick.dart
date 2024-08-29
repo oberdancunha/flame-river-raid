@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/assets.dart';
+import '../../../constants/assets.dart';
 
 final class Joystick extends JoystickComponent {
   Joystick()
@@ -15,6 +15,6 @@ final class Joystick extends JoystickComponent {
             sprite: Assets.joystickKnob,
             size: Vector2.all(50),
           ),
-          margin: const EdgeInsets.only(left: 20, bottom: -15),
+          margin: const EdgeInsets.only(left: 15, bottom: 13),
         );
 }
