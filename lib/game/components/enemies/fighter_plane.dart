@@ -19,6 +19,9 @@ final class FighterPlane extends EnemyComponent {
         );
 
   @override
+  int get score => 100;
+
+  @override
   double get speed => Globals.defaultSpeed * 2.5;
 
   @override
@@ -38,9 +41,8 @@ final class FighterPlane extends EnemyComponent {
 
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is BorderComponent) {
-      return;
+    if (other is! BorderComponent) {
+      super.onCollisionStart(intersectionPoints, other);
     }
-    super.onCollisionStart(intersectionPoints, other);
   }
 }

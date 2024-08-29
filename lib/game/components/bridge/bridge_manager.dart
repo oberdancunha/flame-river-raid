@@ -10,7 +10,6 @@ abstract interface class _IBridgeManager {
   void show();
   void makeAreaCollideable();
   void explode();
-  void removeFromWorld();
 }
 
 @immutable
@@ -60,11 +59,6 @@ final class _BridgeManager implements _IBridgeManager {
     );
     bridge.stage.add(firstExplosion);
     bridge.stage.add(secondExplosion);
-  }
-
-  @override
-  void removeFromWorld() {
-    bridge.removeFromParent();
   }
 }
 

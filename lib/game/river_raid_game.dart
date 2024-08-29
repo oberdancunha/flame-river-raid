@@ -32,6 +32,7 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
   late PlaneComponent plane;
   late Stage stage;
   ValueNotifier<bool> isBridgeExploding = ValueNotifier<bool>(false);
+  static ValueNotifier<int> totalScore = ValueNotifier<int>(0);
   static final joystick = Joystick();
   static final joystickButton = JoystickButton();
   var stages = <String>[];

@@ -13,6 +13,7 @@ final class Globals {
   static const maximumSpeedPlane = 80.0;
   static const minimumSpeedPlane = 20;
   static const speedUpDown = 3.0;
+  static const hudComponentSize = 400.0;
 
   static Vector2 gameSize = Vector2(300, 230);
 }

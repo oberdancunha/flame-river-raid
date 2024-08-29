@@ -1,17 +1,15 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
 import '../border/border.dart';
-import '../stage/stage_position_component.dart';
+import '../stage/stage_position_component/stage_position_component.dart';
 import 'enemy_manager.dart';
 
-class EnemyComponent extends StagePositionComponent
-    with HasGameReference<RiverRaidGame>, CollisionCallbacks {
+class EnemyComponent extends StagePositionComponent with HasGameReference<RiverRaidGame> {
   bool isReverse;
   final bool hasMove;
 
@@ -49,7 +47,6 @@ class EnemyComponent extends StagePositionComponent
 
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
     if (other is BorderComponent) {
       flipHorizontallyAroundCenter();
       moveDirection.x *= -1;
@@ -58,8 +55,7 @@ class EnemyComponent extends StagePositionComponent
 
       return;
     }
-    enemyManager
-      ..explode()
-      ..remove();
+    enemyManager.explode();
+    super.onCollisionStart(intersectionPoints, other);
   }
 }

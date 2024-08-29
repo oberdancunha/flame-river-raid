@@ -10,7 +10,6 @@ abstract interface class _IFuelManager {
   void show();
   void makeAreaCollideable();
   void explode();
-  void remove();
 }
 
 @immutable
@@ -36,9 +35,6 @@ final class _FuelManager implements _IFuelManager {
         horizontalPosition: fuel.position.x,
         verticalPosition: fuel.position.y,
       );
-
-  @override
-  void remove() => fuel.removeFromParent();
 }
 
 extension FuelExtension on Fuel {

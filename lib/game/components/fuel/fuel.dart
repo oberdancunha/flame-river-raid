@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 import '../bullet/bullet.dart';
-import '../stage/stage_position_component.dart';
+import '../stage/stage_position_component/stage_position_component.dart';
 import 'fuel_manager.dart';
 
-final class Fuel extends StagePositionComponent with CollisionCallbacks {
+final class Fuel extends StagePositionComponent {
   Fuel({
     required super.position,
     required super.size,
@@ -15,6 +14,9 @@ final class Fuel extends StagePositionComponent with CollisionCallbacks {
   }) : super(
           priority: 1,
         );
+
+  @override
+  int get score => 80;
 
   @override
   FutureOr<void> onLoad() {
@@ -27,11 +29,9 @@ final class Fuel extends StagePositionComponent with CollisionCallbacks {
 
   @override
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
     if (other is Bullet) {
-      fuelManager
-        ..explode()
-        ..remove();
+      super.onCollisionStart(intersectionPoints, other);
+      fuelManager.explode();
     }
   }
 }

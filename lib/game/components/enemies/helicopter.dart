@@ -15,6 +15,9 @@ final class Helicopter extends EnemyComponent {
         );
 
   @override
+  int get score => 60;
+
+  @override
   FutureOr<void> onLoad() {
     enemyManager.showHelicopter();
 

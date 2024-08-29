@@ -15,7 +15,6 @@ abstract interface class _IEnemyManager {
   void showFighterPlane();
   void makeAreaCollideable();
   void explode();
-  void remove();
   void makeMovement(double dt);
   void resetFighterPlaneInitialPosition();
   double get distanceFromPlane;
@@ -76,11 +75,6 @@ final class _EnemyManager implements _IEnemyManager {
       horizontalPosition: horizontalPosition,
       verticalPosition: enemy.position.y,
     );
-  }
-
-  @override
-  void remove() {
-    enemy.removeFromParent();
   }
 
   @override

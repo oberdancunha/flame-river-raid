@@ -31,3 +31,9 @@ flutter:
     - assets/tiles/stage_2/
     - assets/tiles/stage_3/
     - assets/tiles/stage_4/
+
+  fonts:
+    - family: Atari-Bzzz1
+      fonts:
+        - asset: 'assets/fonts/Atari-Bzzz1.ttf'
+          weight: 400

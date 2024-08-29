@@ -15,6 +15,9 @@ final class Ship extends EnemyComponent {
         );
 
   @override
+  int get score => 30;
+
+  @override
   FutureOr<void> onLoad() {
     enemyManager.showShip();
 
