@@ -35,6 +35,8 @@ final class Assets {
   static late final SpriteAnimation helicopter;
 
   static late final Sprite fuel;
+  static late final Sprite fuelStatusBar;
+  static late final Sprite fuelStatusMarker;
 
   static Future<void> load() async {
     atlas = await TexturePackerAtlas.load('atlas/river_raid.atlas');
@@ -73,6 +75,8 @@ final class Assets {
     );
 
     fuel = findSpriteByName('fuel');
+    fuelStatusBar = findSpriteByName('fuel_status_bar');
+    fuelStatusMarker = findSpriteByName('fuel_status_marker');
   }
 
   static TexturePackerSprite findSpriteByName(String name) => atlas.findSpriteByName(name)!;
