@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
+import 'components/bridge/bridge.dart';
 import 'components/hud/hud.dart';
 import 'components/hud/joystick/joystick.dart';
 import 'components/hud/joystick/joystick_button.dart';
@@ -23,23 +24,38 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
             ],
           )
             ..viewport.size = Globals.gameSize
-            ..viewport.position = Vector2(0, -Globals.paddingVerticalStartPosition)
             ..viewfinder.visibleGameSize = Globals.gameSize
             ..viewfinder.position = Vector2(0, 0)
             ..viewfinder.anchor = Anchor.bottomLeft,
         );
 
   late PlaneComponent plane;
+
   late Stage stage;
-  ValueNotifier<bool> isBridgeExploding = ValueNotifier<bool>(false);
-  static ValueNotifier<int> totalScore = ValueNotifier<int>(0);
-  static final joystick = Joystick();
-  static final joystickButton = JoystickButton();
-  var stages = <String>[];
   final stagesPositionInWord = <double>[];
+  var stages = <String>[];
+
+  ValueNotifier<bool> isBridgeExploding = ValueNotifier<bool>(false);
+  late Bridge lastBridge;
+
+  static ValueNotifier<int> totalScore = ValueNotifier<int>(0);
+
+  static late Joystick joystick;
+  static late JoystickButton joystickButton;
 
   @override
   FutureOr<void> onLoad() async {
+    joystick = Joystick(
+      size: size.joystickSize,
+      knobSize: size.joystickButtonSize,
+      marginLeft: size.joystickHorizontalMargin,
+    );
+    joystickButton = JoystickButton(
+      size: size.joystickButtonSize,
+      marginRight: size.joystickHorizontalMargin,
+      marginBottom: size.joystickVerticalMargin,
+    );
+    camera.viewport.position.y = -(size.y / 7.1);
     riverRaidGameManager.listAllStagesAvailable();
 
     return super.onLoad();
