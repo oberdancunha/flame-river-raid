@@ -1,17 +1,18 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
+import './hud_manager.dart';
+import 'fuel_status_bar/fuel_status_bar.dart';
 import 'score.dart';
 
-final class Hud extends RectangleComponent {
+final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   Hud()
       : super(
-          size: Vector2(Globals.hudComponentSize, 90),
-          position: Vector2(0, 690),
+          anchor: Anchor.bottomLeft,
           paintLayers: [
             Paint()..color = const Color(0XFF8E8E8E),
             Paint()
@@ -21,18 +22,22 @@ final class Hud extends RectangleComponent {
           ],
         );
 
-  static final scorePosition = Vector2(Globals.hudComponentSize / 2, -2);
-  late Score score = Score(
-    text: RiverRaidGame.totalScore.value.toString(),
-    position: scorePosition,
-  );
+  late Score score;
 
   @override
   FutureOr<void> onLoad() {
+    size = game.size.hudSize;
+    position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
+    score = Score(
+      text: hudManager.totalScoreString,
+      position: hudManager.scorePosition,
+      fontSize: game.size.scoreFontSize,
+    );
     addAll([
       RiverRaidGame.joystick,
       RiverRaidGame.joystickButton,
       score,
+      FuelStatusBar(),
     ]);
     RiverRaidGame.totalScore.addListener(_updateTotalScore);
 
@@ -47,9 +52,11 @@ final class Hud extends RectangleComponent {
 
   void _updateTotalScore() {
     remove(score);
+    hudManager.scorePosition.x -= hudManager.adjustScorePosition;
     score = Score(
       text: RiverRaidGame.totalScore.value.toString(),
-      position: scorePosition,
+      position: hudManager.scorePosition,
+      fontSize: game.size.scoreFontSize,
     );
     add(score);
   }

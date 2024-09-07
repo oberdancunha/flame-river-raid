@@ -4,17 +4,23 @@ import 'package:flutter/material.dart';
 import '../../../constants/assets.dart';
 
 final class Joystick extends JoystickComponent {
-  Joystick()
-      : super(
+  final Vector2 knobSize;
+  final double marginLeft;
+
+  Joystick({
+    required super.size,
+    required this.knobSize,
+    required this.marginLeft,
+  }) : super(
           anchor: Anchor.center,
           background: SpriteComponent(
             sprite: Assets.joystickBackground,
-            size: Vector2.all(75),
+            size: Vector2.all(size!),
           ),
           knob: SpriteComponent(
             sprite: Assets.joystickKnob,
-            size: Vector2.all(50),
+            size: knobSize,
           ),
-          margin: const EdgeInsets.only(left: 15, bottom: 13),
+          margin: EdgeInsets.only(left: marginLeft, bottom: 3.5),
         );
 }

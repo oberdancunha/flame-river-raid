@@ -9,20 +9,25 @@ import '../../plane/plane_controller_manager.dart';
 import '../../plane/plane_state.dart';
 
 final class JoystickButton extends HudButtonComponent {
-  JoystickButton()
-      : super(
+  final double marginRight;
+  final double marginBottom;
+
+  JoystickButton({
+    required super.size,
+    required this.marginRight,
+    required this.marginBottom,
+  }) : super(
           button: SpriteComponent(
             sprite: Assets.joystickButton,
-            size: Vector2.all(buttonSize),
+            size: size,
           ),
           buttonDown: SpriteComponent(
             sprite: Assets.joystickButtonPressed,
-            size: Vector2.all(buttonSize),
+            size: size,
           ),
-          margin: const EdgeInsets.only(right: 37, bottom: 24),
+          margin: EdgeInsets.only(right: marginRight, bottom: marginBottom),
         );
 
-  static const buttonSize = 50.0;
   late PlaneComponent plane;
 
   @override
