@@ -27,24 +27,22 @@ final class PlaneComponent extends SpriteComponent
 
   final moveDirection = Vector2(0, 1);
   late double speed = 0.0;
+
   PlaneState planeState = PlaneState.idle;
+
   late Stage currentStage;
-  double maximumHeightPosition = 0.0;
   double currentStagePosition = 0.0;
   int nextStageLevelToShow = 1;
   int crossedBridges = 0;
-  bool continueCheckingNewStage = true;
+  bool isCheckNextStage = true;
 
   @override
   FutureOr<void> onLoad() {
     planeManager
       ..planeStraight()
+      ..waitToStartFlight()
       ..makeAreaCollideable();
-    Future.delayed(const Duration(milliseconds: 300), () {
-      planeState = PlaneState.isAlive;
-    });
     currentStage = game.stage;
-    maximumHeightPosition = currentStage.size.y;
 
     return super.onLoad();
   }
@@ -64,12 +62,10 @@ final class PlaneComponent extends SpriteComponent
         planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
       if (planeStageManager.isThereNewStageToLoad()) {
         nextStageLevelToShow++;
-        await planeStageManager.loadNewStage();
-        planeStageManager.updateMaximumHeightPosition(currentStage.size.y);
-      }
-      if (planeStageManager.isNotThereNewStageToBeShown()) {
+        unawaited(planeStageManager.loadNewStage());
+      } else {
         game.camera.stop();
-        continueCheckingNewStage = false;
+        isCheckNextStage = false;
       }
     }
     if (planeStageManager.crossedTheBridge()) {

@@ -41,6 +41,7 @@ final class _StageManager implements _IStageManager {
         size: bridgeObject.size,
         stage: stage,
       );
+      stage.game.lastBridge = bridge;
       stage.add(bridge);
     }
   }

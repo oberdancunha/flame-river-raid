@@ -11,7 +11,7 @@ final class Globals {
   static const minimumDistanceFromEnemyToPlane = 110.0;
 
   static const acceleration = 0.5;
-  static const defaultSpeed = 150.0;
+  static const defaultSpeed = 50.0;
   static const maximumSpeedPlane = 80.0;
   static const minimumSpeedPlane = 20;
   static const speedUpDown = 3.0;
@@ -33,4 +33,5 @@ extension SizeExtension on Vector2 {
   double get hudFuelHorizontalPosition => joystickSizeMargin + (hudFuelSize.x / 3);
   Vector2 get fullFuelMarkerSize => Vector2(hudFuelSize.x / 28, hudFuelSize.y * 0.7);
   double get scoreFontSize => hudSize.y * 0.25;
+  double get heightPositionOfTheRespectiveStage => y - 3.8;
 }

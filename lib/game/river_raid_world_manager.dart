@@ -61,7 +61,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
       joystick: RiverRaidGame.joystick,
       position: Vector2(planeObject.x, planeObject.y),
       size: Vector2(planeObject.width, planeObject.height),
-      anchor: Anchor.center,
+      anchor: Anchor.bottomLeft,
       priority: 1,
     );
     world.add(plane);
