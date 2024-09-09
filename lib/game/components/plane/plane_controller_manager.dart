@@ -90,7 +90,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
   void shootBullets() {
     plane.game.world.add(
       Bullet(
-        position: plane.position,
+        position: plane.center,
       ),
     );
   }
