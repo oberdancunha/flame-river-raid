@@ -7,6 +7,7 @@ import 'hud.dart';
 import 'info.dart';
 
 abstract interface class _IHudManager {
+  void showScore();
   void updateTotalScore();
   String get totalScoreString;
   int get totalScoreStringLength;
@@ -22,16 +23,19 @@ final class _HudManager implements _IHudManager {
   const _HudManager(this.hud);
 
   @override
+  void showScore() => hud
+    ..score = Info(
+      text: RiverRaidGame.totalScore.value.toString(),
+      position: scorePosition,
+      fontSize: hud.game.size.scoreFontSize,
+    )
+    ..add(hud.score);
+
+  @override
   void updateTotalScore() {
     hud.remove(hud.score);
     scorePosition.x -= adjustScorePosition;
-    hud
-      ..score = Info(
-        text: RiverRaidGame.totalScore.value.toString(),
-        position: scorePosition,
-        fontSize: hud.game.size.scoreFontSize,
-      )
-      ..add(hud.score);
+    showScore();
   }
 
   @override

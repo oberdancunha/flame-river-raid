@@ -28,11 +28,7 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   FutureOr<void> onLoad() {
     size = game.size.hudSize;
     position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
-    score = Info(
-      text: hudManager.totalScoreString,
-      position: hudManager.scorePosition,
-      fontSize: game.size.scoreFontSize,
-    );
+    hudManager.showScore();
     addAll([
       RiverRaidGame.joystick,
       RiverRaidGame.joystickButton,
