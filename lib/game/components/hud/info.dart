@@ -3,10 +3,10 @@ import 'package:flutter/painting.dart';
 
 import '../../river_raid_game.dart';
 
-final class Score extends TextComponent with HasGameRef<RiverRaidGame> {
+final class Info extends TextComponent with HasGameRef<RiverRaidGame> {
   final double fontSize;
 
-  Score({
+  Info({
     required super.text,
     required super.position,
     required this.fontSize,

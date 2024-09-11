@@ -4,8 +4,10 @@ import 'package:flutter/foundation.dart';
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
 import 'hud.dart';
+import 'info.dart';
 
 abstract interface class _IHudManager {
+  void updateTotalScore();
   String get totalScoreString;
   int get totalScoreStringLength;
   double get adjustScorePosition;
@@ -18,6 +20,19 @@ final class _HudManager implements _IHudManager {
   final Hud hud;
 
   const _HudManager(this.hud);
+
+  @override
+  void updateTotalScore() {
+    hud.remove(hud.score);
+    scorePosition.x -= adjustScorePosition;
+    hud
+      ..score = Info(
+        text: RiverRaidGame.totalScore.value.toString(),
+        position: scorePosition,
+        fontSize: hud.game.size.scoreFontSize,
+      )
+      ..add(hud.score);
+  }
 
   @override
   String get totalScoreString => RiverRaidGame.totalScore.value.toString();
