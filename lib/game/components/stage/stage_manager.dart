@@ -1,3 +1,4 @@
+import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 
@@ -64,7 +65,7 @@ final class _StageManager implements _IStageManager {
     for (final riverObject in riversLayer) {
       final river = River(
         position: riverObject.position,
-        size: riverObject.size,
+        size: Vector2(riverObject.size.x, riverObject.size.y + 0.35),
       );
       stage.add(river);
     }

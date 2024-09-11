@@ -59,7 +59,9 @@ final class PlaneComponent extends SpriteComponent
     }
     if (planeState == PlaneState.isDead) {
       planeManager.planeExplosion();
-      game.paused = true;
+      if (game.isBridgeExploding.value == false) {
+        game.paused = true;
+      }
     }
     if (planeStageManager.isTimeToLoadTheNextStage() &&
         planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
