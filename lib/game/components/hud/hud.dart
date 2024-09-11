@@ -23,12 +23,13 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
         );
 
   late Info score;
+  late Info life;
 
   @override
   FutureOr<void> onLoad() {
     size = game.size.hudSize;
     position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
-    hudScoreManager.showScore();
+    hudScoreManager.show();
     addAll([
       RiverRaidGame.joystick,
       RiverRaidGame.joystickButton,

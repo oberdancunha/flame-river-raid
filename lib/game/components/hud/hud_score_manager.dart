@@ -7,13 +7,13 @@ import 'hud.dart';
 import 'info.dart';
 
 abstract interface class _IHudScoreManager {
-  void showScore();
+  void show();
   void updateTotalScore();
-  String get totalScoreString;
-  int get totalScoreStringLength;
-  double get adjustScorePosition;
-  double get scoreHorizontalPosition;
-  Vector2 get scorePosition;
+  String get totalAsString;
+  int get totalAsStringLength;
+  double get adjustPosition;
+  double get horizontalPosition;
+  Vector2 get position;
 }
 
 @immutable
@@ -23,10 +23,10 @@ final class _HudScoreManager implements _IHudScoreManager {
   const _HudScoreManager(this.hud);
 
   @override
-  void showScore() => hud
+  void show() => hud
     ..score = Info(
       text: RiverRaidGame.totalScore.value.toString(),
-      position: scorePosition,
+      position: position,
       fontSize: hud.game.size.scoreFontSize,
     )
     ..add(hud.score);
@@ -34,26 +34,26 @@ final class _HudScoreManager implements _IHudScoreManager {
   @override
   void updateTotalScore() {
     hud.remove(hud.score);
-    scorePosition.x -= adjustScorePosition;
-    showScore();
+    position.x -= adjustPosition;
+    show();
   }
 
   @override
-  String get totalScoreString => RiverRaidGame.totalScore.value.toString();
+  String get totalAsString => RiverRaidGame.totalScore.value.toString();
 
   @override
-  int get totalScoreStringLength => totalScoreString.length;
+  int get totalAsStringLength => totalAsString.length;
 
   @override
-  double get adjustScorePosition => (10 * (totalScoreStringLength)).toDouble();
+  double get adjustPosition => (10 * (totalAsStringLength)).toDouble();
 
   @override
-  double get scoreHorizontalPosition =>
+  double get horizontalPosition =>
       (hud.game.size.fuelStatusBarHorizontalPosition + hud.game.size.fuelStatusBarSize.x) -
-      adjustScorePosition;
+      adjustPosition;
 
   @override
-  Vector2 get scorePosition => Vector2(scoreHorizontalPosition, -4);
+  Vector2 get position => Vector2(horizontalPosition, -4);
 }
 
 extension HudScoreExtension on Hud {
