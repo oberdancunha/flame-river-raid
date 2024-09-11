@@ -16,7 +16,9 @@ final class Globals {
   static const minimumSpeedPlane = 20;
   static const speedUpDown = 3.0;
 
-  static const fuelMarkerVerticalPosition = 8.0;
+  static const indexFullFuel = 100.0;
+  static const fuelMarkerModificationIndex = 1.5;
+  static const indexIsOutOfFuel = 8.5;
 }
 
 extension SizeExtension on Vector2 {
@@ -29,9 +31,13 @@ extension SizeExtension on Vector2 {
   double get joystickButtonSizeMargin => joystickButtonSize.x + joystickHorizontalMargin;
   double get sizeBetweenJoystickAndButton =>
       hudSize.x - joystickSizeMargin - joystickButtonSizeMargin;
-  Vector2 get hudFuelSize => Vector2(sizeBetweenJoystickAndButton * 0.6, hudSize.y / 2.5);
-  double get hudFuelHorizontalPosition => joystickSizeMargin + (hudFuelSize.x / 3);
-  Vector2 get fullFuelMarkerSize => Vector2(hudFuelSize.x / 28, hudFuelSize.y * 0.7);
+  Vector2 get fuelStatusBarSize => Vector2(sizeBetweenJoystickAndButton * 0.6, hudSize.y / 2.5);
+  double get fuelStatusBarHorizontalPosition => joystickSizeMargin + (fuelStatusBarSize.x / 3);
+  double get fuelStatusBarVerticalPosition => hudSize.y / 3.6;
+  Vector2 get fullFuelMarkerSize => Vector2(fuelStatusBarSize.x * 0.051, fuelStatusBarSize.y * 0.7);
   double get scoreFontSize => hudSize.y * 0.25;
   double get heightPositionOfTheRespectiveStage => y - 3.8;
+  double get fuelMarkerHorizontalPosition =>
+      (fuelStatusBarHorizontalPosition - (fuelStatusBarSize.x / 13));
+  double get fuelMarkerVerticalPosition => hudSize.y / 8.5;
 }

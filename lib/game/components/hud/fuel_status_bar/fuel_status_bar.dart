@@ -9,14 +9,26 @@ import 'fuel_status_bar_manager.dart';
 final class FuelStatusBar extends PositionComponent with HasGameRef<RiverRaidGame> {
   FuelStatusBar();
 
+  late SpriteComponent marker;
+
   @override
   FutureOr<void> onLoad() {
-    size = game.size.hudFuelSize;
-    position = Vector2(game.size.hudFuelHorizontalPosition, 22);
+    size = game.size.fuelStatusBarSize;
+    position = Vector2(
+      game.size.fuelStatusBarHorizontalPosition,
+      game.size.fuelStatusBarVerticalPosition,
+    );
     fuelStatusBarManager
       ..show()
       ..showMarker();
+    RiverRaidGame.fuelMarker.addListener(fuelStatusBarManager.updateFuelMarkerPosition);
 
     return super.onLoad();
+  }
+
+  @override
+  void onRemove() {
+    RiverRaidGame.fuelMarker.removeListener(fuelStatusBarManager.updateFuelMarkerPosition);
+    super.onRemove();
   }
 }

@@ -48,7 +48,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
       anchor: anchor,
     );
     world.add(stage);
-    world.game.stagesPositionInWord.add(stage.position.y);
+    world.game.stagesPositionInWorld.add(stage.position.y);
 
     return stage;
   }
@@ -73,12 +73,12 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
   void removeStage() {
     world.removeWhere((component) {
       if (component is Stage) {
-        return component.position.y == world.game.stagesPositionInWord.elementAt(0);
+        return component.position.y == world.game.stagesPositionInWorld.elementAt(0);
       }
 
       return false;
     });
-    world.game.stagesPositionInWord.removeAt(0);
+    world.game.stagesPositionInWorld.removeAt(0);
   }
 }
 

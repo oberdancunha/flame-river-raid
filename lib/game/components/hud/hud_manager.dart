@@ -30,7 +30,8 @@ final class _HudManager implements _IHudManager {
 
   @override
   double get scoreHorizontalPosition =>
-      (hud.game.size.hudFuelHorizontalPosition + hud.game.size.hudFuelSize.x) - adjustScorePosition;
+      (hud.game.size.fuelStatusBarHorizontalPosition + hud.game.size.fuelStatusBarSize.x) -
+      adjustScorePosition;
 
   @override
   Vector2 get scorePosition => Vector2(scoreHorizontalPosition, -4);

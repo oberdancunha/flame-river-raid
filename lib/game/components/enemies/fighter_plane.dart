@@ -30,6 +30,7 @@ final class FighterPlane extends EnemyComponent {
   @override
   FutureOr<void> onLoad() {
     enemyManager.showFighterPlane();
+
     return super.onLoad();
   }
 

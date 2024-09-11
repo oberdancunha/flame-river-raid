@@ -18,15 +18,16 @@ final class PlaneComponent extends SpriteComponent
   final Joystick joystick;
 
   PlaneComponent({
-    required this.joystick,
     required super.position,
     required super.size,
     required super.priority,
     required super.anchor,
+    required this.joystick,
   });
 
   final moveDirection = Vector2(0, 1);
   late double speed = 0.0;
+  late double deltaTime;
 
   PlaneState planeState = PlaneState.idle;
 
@@ -50,6 +51,7 @@ final class PlaneComponent extends SpriteComponent
   @override
   void update(double dt) async {
     super.update(dt);
+    deltaTime = dt;
     if (planeState == PlaneState.isAlive) {
       planeControllerManager
         ..moveUp(dt)
@@ -57,6 +59,7 @@ final class PlaneComponent extends SpriteComponent
     }
     if (planeState == PlaneState.isDead) {
       planeManager.planeExplosion();
+      game.paused = true;
     }
     if (planeStageManager.isTimeToLoadTheNextStage() &&
         planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
@@ -74,12 +77,18 @@ final class PlaneComponent extends SpriteComponent
         game.riverRaidGameManager.finish();
       }
     }
+    planeManager.reduceFuel(dt);
+    if (planeManager.isOutOfFuel()) {
+      planeState = PlaneState.isDead;
+    }
   }
 
   @override
-  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
-    super.onCollisionStart(intersectionPoints, other);
+  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollision(intersectionPoints, other);
     if (other is Fuel) {
+      planeManager.fuelPlane();
+
       return;
     }
     planeState = PlaneState.isDead;
