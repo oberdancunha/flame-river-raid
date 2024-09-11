@@ -27,7 +27,7 @@ final class _HudScoreManager implements _IHudScoreManager {
     ..score = Info(
       text: RiverRaidGame.totalScore.value.toString(),
       position: position,
-      fontSize: hud.game.size.scoreFontSize,
+      fontSize: hud.game.size.infoFontSize,
     )
     ..add(hud.score);
 
