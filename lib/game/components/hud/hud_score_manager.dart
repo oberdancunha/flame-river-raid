@@ -6,7 +6,7 @@ import '../../river_raid_game.dart';
 import 'hud.dart';
 import 'info.dart';
 
-abstract interface class _IHudManager {
+abstract interface class _IHudScoreManager {
   void showScore();
   void updateTotalScore();
   String get totalScoreString;
@@ -17,10 +17,10 @@ abstract interface class _IHudManager {
 }
 
 @immutable
-final class _HudManager implements _IHudManager {
+final class _HudScoreManager implements _IHudScoreManager {
   final Hud hud;
 
-  const _HudManager(this.hud);
+  const _HudScoreManager(this.hud);
 
   @override
   void showScore() => hud
@@ -56,6 +56,6 @@ final class _HudManager implements _IHudManager {
   Vector2 get scorePosition => Vector2(scoreHorizontalPosition, -4);
 }
 
-extension HudExtension on Hud {
-  _IHudManager get hudManager => _HudManager(this);
+extension HudScoreExtension on Hud {
+  _IHudScoreManager get hudScoreManager => _HudScoreManager(this);
 }

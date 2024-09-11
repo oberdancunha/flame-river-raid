@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
-import './hud_manager.dart';
 import 'fuel_status_bar/fuel_status_bar.dart';
+import 'hud_score_manager.dart';
 import 'info.dart';
 
 final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
@@ -28,21 +28,21 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   FutureOr<void> onLoad() {
     size = game.size.hudSize;
     position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
-    hudManager.showScore();
+    hudScoreManager.showScore();
     addAll([
       RiverRaidGame.joystick,
       RiverRaidGame.joystickButton,
       score,
       FuelStatusBar(),
     ]);
-    RiverRaidGame.totalScore.addListener(hudManager.updateTotalScore);
+    RiverRaidGame.totalScore.addListener(hudScoreManager.updateTotalScore);
 
     return super.onLoad();
   }
 
   @override
   void onRemove() {
-    RiverRaidGame.totalScore.removeListener(hudManager.updateTotalScore);
+    RiverRaidGame.totalScore.removeListener(hudScoreManager.updateTotalScore);
     super.onRemove();
   }
 }
