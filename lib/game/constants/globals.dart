@@ -35,7 +35,7 @@ extension SizeExtension on Vector2 {
   double get fuelStatusBarHorizontalPosition => joystickSizeMargin + (fuelStatusBarSize.x / 3);
   double get fuelStatusBarVerticalPosition => hudSize.y / 3.6;
   Vector2 get fullFuelMarkerSize => Vector2(fuelStatusBarSize.x * 0.051, fuelStatusBarSize.y * 0.7);
-  double get scoreFontSize => hudSize.y * 0.25;
+  double get infoFontSize => hudSize.y / 4;
   double get heightPositionOfTheRespectiveStage => y - 3.8;
   double get fuelMarkerHorizontalPosition =>
       (fuelStatusBarHorizontalPosition - (fuelStatusBarSize.x / 13));

@@ -8,7 +8,7 @@ import 'info.dart';
 
 abstract interface class _IHudScoreManager {
   void show();
-  void updateTotalScore();
+  void update();
   String get totalAsString;
   int get totalAsStringLength;
   double get adjustPosition;
@@ -32,7 +32,7 @@ final class _HudScoreManager implements _IHudScoreManager {
     ..add(hud.score);
 
   @override
-  void updateTotalScore() {
+  void update() {
     hud.remove(hud.score);
     position.x -= adjustPosition;
     show();
