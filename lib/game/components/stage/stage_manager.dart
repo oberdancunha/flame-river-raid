@@ -1,19 +1,4 @@
-import 'package:flame/components.dart';
-import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/material.dart';
-
-import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play.dart';
-import '../../sprites/sprites_explosion.dart';
-import '../border/border.dart';
-import '../bridge/bridge.dart';
-import '../enemies/fighter_plane.dart';
-import '../enemies/helicopter.dart';
-import '../enemies/ship.dart';
-import '../fuel/fuel.dart';
-import '../river/river.dart';
-import '../river_raid_component.dart';
-import 'stage.dart';
+part of 'stage.dart';
 
 abstract interface class _IStageManager {
   void showBridge();
@@ -43,7 +28,7 @@ final class _StageManager implements _IStageManager {
         size: bridgeObject.size,
         stage: stage,
       );
-      RiverRaidGamePlay.lastBridge = bridge;
+      stage.gamePlay.lastBridge = bridge;
       stage.add(bridge);
     }
   }
@@ -154,8 +139,4 @@ final class _StageManager implements _IStageManager {
 
   @override
   double getHeightPositionInGame() => stage.position.y + (stage.size.y * -1);
-}
-
-extension StageManager on Stage {
-  _IStageManager get stageManager => _StageManager(this);
 }

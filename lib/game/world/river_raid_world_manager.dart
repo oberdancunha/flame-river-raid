@@ -1,16 +1,4 @@
-import 'dart:async';
-
-import 'package:flame/cache.dart';
-import 'package:flame/components.dart';
-import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/foundation.dart';
-
-import '../components/plane/plane.dart';
-import '../components/river_raid_component.dart';
-import '../components/stage/stage.dart';
-import '../gameplay/river_raid_game_play.dart';
-import '../river_raid_game_manager.dart';
-import 'river_raid_world.dart';
+part of 'river_raid_world.dart';
 
 abstract interface class _IRiverRaidWorldManager {
   Future<Stage> showStage(
@@ -52,7 +40,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
       anchor: anchor,
     );
     world.add(stage);
-    RiverRaidGamePlay.stagesPositionInWorld.add(stage.position.y);
+    world.gamePlay.stagesPositionInWorld.add(stage.position.y);
 
     return stage;
   }
@@ -77,14 +65,14 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
   void removeStage(int stageIndex) {
     world.removeWhere((component) {
       if (component is Stage) {
-        return RiverRaidGamePlay.stagesPositionInWorld.length > stageIndex &&
-            component.position.y == RiverRaidGamePlay.stagesPositionInWorld.elementAt(stageIndex);
+        return world.gamePlay.stagesPositionInWorld.length > stageIndex &&
+            component.position.y == world.gamePlay.stagesPositionInWorld.elementAt(stageIndex);
       }
 
       return false;
     });
-    if (RiverRaidGamePlay.stagesPositionInWorld.length > stageIndex) {
-      RiverRaidGamePlay.stagesPositionInWorld.removeAt(stageIndex);
+    if (world.gamePlay.stagesPositionInWorld.length > stageIndex) {
+      world.gamePlay.stagesPositionInWorld.removeAt(stageIndex);
     }
   }
 
@@ -97,10 +85,6 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
 
       return false;
     });
-    RiverRaidGamePlay.stagesPositionInWorld.clear();
+    world.gamePlay.stagesPositionInWorld.clear();
   }
-}
-
-extension RiverRaidGameExtension on RiverRaidWorld {
-  _IRiverRaidWorldManager get riverRaidWorldManager => _RiverRaidWorldManager(this);
 }

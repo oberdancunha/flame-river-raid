@@ -1,13 +1,4 @@
-import 'dart:math';
-
-import 'package:flame/collisions.dart';
-
-import '../../../injector.dart';
-import '../../constants/assets.dart';
-import '../../constants/globals.dart';
-import '../../gameplay/river_raid_game_play.dart';
-import 'plane.dart';
-import 'plane_state.dart';
+part of 'plane.dart';
 
 abstract interface class _IPlaneManager {
   void planeStraight();
@@ -81,8 +72,4 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   PlaneState get planeState => _planeState;
-}
-
-extension PlaneExtension on PlaneComponent {
-  _IPlaneManager get planeManager => Injector.getOrAdd<_IPlaneManager>(_PlaneManager(this));
 }

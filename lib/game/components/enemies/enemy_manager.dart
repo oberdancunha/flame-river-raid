@@ -6,7 +6,6 @@ import 'package:flame/components.dart';
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
 import '../../gameplay/river_raid_game_play.dart';
-import '../stage/stage_manager.dart';
 import 'enemy_component.dart';
 
 abstract interface class _IEnemyManager {

@@ -1,10 +1,4 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
-
-import '../../constants/assets.dart';
-import '../../sprites/sprites_explosion.dart';
-import 'bridge.dart';
+part of 'bridge.dart';
 
 abstract interface class _IBridgeManager {
   void show();
@@ -60,8 +54,4 @@ final class _BridgeManager implements _IBridgeManager {
     bridge.stage.add(firstExplosion);
     bridge.stage.add(secondExplosion);
   }
-}
-
-extension BridgeExtension on Bridge {
-  _IBridgeManager get bridgeManager => _BridgeManager(this);
 }

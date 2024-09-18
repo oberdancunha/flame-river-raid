@@ -1,9 +1,4 @@
-import 'package:flame/components.dart';
-
-import '../../constants/globals.dart';
-import '../../river_raid_game_manager.dart';
-import 'hud.dart';
-import 'info.dart';
+part of 'hud.dart';
 
 abstract interface class _IHudLifeManager {
   void show();
@@ -14,11 +9,8 @@ abstract interface class _IHudLifeManager {
 final class _HudLifeManager implements _IHudLifeManager {
   final Hud hud;
 
-  factory _HudLifeManager(Hud hud) => _instance = _HudLifeManager._(hud);
+  _HudLifeManager(this.hud);
 
-  _HudLifeManager._(this.hud);
-
-  static _HudLifeManager? _instance;
   late Info _life;
 
   @override
@@ -42,8 +34,4 @@ final class _HudLifeManager implements _IHudLifeManager {
         hud.size.x / 3.2,
         (hud.game.size.fuelStatusBarVerticalPosition + hud.game.size.fuelStatusBarSize.y) - 3,
       );
-}
-
-extension HudLifeExtension on Hud {
-  _IHudLifeManager get hudLifeManager => _HudLifeManager._instance ?? _HudLifeManager(this);
 }

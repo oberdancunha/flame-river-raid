@@ -1,10 +1,4 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
-
-import '../../constants/assets.dart';
-import '../stage/stage_manager.dart';
-import 'fuel.dart';
+part of 'fuel.dart';
 
 abstract interface class _IFuelManager {
   void show();
@@ -35,8 +29,4 @@ final class _FuelManager implements _IFuelManager {
         horizontalPosition: fuel.position.x,
         verticalPosition: fuel.position.y,
       );
-}
-
-extension FuelExtension on Fuel {
-  _IFuelManager get fuelManager => _FuelManager(this);
 }

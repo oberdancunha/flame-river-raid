@@ -1,22 +1,25 @@
 import 'dart:async';
+import 'dart:math';
+import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../../../injector.dart';
+import '../../constants/assets.dart';
+import '../../constants/globals.dart';
 import '../../gameplay/river_raid_game_play.dart';
-import '../../gameplay/river_raid_game_play_reset_timer_manager.dart';
 import '../../river_raid_game.dart';
-import '../../river_raid_game_manager.dart';
 import '../../router/river_raid_router.dart';
 import '../../world/river_raid_world.dart';
-import '../../world/river_raid_world_manager.dart';
+import '../bullet/bullet.dart';
 import '../fuel/fuel.dart';
 import '../hud/joystick/joystick.dart';
-import 'plane_controller_manager.dart';
-import 'plane_manager.dart';
-import 'plane_stage_manager.dart';
+import '../stage/stage.dart';
 import 'plane_state.dart';
+
+part 'plane_controller_manager.dart';
+part 'plane_manager.dart';
+part 'plane_stage_manager.dart';
 
 final class PlaneComponent extends SpriteComponent
     with HasGameReference<RiverRaidGame>, HasGamePlayRef, CollisionCallbacks {
@@ -30,8 +33,15 @@ final class PlaneComponent extends SpriteComponent
     required this.joystick,
   });
 
+  late _IPlaneManager planeManager;
+  late _IPlaneControllerManager planeControllerManager;
+  late _IPlaneStageManager planeStageManager;
+
   @override
   FutureOr<void> onLoad() {
+    planeManager = _PlaneManager(this);
+    planeControllerManager = _PlaneControllerManager(this);
+    planeStageManager = _PlaneStageManger(this);
     planeManager
       ..planeStraight()
       ..waitToStartFlight()
@@ -71,7 +81,7 @@ final class PlaneComponent extends SpriteComponent
     }
     if (planeManager.planeState == PlaneState.isDead) {
       planeManager.planeExplosion();
-      if (RiverRaidGamePlay.isBridgeExploding.value == false) {
+      if (gamePlay.isBridgeExploding.value == false) {
         if (!gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
           gamePlay.resetTimerManager.startTimerToResetGame();
           gamePlay.resetTimerManager.executeActionsAfterTick(() async {
@@ -81,7 +91,6 @@ final class PlaneComponent extends SpriteComponent
             if (game.riverRaidGameManager.showLifeValue < 0) {
               game.riverRaidGameManager.startGame();
             }
-            await Injector.clean();
             game.riverRaidRouter
                 .pushReplacement(RiverRaidRouter.startGame, name: RiverRaidGamePlay.id);
           });

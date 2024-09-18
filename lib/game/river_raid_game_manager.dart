@@ -1,12 +1,4 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-
-import 'components/hud/joystick/joystick.dart';
-import 'components/hud/joystick/joystick_button.dart';
-import 'constants/globals.dart';
-import 'river_raid_game.dart';
+part of 'river_raid_game.dart';
 
 abstract interface class _IRiverRaidGameManager {
   Future<void> listAllStagesAvailable();
@@ -30,12 +22,10 @@ abstract interface class _IRiverRaidGameManager {
   JoystickButton get joystickButton;
 }
 
-final class _RiverRaidManager implements _IRiverRaidGameManager {
+final class _RiverRaidGameManager implements _IRiverRaidGameManager {
   final RiverRaidGame game;
 
-  factory _RiverRaidManager(RiverRaidGame game) => _instance = _RiverRaidManager._(game);
-
-  _RiverRaidManager._(this.game) {
+  _RiverRaidGameManager(this.game) {
     _joystick = Joystick(
       size: game.size.joystickSize,
       knobSize: game.size.joystickButtonSize,
@@ -48,7 +38,6 @@ final class _RiverRaidManager implements _IRiverRaidGameManager {
     );
   }
 
-  static _RiverRaidManager? _instance;
   late List<String> _stages;
   late int _nextStageToShow = 1;
   late int _crossedBridges = 0;
@@ -139,9 +128,4 @@ final class _RiverRaidManager implements _IRiverRaidGameManager {
 
   @override
   JoystickButton get joystickButton => _joystickButton;
-}
-
-extension RiverRaidGameExtension on RiverRaidGame {
-  _IRiverRaidGameManager get riverRaidGameManager =>
-      _RiverRaidManager._instance ?? _RiverRaidManager(this);
 }

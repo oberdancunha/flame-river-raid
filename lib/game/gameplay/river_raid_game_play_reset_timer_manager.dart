@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'river_raid_game_play.dart';
+part of 'river_raid_game_play.dart';
 
 abstract interface class _IRiverRaidGamePlayResetTimerManager {
   bool isTimerToResetGameRunning();
@@ -11,40 +9,38 @@ abstract interface class _IRiverRaidGamePlayResetTimerManager {
   void stopTimerToResetGame();
 }
 
-@immutable
 final class _RiverRaidGamePlayResetTimerManager implements _IRiverRaidGamePlayResetTimerManager {
-  final RiverRaidGamePlay gamePlay;
+  _RiverRaidGamePlayResetTimerManager();
 
-  const _RiverRaidGamePlayResetTimerManager(this.gamePlay);
+  final _resetTimer = Timer(
+    1,
+    autoStart: false,
+    repeat: false,
+  );
 
   @override
-  bool isTimerToResetGameRunning() => gamePlay.resetTimer.isRunning();
+  bool isTimerToResetGameRunning() => _resetTimer.isRunning();
 
   @override
   void startTimerToResetGame() {
-    gamePlay.resetTimer.start();
+    _resetTimer.start();
   }
 
   @override
   void executeActionsAfterTick(Function()? onTick) {
-    gamePlay.resetTimer.onTick = onTick;
+    _resetTimer.onTick = onTick;
   }
 
   @override
   void runtimeCount(double countValue) {
-    gamePlay.resetTimer.update(countValue);
+    _resetTimer.update(countValue);
   }
 
   @override
-  bool isTimerToResetGameFinished() => gamePlay.resetTimer.finished;
+  bool isTimerToResetGameFinished() => _resetTimer.finished;
 
   @override
   void stopTimerToResetGame() {
-    gamePlay.resetTimer.stop();
+    _resetTimer.stop();
   }
-}
-
-extension RiverRaidGamePlayTimerExtension on RiverRaidGamePlay {
-  _IRiverRaidGamePlayResetTimerManager get resetTimerManager =>
-      _RiverRaidGamePlayResetTimerManager(this);
 }

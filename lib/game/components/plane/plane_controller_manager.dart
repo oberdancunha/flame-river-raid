@@ -1,12 +1,4 @@
-import 'dart:ui';
-
-import 'package:flame/components.dart';
-
-import '../../../injector.dart';
-import '../../constants/globals.dart';
-import '../bullet/bullet.dart';
-import 'plane.dart';
-import 'plane_manager.dart';
+part of 'plane.dart';
 
 abstract interface class _IPlaneControllerManager {
   void moveUp(double dt);
@@ -110,9 +102,4 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
       _speed -= Globals.speedUpDown;
     }
   }
-}
-
-extension PlaneControllerExtension on PlaneComponent {
-  _IPlaneControllerManager get planeControllerManager =>
-      Injector.getOrAdd<_IPlaneControllerManager>(_PlaneControllerManager(this));
 }

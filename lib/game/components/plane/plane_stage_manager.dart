@@ -1,13 +1,4 @@
-import 'package:flame/components.dart';
-
-import '../../../injector.dart';
-import '../../constants/globals.dart';
-import '../../gameplay/river_raid_game_play.dart';
-import '../../river_raid_game_manager.dart';
-import '../../world/river_raid_world.dart';
-import '../../world/river_raid_world_manager.dart';
-import '../stage/stage.dart';
-import 'plane.dart';
+part of 'plane.dart';
 
 abstract interface class _IPlaneStageManager {
   bool isTimeToLoadTheNextStage();
@@ -24,16 +15,19 @@ abstract interface class _IPlaneStageManager {
 final class _PlaneStageManger implements _IPlaneStageManager {
   final PlaneComponent plane;
 
-  _PlaneStageManger(this.plane);
+  _PlaneStageManger(this.plane) {
+    _currentStage = plane.gamePlay.stage;
+    _currentStagePosition =
+        plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
+  }
 
-  Stage _currentStage = RiverRaidGamePlay.stage;
-  double _currentStagePosition =
-      RiverRaidGamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
+  late Stage _currentStage;
+  late double _currentStagePosition;
   bool _isCheckNextStage = true;
 
   @override
   bool isTimeToLoadTheNextStage() =>
-      (plane.game.camera.canSee(RiverRaidGamePlay.lastBridge) && _isCheckNextStage);
+      (plane.game.camera.canSee(plane.gamePlay.lastBridge) && _isCheckNextStage);
 
   @override
   bool lastBrokenBridgeBelongsToNewStage() =>
@@ -53,7 +47,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
               ? Vector2(_currentStage.position.x, _currentStage.position.y + 0.2)
               : Vector2(
                   _currentStage.position.x,
-                  RiverRaidGamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage,
+                  plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage,
                 ),
           anchor: Anchor.bottomLeft,
         );
@@ -63,7 +57,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
   bool crossedTheBridge() {
     if (plane.position.y <= _currentStagePosition - 15) {
       _currentStagePosition =
-          RiverRaidGamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
+          plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
       plane.game.riverRaidGameManager.addCrossedBridges();
 
       return true;
@@ -75,7 +69,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
   @override
   void removePastStage() {
     (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeStage(0);
-    if (RiverRaidGamePlay.stagesPositionInWorld.length > 1) {
+    if (plane.gamePlay.stagesPositionInWorld.length > 1) {
       (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeStage(0);
     }
   }
@@ -91,9 +85,4 @@ final class _PlaneStageManger implements _IPlaneStageManager {
 
   @override
   set isCheckNextStage(bool value) => _isCheckNextStage = value;
-}
-
-extension PlaneStageExtension on PlaneComponent {
-  _IPlaneStageManager get planeStageManager =>
-      Injector.getOrAdd<_IPlaneStageManager>(_PlaneStageManger(this));
 }

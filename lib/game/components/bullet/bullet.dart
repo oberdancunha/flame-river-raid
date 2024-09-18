@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 
+import '../../constants/assets.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import '../../river_raid_game.dart';
-import 'bullet_manager.dart';
 
-final class Bullet extends PositionComponent
-    with HasGameReference<RiverRaidGame>, CollisionCallbacks {
+part 'bullet_manager.dart';
+
+final class Bullet extends PositionComponent with HasGameRef<RiverRaidGame>, CollisionCallbacks {
   Bullet({
     required super.position,
   }) : super(
@@ -15,8 +18,11 @@ final class Bullet extends PositionComponent
           priority: 1,
         );
 
+  late _IBulletManager bulletManager;
+
   @override
   FutureOr<void> onLoad() {
+    bulletManager = _BulletManager(this);
     bulletManager
       ..show()
       ..makeAreaCollideable();

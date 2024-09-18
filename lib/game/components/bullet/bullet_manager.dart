@@ -1,10 +1,4 @@
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
-
-import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play.dart';
-import 'bullet.dart';
+part of 'bullet.dart';
 
 abstract interface class _IBulletManager {
   void show();
@@ -48,8 +42,4 @@ final class _BulletManager implements _IBulletManager {
 
   @override
   bool isMaximumDistanceTraveled() => bullet.position.y < RiverRaidGamePlay.plane.position.y - 300;
-}
-
-extension BulletExtension on Bullet {
-  _IBulletManager get bulletManager => _BulletManager(this);
 }

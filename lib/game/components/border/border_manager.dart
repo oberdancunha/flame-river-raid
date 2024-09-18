@@ -1,7 +1,4 @@
-import 'package:flame/collisions.dart';
-import 'package:flutter/material.dart';
-
-import 'border.dart';
+part of 'border.dart';
 
 abstract interface class _IBorderManager {
   void makeAreaCollideable();
@@ -19,8 +16,4 @@ final class _BorderManager implements _IBorderManager {
           collisionType: CollisionType.active,
         ),
       );
-}
-
-extension BorderExtenson on BorderComponent {
-  _IBorderManager get borderManager => _BorderManager(this);
 }

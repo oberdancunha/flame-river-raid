@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
 import '../../../gameplay/river_raid_game_play.dart';
-import '../../plane/plane_controller_manager.dart';
-import '../../plane/plane_manager.dart';
 import '../../plane/plane_state.dart';
 
 final class JoystickButton extends HudButtonComponent {

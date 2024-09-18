@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
-import '../../river_raid_game_manager.dart';
 import 'fuel_status_bar/fuel_status_bar.dart';
-import 'hud_life_manager.dart';
-import 'hud_score_manager.dart';
+import 'info.dart';
+
+part 'hud_life_manager.dart';
+part 'hud_score_manager.dart';
 
 final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   Hud()
@@ -23,8 +24,13 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
           ],
         );
 
+  late _IHudScoreManager hudScoreManager;
+  late _IHudLifeManager hudLifeManager;
+
   @override
   FutureOr<void> onLoad() {
+    hudScoreManager = _HudScoreManager(this);
+    hudLifeManager = _HudLifeManager(this);
     size = game.size.hudSize;
     position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
     hudScoreManager.show();

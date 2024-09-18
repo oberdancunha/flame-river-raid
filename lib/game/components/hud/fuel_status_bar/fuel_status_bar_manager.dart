@@ -1,11 +1,4 @@
-import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
-
-import '../../../constants/assets.dart';
-import '../../../constants/globals.dart';
-import '../../../gameplay/river_raid_game_play.dart';
-import 'fuel_status_bar.dart';
+part of 'fuel_status_bar.dart';
 
 abstract interface class _IFuelStatusBarManager {
   void show();
@@ -50,8 +43,4 @@ final class _FuelStatusBarManager implements _IFuelStatusBarManager {
     fuelStatusBar.remove(fuelStatusBar.marker);
     showMarker();
   }
-}
-
-extension FuelStatusBarManager on FuelStatusBar {
-  _IFuelStatusBarManager get fuelStatusBarManager => _FuelStatusBarManager(this);
 }

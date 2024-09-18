@@ -1,9 +1,4 @@
-import 'package:flame/components.dart';
-
-import '../../constants/globals.dart';
-import '../../river_raid_game_manager.dart';
-import 'hud.dart';
-import 'info.dart';
+part of 'hud.dart';
 
 abstract interface class _IHudScoreManager {
   void show();
@@ -18,11 +13,8 @@ abstract interface class _IHudScoreManager {
 final class _HudScoreManager implements _IHudScoreManager {
   final Hud hud;
 
-  factory _HudScoreManager(Hud hud) => _instance = _HudScoreManager._(hud);
+  _HudScoreManager(this.hud);
 
-  _HudScoreManager._(this.hud);
-
-  static _HudScoreManager? _instance;
   late Info _score;
 
   @override
@@ -58,8 +50,4 @@ final class _HudScoreManager implements _IHudScoreManager {
 
   @override
   Vector2 get position => Vector2(horizontalPosition, -4);
-}
-
-extension HudScoreExtension on Hud {
-  _IHudScoreManager get hudScoreManager => _HudScoreManager._instance ?? _HudScoreManager(this);
 }
