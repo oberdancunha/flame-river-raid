@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
 import '../../constants/globals.dart';
-import '../../river_raid_game.dart';
+import '../../river_raid_game_manager.dart';
 import 'hud.dart';
 import 'info.dart';
 
@@ -12,24 +11,29 @@ abstract interface class _IHudLifeManager {
   Vector2 get position;
 }
 
-@immutable
 final class _HudLifeManager implements _IHudLifeManager {
   final Hud hud;
 
-  const _HudLifeManager(this.hud);
+  factory _HudLifeManager(Hud hud) => _instance = _HudLifeManager._(hud);
+
+  _HudLifeManager._(this.hud);
+
+  static _HudLifeManager? _instance;
+  late Info _life;
 
   @override
-  void show() => hud
-    ..life = Info(
-      text: RiverRaidGame.totalLife.value.toString(),
+  void show() {
+    _life = Info(
+      text: hud.game.riverRaidGameManager.showLifeValue.toString(),
       position: position,
       fontSize: hud.game.size.infoFontSize,
-    )
-    ..add(hud.life);
+    );
+    hud.add(_life);
+  }
 
   @override
   void update() {
-    hud.remove(hud.life);
+    hud.remove(_life);
     show();
   }
 
@@ -41,5 +45,5 @@ final class _HudLifeManager implements _IHudLifeManager {
 }
 
 extension HudLifeExtension on Hud {
-  _IHudLifeManager get hudLifeManager => _HudLifeManager(this);
+  _IHudLifeManager get hudLifeManager => _HudLifeManager._instance ?? _HudLifeManager(this);
 }

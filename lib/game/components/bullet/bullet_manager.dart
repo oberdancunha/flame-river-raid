@@ -3,6 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import 'bullet.dart';
 
 abstract interface class _IBulletManager {
@@ -46,7 +47,7 @@ final class _BulletManager implements _IBulletManager {
   }
 
   @override
-  bool isMaximumDistanceTraveled() => bullet.position.y < bullet.game.plane.position.y - 300;
+  bool isMaximumDistanceTraveled() => bullet.position.y < RiverRaidGamePlay.plane.position.y - 300;
 }
 
 extension BulletExtension on Bullet {

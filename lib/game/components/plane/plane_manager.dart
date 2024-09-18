@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flame/collisions.dart';
-import 'package:flutter/foundation.dart';
 
+import '../../../injector.dart';
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
-import '../../river_raid_game.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import 'plane.dart';
 import 'plane_state.dart';
 
@@ -19,18 +19,23 @@ abstract interface class _IPlaneManager {
   void reduceFuel(double dt);
   bool isOutOfFuel();
   void fuelPlane();
+  set deltaTime(dt);
+  set planeState(PlaneState state);
+  PlaneState get planeState;
 }
 
-@immutable
 final class _PlaneManager implements _IPlaneManager {
   final PlaneComponent plane;
 
-  const _PlaneManager(this.plane);
+  _PlaneManager(this.plane);
+
+  PlaneState _planeState = PlaneState.idle;
+  late double _deltaTime;
 
   @override
   void waitToStartFlight() {
     Future.delayed(const Duration(milliseconds: 300), () {
-      plane.planeState = PlaneState.isAlive;
+      _planeState = PlaneState.isAlive;
     });
   }
 
@@ -55,20 +60,29 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   void reduceFuel(double dt) =>
-      RiverRaidGame.fuelMarker.value -= dt * Globals.fuelMarkerModificationIndex;
+      RiverRaidGamePlay.fuelMarker.value -= dt * Globals.fuelMarkerModificationIndex;
 
   @override
-  bool isOutOfFuel() => RiverRaidGame.fuelMarker.value <= Globals.indexIsOutOfFuel;
+  bool isOutOfFuel() => RiverRaidGamePlay.fuelMarker.value <= Globals.indexIsOutOfFuel;
 
   @override
   void fuelPlane() {
-    if (RiverRaidGame.fuelMarker.value < Globals.indexFullFuel) {
-      RiverRaidGame.fuelMarker.value +=
-          plane.deltaTime * (pow(Globals.fuelMarkerModificationIndex, 6));
+    if (RiverRaidGamePlay.fuelMarker.value < Globals.indexFullFuel) {
+      RiverRaidGamePlay.fuelMarker.value +=
+          _deltaTime * (pow(Globals.fuelMarkerModificationIndex, 6));
     }
   }
+
+  @override
+  set deltaTime(dt) => _deltaTime = dt;
+
+  @override
+  set planeState(PlaneState state) => _planeState = state;
+
+  @override
+  PlaneState get planeState => _planeState;
 }
 
 extension PlaneExtension on PlaneComponent {
-  _IPlaneManager get planeManager => _PlaneManager(this);
+  _IPlaneManager get planeManager => Injector.getOrAdd<_IPlaneManager>(_PlaneManager(this));
 }

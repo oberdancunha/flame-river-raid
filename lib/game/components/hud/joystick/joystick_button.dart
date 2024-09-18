@@ -3,9 +3,9 @@ import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/assets.dart';
-import '../../../river_raid_game.dart';
-import '../../plane/plane.dart';
+import '../../../gameplay/river_raid_game_play.dart';
 import '../../plane/plane_controller_manager.dart';
+import '../../plane/plane_manager.dart';
 import '../../plane/plane_state.dart';
 
 final class JoystickButton extends HudButtonComponent {
@@ -28,18 +28,10 @@ final class JoystickButton extends HudButtonComponent {
           margin: EdgeInsets.only(right: marginRight, bottom: marginBottom),
         );
 
-  late PlaneComponent plane;
-
-  @override
-  void onMount() {
-    super.onMount();
-    plane = (game as RiverRaidGame).plane;
-  }
-
   @override
   void Function()? get onPressed {
-    if (plane.planeState != PlaneState.isDead) {
-      plane.planeControllerManager.shootBullets();
+    if (RiverRaidGamePlay.plane.planeManager.planeState != PlaneState.isDead) {
+      RiverRaidGamePlay.plane.planeControllerManager.shootBullets();
     }
 
     return super.onPressed;

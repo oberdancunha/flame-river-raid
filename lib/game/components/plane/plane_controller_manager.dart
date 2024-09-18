@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
 
+import '../../../injector.dart';
 import '../../constants/globals.dart';
 import '../bullet/bullet.dart';
 import 'plane.dart';
@@ -18,34 +18,36 @@ abstract interface class _IPlaneControllerManager {
   void speedDown();
 }
 
-@immutable
 final class _PlaneControllerManager implements _IPlaneControllerManager {
   final PlaneComponent plane;
 
-  const _PlaneControllerManager(this.plane);
+  _PlaneControllerManager(this.plane);
+
+  final Vector2 _moveDirection = Vector2(0, 1);
+  double _speed = 0.0;
 
   @override
   void moveUp(double dt) {
-    plane.moveDirection.y = -1;
+    _moveDirection.y = -1;
     _makeMovement(dt);
   }
 
   @override
   void moveLeft(double dt) {
-    plane.moveDirection.x = -1;
+    _moveDirection.x = -1;
     _makeMovement(dt);
   }
 
   @override
   void moveRight(double dt) {
-    plane.moveDirection.x = 1;
+    _moveDirection.x = 1;
     _makeMovement(dt);
   }
 
   void _makeMovement(double dt) {
-    plane.moveDirection.normalize();
-    plane.speed = lerpDouble(plane.speed, Globals.defaultSpeed, Globals.acceleration * dt)!;
-    plane.position.addScaled(plane.moveDirection, plane.speed * dt);
+    _moveDirection.normalize();
+    _speed = lerpDouble(_speed, Globals.defaultSpeed, Globals.acceleration * dt)!;
+    plane.position.addScaled(_moveDirection, _speed * dt);
   }
 
   @override
@@ -97,19 +99,20 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
 
   @override
   void speedUp() {
-    if (plane.speed < Globals.maximumSpeedPlane) {
-      plane.speed += Globals.speedUpDown;
+    if (_speed < Globals.maximumSpeedPlane) {
+      _speed += Globals.speedUpDown;
     }
   }
 
   @override
   void speedDown() {
-    if (plane.speed > Globals.minimumSpeedPlane) {
-      plane.speed -= Globals.speedUpDown;
+    if (_speed > Globals.minimumSpeedPlane) {
+      _speed -= Globals.speedUpDown;
     }
   }
 }
 
 extension PlaneControllerExtension on PlaneComponent {
-  _IPlaneControllerManager get planeControllerManager => _PlaneControllerManager(this);
+  _IPlaneControllerManager get planeControllerManager =>
+      Injector.getOrAdd<_IPlaneControllerManager>(_PlaneControllerManager(this));
 }

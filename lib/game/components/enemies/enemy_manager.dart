@@ -2,10 +2,10 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import '../stage/stage_manager.dart';
 import 'enemy_component.dart';
 
@@ -24,13 +24,16 @@ abstract interface class _IEnemyManager {
   double calculateDistanceInOtherStages();
   void moveLeft();
   void moveRight();
+  void flipDirection();
+  Vector2 get moveDirection;
 }
 
-@immutable
 final class _EnemyManager implements _IEnemyManager {
   final EnemyComponent enemy;
 
-  const _EnemyManager(this.enemy);
+  _EnemyManager(this.enemy);
+
+  final Vector2 _moveDirection = Vector2(0, 0);
 
   @override
   void showShip() => enemy.add(
@@ -85,9 +88,9 @@ final class _EnemyManager implements _IEnemyManager {
       } else {
         moveRight();
       }
-      enemy.moveDirection.normalize();
+      _moveDirection.normalize();
       enemy.speed = lerpDouble(enemy.speed, enemy.defaultSpeed, Globals.acceleration * dt)!;
-      enemy.position.addScaled(enemy.moveDirection, enemy.speed * dt);
+      enemy.position.addScaled(_moveDirection, enemy.speed * dt);
     }
   }
 
@@ -118,25 +121,31 @@ final class _EnemyManager implements _IEnemyManager {
   bool isPlaneInTheFirstStage() => enemy.stage.position.y == 0.0;
 
   @override
-  double calculateDistanceToFirstStage() => enemy.game.plane.position.y - enemy.position.y;
+  double calculateDistanceToFirstStage() => RiverRaidGamePlay.plane.position.y - enemy.position.y;
 
   @override
   bool planeIsNotInFirstStage() =>
-      enemy.stage.position.y != 0.0 && enemy.game.plane.position.y < 0.0;
+      enemy.stage.position.y != 0.0 && RiverRaidGamePlay.plane.position.y < 0.0;
 
   @override
   double calculateDistanceInOtherStages() {
     final enemyPositionY =
         ((enemy.position.y * -1) - enemy.stage.stageManager.getHeightPositionInGame()) * -1;
 
-    return enemy.game.plane.position.y - enemyPositionY;
+    return RiverRaidGamePlay.plane.position.y - enemyPositionY;
   }
 
   @override
-  void moveLeft() => enemy.moveDirection.x = -1;
+  void moveLeft() => _moveDirection.x = -1;
 
   @override
-  void moveRight() => enemy.moveDirection.x = 1;
+  void moveRight() => _moveDirection.x = 1;
+
+  @override
+  void flipDirection() => _moveDirection.x *= -1;
+
+  @override
+  Vector2 get moveDirection => _moveDirection;
 }
 
 extension EnemyExtension on EnemyComponent {

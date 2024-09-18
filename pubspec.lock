@@ -130,18 +130,18 @@ packages:
     dependency: "direct dev"
     description:
       name: custom_lint
-      sha256: "4939d89e580c36215e48a7de8fd92f22c79dcc3eb11fda84f3402b3b45aec663"
+      sha256: "6e1ec47427ca968f22bce734d00028ae7084361999b41673291138945c5baca0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.6.7"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
-      sha256: d9e5bb63ed52c1d006f5a1828992ba6de124c27a531e8fba0a31afffa81621b3
+      sha256: ba2f90fff4eff71d202d097eb14b14f87087eaaef742e956208c0eb9d3a40a21
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.5"
+    version: "0.6.7"
   custom_lint_core:
     dependency: transitive
     description:
@@ -154,10 +154,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "99e066ce75c89d6b29903d788a7bb9369cf754f7b24bf70bf4b6d6d6b26853b9"
+      sha256: "7856d364b589d1f08986e140938578ed36ed948581fbc3bc9aef1805039ac5ab"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.6"
+    version: "2.3.7"
   fake_async:
     dependency: transitive
     description:
@@ -232,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.4"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.7.0"
   glob:
     dependency: transitive
     description:
@@ -332,10 +340,10 @@ packages:
     dependency: transitive
     description:
       name: ordered_set
-      sha256: "984658d0c28c69516ed22f780db7511932a223339463a16c0cc48b3055e926c4"
+      sha256: "3129515e563a14817adebbdeee2acbb845fc69b6fc99a94349b641d1c829d5cd"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.1"
+    version: "6.1.0"
   package_config:
     dependency: transitive
     description:
@@ -526,5 +534,5 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.5.2 <4.0.0"
+  dart: ">=3.5.3 <4.0.0"
   flutter: ">=3.22.0"

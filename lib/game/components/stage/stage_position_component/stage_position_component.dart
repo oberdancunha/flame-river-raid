@@ -1,10 +1,12 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../../../river_raid_game.dart';
 import '../stage.dart';
 import 'stage_position_component_manager.dart';
 
-class StagePositionComponent extends PositionComponent with CollisionCallbacks {
+class StagePositionComponent extends PositionComponent
+    with HasGameRef<RiverRaidGame>, CollisionCallbacks {
   final Stage stage;
 
   StagePositionComponent({

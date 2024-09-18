@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/globals.dart';
-import '../../../river_raid_game.dart';
+import '../../../gameplay/river_raid_game_play.dart';
 import 'fuel_status_bar.dart';
 
 abstract interface class _IFuelStatusBarManager {
@@ -30,7 +30,7 @@ final class _FuelStatusBarManager implements _IFuelStatusBarManager {
 
   @override
   void showMarker() {
-    final fuelAmount = RiverRaidGame.fuelMarker.value / 100;
+    final fuelAmount = RiverRaidGamePlay.fuelMarker.value / 100;
     fuelStatusBar
       ..marker = SpriteComponent(
         sprite: Assets.fuelStatusMarker,

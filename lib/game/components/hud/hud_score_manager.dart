@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../constants/globals.dart';
-import '../../river_raid_game.dart';
+import '../../river_raid_game_manager.dart';
 import 'hud.dart';
 import 'info.dart';
 
@@ -16,30 +15,35 @@ abstract interface class _IHudScoreManager {
   Vector2 get position;
 }
 
-@immutable
 final class _HudScoreManager implements _IHudScoreManager {
   final Hud hud;
 
-  const _HudScoreManager(this.hud);
+  factory _HudScoreManager(Hud hud) => _instance = _HudScoreManager._(hud);
+
+  _HudScoreManager._(this.hud);
+
+  static _HudScoreManager? _instance;
+  late Info _score;
 
   @override
-  void show() => hud
-    ..score = Info(
-      text: RiverRaidGame.totalScore.value.toString(),
+  void show() {
+    _score = Info(
+      text: hud.game.riverRaidGameManager.showScoreValue.toString(),
       position: position,
       fontSize: hud.game.size.infoFontSize,
-    )
-    ..add(hud.score);
+    );
+    hud.add(_score);
+  }
 
   @override
   void update() {
-    hud.remove(hud.score);
+    hud.remove(_score);
     position.x -= adjustPosition;
     show();
   }
 
   @override
-  String get totalAsString => RiverRaidGame.totalScore.value.toString();
+  String get totalAsString => hud.game.riverRaidGameManager.showScoreValue.toString();
 
   @override
   int get totalAsStringLength => totalAsString.length;
@@ -57,5 +61,5 @@ final class _HudScoreManager implements _IHudScoreManager {
 }
 
 extension HudScoreExtension on Hud {
-  _IHudScoreManager get hudScoreManager => _HudScoreManager(this);
+  _IHudScoreManager get hudScoreManager => _HudScoreManager._instance ?? _HudScoreManager(this);
 }

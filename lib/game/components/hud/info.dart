@@ -1,9 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flutter/painting.dart';
 
-import '../../river_raid_game.dart';
-
-final class Info extends TextComponent with HasGameRef<RiverRaidGame> {
+final class Info extends TextComponent {
   final double fontSize;
 
   Info({

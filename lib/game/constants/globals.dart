@@ -7,6 +7,8 @@ final class Globals {
 
   static Vector2 gameSize = Vector2(300, 230);
 
+  static const totalLife = 3;
+  static const initialScore = 0;
   static const explosionTime = 0.25;
   static const minimumDistanceFromEnemyToPlane = 110.0;
 

@@ -3,6 +3,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/assets.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import '../../sprites/sprites_explosion.dart';
 import '../border/border.dart';
 import '../bridge/bridge.dart';
@@ -42,7 +43,7 @@ final class _StageManager implements _IStageManager {
         size: bridgeObject.size,
         stage: stage,
       );
-      stage.game.lastBridge = bridge;
+      RiverRaidGamePlay.lastBridge = bridge;
       stage.add(bridge);
     }
   }

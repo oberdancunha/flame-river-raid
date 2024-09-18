@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 
 import '../../../constants/globals.dart';
+import '../../../gameplay/river_raid_game_play.dart';
 import '../../../river_raid_game.dart';
 import 'fuel_status_bar_manager.dart';
 
@@ -21,14 +22,14 @@ final class FuelStatusBar extends PositionComponent with HasGameRef<RiverRaidGam
     fuelStatusBarManager
       ..show()
       ..showMarker();
-    RiverRaidGame.fuelMarker.addListener(fuelStatusBarManager.updateFuelMarkerPosition);
+    RiverRaidGamePlay.fuelMarker.addListener(fuelStatusBarManager.updateFuelMarkerPosition);
 
     return super.onLoad();
   }
 
   @override
   void onRemove() {
-    RiverRaidGame.fuelMarker.removeListener(fuelStatusBarManager.updateFuelMarkerPosition);
+    RiverRaidGamePlay.fuelMarker.removeListener(fuelStatusBarManager.updateFuelMarkerPosition);
     super.onRemove();
   }
 }

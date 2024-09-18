@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: '>=3.5.2 <4.0.0'
+  sdk: '>=3.5.3 <4.0.0'
 
 dependencies:
   flame: ^1.19.0
@@ -12,6 +12,7 @@ dependencies:
   flame_tiled: ^1.20.3
   flutter:
     sdk: flutter
+  get_it: ^7.7.0
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +28,7 @@ flutter:
     - assets/images/
     - assets/images/atlas/
     - assets/images/tiles/
+    - assets/tiles/bridge/
     - assets/tiles/stage_1/
     - assets/tiles/stage_2/
     - assets/tiles/stage_3/

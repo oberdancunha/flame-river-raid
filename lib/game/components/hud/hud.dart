@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../../constants/globals.dart';
 import '../../river_raid_game.dart';
+import '../../river_raid_game_manager.dart';
 import 'fuel_status_bar/fuel_status_bar.dart';
 import 'hud_life_manager.dart';
 import 'hud_score_manager.dart';
-import 'info.dart';
 
 final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   Hud()
@@ -23,9 +23,6 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
           ],
         );
 
-  late Info score;
-  late Info life;
-
   @override
   FutureOr<void> onLoad() {
     size = game.size.hudSize;
@@ -33,20 +30,20 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
     hudScoreManager.show();
     hudLifeManager.show();
     addAll([
-      RiverRaidGame.joystick,
+      game.riverRaidGameManager.joystick,
       FuelStatusBar(),
-      RiverRaidGame.joystickButton,
+      game.riverRaidGameManager.joystickButton,
     ]);
-    RiverRaidGame.totalScore.addListener(hudScoreManager.update);
-    RiverRaidGame.totalLife.addListener(hudLifeManager.update);
+    game.riverRaidGameManager.showScore.addListener(hudScoreManager.update);
+    game.riverRaidGameManager.showLife.addListener(hudLifeManager.update);
 
     return super.onLoad();
   }
 
   @override
   void onRemove() {
-    RiverRaidGame.totalScore.removeListener(hudScoreManager.update);
-    RiverRaidGame.totalLife.removeListener(hudLifeManager.update);
+    game.riverRaidGameManager.showScore.removeListener(hudScoreManager.update);
+    game.riverRaidGameManager.showLife.removeListener(hudLifeManager.update);
 
     super.onRemove();
   }

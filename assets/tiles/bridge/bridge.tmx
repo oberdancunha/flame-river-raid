@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="23" height="2" tilewidth="13" tileheight="13" infinite="0" nextlayerid="3" nextobjectid="2">
+ <tileset firstgid="1" source="bridge.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="23" height="2">
+  <data encoding="base64" compression="zlib">
+   eJwNw4cWgVAAANBHaJAyMrIyM+L/P8+959xeCKFv5MChI2MTUzPHTsydWlg6c+7CpZUr127cWrtz78GjJxvPXrx68+7D1qcv337s/PrzDw8HBDo=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Plane" visible="0">
+  <object id="1" name="plane" x="138" y="13" width="14" height="13"/>
+ </objectgroup>
+</map>

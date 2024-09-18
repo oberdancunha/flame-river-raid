@@ -4,12 +4,11 @@ import 'dart:math';
 import 'package:flame/components.dart';
 
 import '../../constants/globals.dart';
-import '../../river_raid_game.dart';
 import '../border/border.dart';
 import '../stage/stage_position_component/stage_position_component.dart';
 import 'enemy_manager.dart';
 
-class EnemyComponent extends StagePositionComponent with HasGameReference<RiverRaidGame> {
+class EnemyComponent extends StagePositionComponent {
   bool isReverse;
   final bool hasMove;
 
@@ -22,10 +21,9 @@ class EnemyComponent extends StagePositionComponent with HasGameReference<RiverR
     required this.hasMove,
   });
 
-  static final random = Random();
-  Vector2 moveDirection = Vector2(0, 0);
-  double speed = random.nextDouble() * Globals.defaultSpeed;
-  final defaultSpeed = random.nextDouble() * Globals.defaultSpeed * 2;
+  static final _random = Random();
+  double speed = _random.nextDouble() * Globals.defaultSpeed;
+  final defaultSpeed = _random.nextDouble() * Globals.defaultSpeed * 2;
 
   @override
   FutureOr<void> onLoad() {
@@ -49,8 +47,8 @@ class EnemyComponent extends StagePositionComponent with HasGameReference<RiverR
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is BorderComponent) {
       flipHorizontallyAroundCenter();
-      moveDirection.x *= -1;
-      position.x += 2 * moveDirection.x;
+      enemyManager.flipDirection();
+      position.x += 2 * enemyManager.moveDirection.x;
       isReverse = !isReverse;
 
       return;
