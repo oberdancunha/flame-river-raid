@@ -18,7 +18,7 @@ class Injector {
     return _getIt.get<T>(instanceName: component.runtimeType.toString());
   }
 
-  static void clean() {
-    _getIt.reset(dispose: true);
+  static Future<void> clean() async {
+    await _getIt.reset(dispose: true);
   }
 }

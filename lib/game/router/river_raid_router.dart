@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/widgets.dart' hide Route, OverlayRoute;
 
-import '../../injector.dart';
 import '../gameplay/river_raid_game_play.dart';
 
 final class RiverRaidRouter extends RouterComponent {
@@ -17,13 +16,9 @@ final class RiverRaidRouter extends RouterComponent {
           },
         );
 
-  static Route get startGame {
-    Injector.clean();
-
-    return Route(
-      () => RiverRaidGamePlay(
-        key: ComponentKey.named(RiverRaidGamePlay.id),
-      ),
-    );
-  }
+  static Route get startGame => Route(
+        () => RiverRaidGamePlay(
+          key: ComponentKey.named(RiverRaidGamePlay.id),
+        ),
+      );
 }

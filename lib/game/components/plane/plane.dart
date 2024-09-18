@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../../../injector.dart';
 import '../../gameplay/river_raid_game_play.dart';
 import '../../gameplay/river_raid_game_play_reset_timer_manager.dart';
 import '../../river_raid_game.dart';
@@ -62,7 +63,6 @@ final class PlaneComponent extends SpriteComponent
         }
       }
       if (planeStageManager.crossedTheBridge()) {
-        // game.stageName = 'stage_${game.riverRaidGameManager.nextStageToShow}.tmx';
         planeStageManager.removePastStage();
         if (planeStageManager.isLastBridgeBroken()) {
           game.riverRaidGameManager.finish();
@@ -74,13 +74,14 @@ final class PlaneComponent extends SpriteComponent
       if (RiverRaidGamePlay.isBridgeExploding.value == false) {
         if (!gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
           gamePlay.resetTimerManager.startTimerToResetGame();
-          gamePlay.resetTimerManager.executeActionsAfterTick(() {
+          gamePlay.resetTimerManager.executeActionsAfterTick(() async {
             game.riverRaidGameManager.resetNextStageToShow();
             (game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
             game.riverRaidGameManager.decreaseLife();
             if (game.riverRaidGameManager.showLifeValue < 0) {
               game.riverRaidGameManager.startGame();
             }
+            await Injector.clean();
             game.riverRaidRouter
                 .pushReplacement(RiverRaidRouter.startGame, name: RiverRaidGamePlay.id);
           });
