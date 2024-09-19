@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'enemy_component.dart';
-import 'enemy_manager.dart';
 
 final class Ship extends EnemyComponent {
   Ship({

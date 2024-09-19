@@ -1,12 +1,4 @@
-import 'dart:ui';
-
-import 'package:flame/collisions.dart';
-import 'package:flame/components.dart';
-
-import '../../constants/assets.dart';
-import '../../constants/globals.dart';
-import '../../gameplay/river_raid_game_play.dart';
-import 'enemy_component.dart';
+part of 'enemy_component.dart';
 
 abstract interface class _IEnemyManager {
   void showShip();
@@ -145,8 +137,4 @@ final class _EnemyManager implements _IEnemyManager {
 
   @override
   Vector2 get moveDirection => _moveDirection;
-}
-
-extension EnemyExtension on EnemyComponent {
-  _IEnemyManager get enemyManager => _EnemyManager(this);
 }

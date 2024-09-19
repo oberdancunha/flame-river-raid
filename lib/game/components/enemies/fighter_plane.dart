@@ -5,7 +5,6 @@ import 'package:flame/components.dart';
 import '../../constants/globals.dart';
 import '../border/border.dart';
 import 'enemy_component.dart';
-import 'enemy_manager.dart';
 
 final class FighterPlane extends EnemyComponent {
   FighterPlane({

@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
+import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../../constants/assets.dart';
 import '../../constants/globals.dart';
+import '../../gameplay/river_raid_game_play.dart';
 import '../border/border.dart';
 import '../stage/stage_position_component/stage_position_component.dart';
-import 'enemy_manager.dart';
+
+part 'enemy_manager.dart';
 
 class EnemyComponent extends StagePositionComponent {
   bool isReverse;
@@ -19,11 +24,14 @@ class EnemyComponent extends StagePositionComponent {
     required super.stage,
     required this.isReverse,
     required this.hasMove,
-  });
+  }) {
+    enemyManager = _EnemyManager(this);
+  }
 
   static final _random = Random();
   double speed = _random.nextDouble() * Globals.defaultSpeed;
   final defaultSpeed = _random.nextDouble() * Globals.defaultSpeed * 2;
+  late _IEnemyManager enemyManager;
 
   @override
   FutureOr<void> onLoad() {
