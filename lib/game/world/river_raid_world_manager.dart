@@ -40,7 +40,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
       anchor: anchor,
     );
     world.add(stage);
-    world.gamePlay.stagesPositionInWorld.add(stage.position.y);
+    world.gamePlay.gamePlayManager.addStagePositionInWorld(stage.position.y);
 
     return stage;
   }
@@ -65,14 +65,15 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
   void removeStage(int stageIndex) {
     world.removeWhere((component) {
       if (component is Stage) {
-        return world.gamePlay.stagesPositionInWorld.length > stageIndex &&
-            component.position.y == world.gamePlay.stagesPositionInWorld.elementAt(stageIndex);
+        return world.gamePlay.gamePlayManager.stagesPositionInWorld.length > stageIndex &&
+            component.position.y ==
+                world.gamePlay.gamePlayManager.stagesPositionInWorld.elementAt(stageIndex);
       }
 
       return false;
     });
-    if (world.gamePlay.stagesPositionInWorld.length > stageIndex) {
-      world.gamePlay.stagesPositionInWorld.removeAt(stageIndex);
+    if (world.gamePlay.gamePlayManager.stagesPositionInWorld.length > stageIndex) {
+      world.gamePlay.gamePlayManager.stagesPositionInWorld.removeAt(stageIndex);
     }
   }
 
@@ -85,6 +86,6 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
 
       return false;
     });
-    world.gamePlay.stagesPositionInWorld.clear();
+    world.gamePlay.gamePlayManager.stagesPositionInWorld.clear();
   }
 }

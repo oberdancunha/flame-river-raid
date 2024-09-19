@@ -3,7 +3,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play.dart';
+import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../river_raid_game.dart';
 import '../../sprites/sprites_explosion.dart';
 import '../border/border.dart';

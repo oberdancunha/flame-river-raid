@@ -5,7 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play.dart';
+import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../sprites/sprites_explosion.dart';
 import '../border/border.dart';
 import '../stage/stage_position_component/stage_position_component.dart';
@@ -41,7 +41,7 @@ final class Bridge extends StagePositionComponent with HasGamePlayRef {
     if (other is! BorderComponent) {
       super.onCollisionStart(intersectionPoints, other);
       bridgeManager.explode();
-      gamePlay.isBridgeExploding.value = true;
+      gamePlay.gamePlayManager.isBridgeExploding = true;
     }
   }
 }

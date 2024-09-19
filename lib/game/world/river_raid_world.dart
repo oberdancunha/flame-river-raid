@@ -9,6 +9,7 @@ import '../components/plane/plane.dart';
 import '../components/river_raid_component.dart';
 import '../components/stage/stage.dart';
 import '../gameplay/river_raid_game_play.dart';
+import '../gameplay/river_raid_game_play_mixin.dart';
 import '../river_raid_game.dart';
 
 part 'river_raid_world_manager.dart';
@@ -22,11 +23,12 @@ final class RiverRaidWorld extends World with HasGameReference<RiverRaidGame>, H
   FutureOr<void> onLoad() async {
     riverRaidWorldManager = _RiverRaidWorldManager(this);
     if (game.riverRaidGameManager.crossedBridges == 0) {
-      gamePlay.stage = await riverRaidWorldManager.showStage('stage_1.tmx');
-      RiverRaidGamePlay.plane = riverRaidWorldManager.showPlane(gamePlay.stage.tileMap);
+      gamePlay.gamePlayManager.stage = await riverRaidWorldManager.showStage('stage_1.tmx');
+      RiverRaidGamePlay.plane =
+          riverRaidWorldManager.showPlane(gamePlay.gamePlayManager.stage.tileMap);
     } else {
       final bridge = await riverRaidWorldManager.showStage('bridge.tmx', tileSize: 13);
-      gamePlay.stage = await riverRaidWorldManager.showStage(
+      gamePlay.gamePlayManager.stage = await riverRaidWorldManager.showStage(
         game.riverRaidGameManager.stageName,
         position: Vector2(bridge.position.x, bridge.position.y + 0.2),
         anchor: Anchor.bottomLeft,

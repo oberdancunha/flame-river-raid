@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-import '../../constants/globals.dart';
+import '../../extensions/size_extension.dart';
 import '../../river_raid_game.dart';
 import 'fuel_status_bar/fuel_status_bar.dart';
 import 'info.dart';

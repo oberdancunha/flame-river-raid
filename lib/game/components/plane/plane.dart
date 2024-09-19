@@ -7,7 +7,9 @@ import 'package:flame/components.dart';
 
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
+import '../../extensions/size_extension.dart';
 import '../../gameplay/river_raid_game_play.dart';
+import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../river_raid_game.dart';
 import '../../router/river_raid_router.dart';
 import '../../world/river_raid_world.dart';
@@ -81,7 +83,7 @@ final class PlaneComponent extends SpriteComponent
     }
     if (planeManager.planeState == PlaneState.isDead) {
       planeManager.planeExplosion();
-      if (gamePlay.isBridgeExploding.value == false) {
+      if (gamePlay.gamePlayManager.isBridgeExploding == false) {
         if (!gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
           gamePlay.resetTimerManager.startTimerToResetGame();
           gamePlay.resetTimerManager.executeActionsAfterTick(() async {

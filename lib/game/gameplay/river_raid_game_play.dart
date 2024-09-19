@@ -10,6 +10,7 @@ import '../constants/globals.dart';
 import '../river_raid_game.dart';
 import '../world/river_raid_world.dart';
 
+part 'river_raid_game_play_manager.dart';
 part 'river_raid_game_play_reset_timer_manager.dart';
 
 final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
@@ -20,58 +21,21 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
   static const id = 'Gameplay';
 
   late _IRiverRaidGamePlayResetTimerManager resetTimerManager;
+  late _IRiverRaidGamePlayManager gamePlayManager;
+  late RiverRaidWorld _riverRaidWorld;
 
-  late RiverRaidWorld riverRaidWorld;
   static late PlaneComponent plane;
-
-  late Stage stage;
-  final stagesPositionInWorld = <double>[];
-
-  late Bridge lastBridge;
-  ValueNotifier<bool> isBridgeExploding = ValueNotifier<bool>(false);
-
   static ValueNotifier<double> fuelMarker = ValueNotifier<double>(Globals.indexFullFuel);
 
   @override
   FutureOr<void> onLoad() async {
     resetTimerManager = _RiverRaidGamePlayResetTimerManager();
-    riverRaidWorld = RiverRaidWorld();
-    add(riverRaidWorld);
-    game.world = riverRaidWorld;
+    gamePlayManager = _RiverRaidGamePlayManager();
+    _riverRaidWorld = RiverRaidWorld();
+    add(_riverRaidWorld);
+    game.world = _riverRaidWorld;
     fuelMarker.value = Globals.indexFullFuel;
 
     return super.onLoad();
-  }
-}
-
-mixin HasGamePlayRef<T extends RiverRaidGamePlay> on Component {
-  T? _gamePlay;
-
-  T get gamePlay => _gamePlay ??= _findWorldAndCheck();
-
-  @visibleForTesting
-  set gamePlay(T? value) => _gamePlay = value;
-
-  T? findGamePlayRef() =>
-      ancestors(includeSelf: true).firstWhereOrNull((ancestor) => ancestor is T) as T?;
-
-  T _findWorldAndCheck() {
-    final gamePlay = findGamePlayRef();
-    assert(
-      gamePlay != null,
-      'Could not find a GamePlay instance of type $T',
-    );
-
-    return gamePlay!;
-  }
-}
-
-extension IterableExtension<T> on Iterable<T> {
-  T? firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
-      if (test(element)) return element;
-    }
-
-    return null;
   }
 }

@@ -5,7 +5,7 @@ import 'package:flame/effects.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play.dart';
+import '../../gameplay/river_raid_game_play_mixin.dart';
 
 final class River extends SpriteComponent with HasGamePlayRef {
   River({
@@ -18,19 +18,19 @@ final class River extends SpriteComponent with HasGamePlayRef {
 
   @override
   FutureOr<void> onLoad() {
-    gamePlay.isBridgeExploding.addListener(_changeBackgroundColor);
+    gamePlay.gamePlayManager.isBridgeExplodingNotifier.addListener(_changeBackgroundColor);
 
     return super.onLoad();
   }
 
   @override
   void onRemove() {
-    gamePlay.isBridgeExploding.removeListener(_changeBackgroundColor);
+    gamePlay.gamePlayManager.isBridgeExplodingNotifier.removeListener(_changeBackgroundColor);
     super.onRemove();
   }
 
   void _changeBackgroundColor() {
-    if (gamePlay.isBridgeExploding.value == true) {
+    if (gamePlay.gamePlayManager.isBridgeExploding == true) {
       add(
         ColorEffect(
           const Color.fromARGB(255, 210, 1, 1),
@@ -41,7 +41,7 @@ final class River extends SpriteComponent with HasGamePlayRef {
           ),
         )
           ..onComplete = () {
-            gamePlay.isBridgeExploding.value = false;
+            gamePlay.gamePlayManager.isBridgeExploding = false;
           }
           ..removeOnFinish = true,
       );

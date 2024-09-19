@@ -10,6 +10,7 @@ import 'components/hud/hud.dart';
 import 'components/hud/joystick/joystick.dart';
 import 'components/hud/joystick/joystick_button.dart';
 import 'constants/globals.dart';
+import 'extensions/size_extension.dart';
 import 'router/river_raid_router.dart';
 
 part 'river_raid_game_manager.dart';

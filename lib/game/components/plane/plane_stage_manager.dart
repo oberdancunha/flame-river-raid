@@ -16,9 +16,9 @@ final class _PlaneStageManger implements _IPlaneStageManager {
   final PlaneComponent plane;
 
   _PlaneStageManger(this.plane) {
-    _currentStage = plane.gamePlay.stage;
-    _currentStagePosition =
-        plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
+    _currentStage = plane.gamePlay.gamePlayManager.stage;
+    _currentStagePosition = plane
+        .gamePlay.gamePlayManager.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
   }
 
   late Stage _currentStage;
@@ -27,7 +27,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
 
   @override
   bool isTimeToLoadTheNextStage() =>
-      (plane.game.camera.canSee(plane.gamePlay.lastBridge) && _isCheckNextStage);
+      (plane.game.camera.canSee(plane.gamePlay.gamePlayManager.lastBridge) && _isCheckNextStage);
 
   @override
   bool lastBrokenBridgeBelongsToNewStage() =>
@@ -47,7 +47,8 @@ final class _PlaneStageManger implements _IPlaneStageManager {
               ? Vector2(_currentStage.position.x, _currentStage.position.y + 0.2)
               : Vector2(
                   _currentStage.position.x,
-                  plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage,
+                  plane.gamePlay.gamePlayManager.lastBridge.absolutePosition
+                      .heightPositionOfTheRespectiveStage,
                 ),
           anchor: Anchor.bottomLeft,
         );
@@ -56,8 +57,8 @@ final class _PlaneStageManger implements _IPlaneStageManager {
   @override
   bool crossedTheBridge() {
     if (plane.position.y <= _currentStagePosition - 15) {
-      _currentStagePosition =
-          plane.gamePlay.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
+      _currentStagePosition = plane
+          .gamePlay.gamePlayManager.lastBridge.absolutePosition.heightPositionOfTheRespectiveStage;
       plane.game.riverRaidGameManager.addCrossedBridges();
 
       return true;
@@ -69,7 +70,7 @@ final class _PlaneStageManger implements _IPlaneStageManager {
   @override
   void removePastStage() {
     (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeStage(0);
-    if (plane.gamePlay.stagesPositionInWorld.length > 1) {
+    if (plane.gamePlay.gamePlayManager.stagesPositionInWorld.length > 1) {
       (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeStage(0);
     }
   }
