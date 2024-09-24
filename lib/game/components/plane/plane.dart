@@ -11,6 +11,7 @@ import '../../extensions/size_extension.dart';
 import '../../gameplay/river_raid_game_play.dart';
 import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../river_raid_game.dart';
+import '../../river_raid_game_state.dart';
 import '../../router/river_raid_router.dart';
 import '../../world/river_raid_world.dart';
 import '../bullet/bullet.dart';
@@ -57,50 +58,50 @@ final class PlaneComponent extends SpriteComponent
     if (planeManager.planeState == PlaneState.isAlive) {
       super.update(dt);
       planeManager.deltaTime = dt;
-      planeControllerManager
-        ..moveUp(dt)
-        ..detectMovementDirection(dt);
-      planeManager.reduceFuel(dt);
-      if (planeManager.isOutOfFuel()) {
-        planeManager.planeState = PlaneState.isDead;
-      }
-      if (planeStageManager.isTimeToLoadTheNextStage() &&
-          planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
-        if (planeStageManager.isThereNewStageToLoad()) {
-          game.riverRaidGameManager.addNextStageToShow();
-          unawaited(planeStageManager.loadNewStage());
-        } else {
-          game.camera.stop();
-          planeStageManager.isCheckNextStage = false;
+      planeControllerManager.moveUp(dt);
+      if (game.riverRaidGameManager.gameState == RiverRaidGameState.run) {
+        planeControllerManager.detectMovementDirection(dt);
+        planeManager.reduceFuel(dt);
+        if (planeManager.isOutOfFuel()) {
+          planeManager.planeState = PlaneState.isDead;
         }
-      }
-      if (planeStageManager.crossedTheBridge()) {
-        planeStageManager.removePastStage();
-        if (planeStageManager.isLastBridgeBroken()) {
-          game.riverRaidGameManager.finish();
-        }
-      }
-    }
-    if (planeManager.planeState == PlaneState.isDead) {
-      planeManager.planeExplosion();
-      if (gamePlay.gamePlayManager.isBridgeExploding == false) {
-        if (!gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
-          gamePlay.resetTimerManager.startTimerToResetGame();
-          gamePlay.resetTimerManager.executeActionsAfterTick(() async {
-            game.riverRaidGameManager.resetNextStageToShow();
-            (game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
-            game.riverRaidGameManager.decreaseLife();
-            if (game.riverRaidGameManager.showLifeValue < 0) {
-              game.riverRaidGameManager.startGame();
-            }
-            game.riverRaidRouter
-                .pushReplacement(RiverRaidRouter.startGame, name: RiverRaidGamePlay.id);
-          });
-        } else {
-          gamePlay.resetTimerManager.runtimeCount(dt);
-          if (gamePlay.resetTimerManager.isTimerToResetGameFinished()) {
-            gamePlay.resetTimerManager.stopTimerToResetGame();
+        if (planeStageManager.isTimeToLoadTheNextStage() &&
+            planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
+          if (planeStageManager.isThereNewStageToLoad()) {
+            game.riverRaidGameManager.addNextStageToShow();
+            unawaited(planeStageManager.loadNewStage());
+          } else {
+            unawaited(planeStageManager.loadFinishStageBottom());
+            planeStageManager.isCheckNextStage = false;
           }
+        }
+        if (planeStageManager.crossedTheBridge()) {
+          Future.delayed(const Duration(seconds: 2), () {
+            planeStageManager.removePastStage();
+          });
+          if (planeStageManager.isLastBridgeBroken()) {
+            game.camera.stop();
+            unawaited(planeStageManager.loadFinishStageTop());
+            game.riverRaidGameManager.gameState = RiverRaidGameState.win;
+            planeControllerManager
+              ..speed = Globals.finishSpeed
+              ..maxSpeed = Globals.finishSpeed;
+          }
+        }
+      } else {
+        if (game.riverRaidGameManager.gameState == RiverRaidGameState.win) {
+          game.riverRaidGameManager.removeHudView(dt);
+          planeControllerManager.paradeTheVictory(dt);
+          if (!game.camera.canSee(this)) {
+            game.riverRaidGameManager.finish();
+          }
+        }
+      }
+    } else {
+      if (planeManager.planeState == PlaneState.isDead) {
+        planeManager.planeExplosion();
+        if (gamePlay.gamePlayManager.isBridgeExploding == false) {
+          planeManager.runTimerToResetGame(dt);
         }
       }
     }

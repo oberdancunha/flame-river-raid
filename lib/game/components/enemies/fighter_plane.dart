@@ -21,7 +21,7 @@ final class FighterPlane extends EnemyComponent {
   int get score => 100;
 
   @override
-  double get speed => Globals.defaultSpeed * 2.5;
+  double get speed => Globals.defaultMaxSpeed * 2.5;
 
   @override
   double get defaultSpeed => speed;

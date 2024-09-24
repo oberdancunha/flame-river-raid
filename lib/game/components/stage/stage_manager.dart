@@ -3,7 +3,6 @@ part of 'stage.dart';
 abstract interface class _IStageManager {
   void showBridge();
   void showBorders();
-  void showRivers();
   void showShips();
   void showHelicopters();
   void showFighterPlanes();
@@ -42,18 +41,6 @@ final class _StageManager implements _IStageManager {
         size: borderObject.size,
       );
       stage.add(border);
-    }
-  }
-
-  @override
-  void showRivers() {
-    final riversLayer = RiverRaidComponent.getLayer(stage.tileMap, 'Rivers');
-    for (final riverObject in riversLayer) {
-      final river = River(
-        position: riverObject.position,
-        size: Vector2(riverObject.size.x, riverObject.size.y + 0.35),
-      );
-      stage.add(river);
     }
   }
 

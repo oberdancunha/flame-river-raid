@@ -13,12 +13,19 @@ final class Globals {
   static const minimumDistanceFromEnemyToPlane = 110.0;
 
   static const acceleration = 0.5;
-  static const defaultSpeed = 50.0;
+  static const defaultMaxSpeed = 50.0;
   static const maximumSpeedPlane = 80.0;
   static const minimumSpeedPlane = 20;
   static const speedUpDown = 3.0;
+  static const finishSpeed = 25.0;
 
   static const indexFullFuel = 100.0;
   static const fuelMarkerModificationIndex = 1.5;
   static const indexIsOutOfFuel = 8.5;
+
+  static const maxPlaneRightPositionToCenterAdjust = 143.0;
+  static const minPlaneLeftPositionToCenterAdjust = 133.0;
+
+  static const finishStageBottomFileName = 'stage_finish_bottom.tmx';
+  static const finishStageTopFileName = 'stage_finish_top.tmx';
 }

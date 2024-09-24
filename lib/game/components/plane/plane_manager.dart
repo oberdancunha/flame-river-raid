@@ -13,6 +13,7 @@ abstract interface class _IPlaneManager {
   set deltaTime(dt);
   set planeState(PlaneState state);
   PlaneState get planeState;
+  void runTimerToResetGame(double dt);
 }
 
 final class _PlaneManager implements _IPlaneManager {
@@ -72,4 +73,28 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   PlaneState get planeState => _planeState;
+
+  @override
+  void runTimerToResetGame(double dt) {
+    if (!plane.gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
+      plane.gamePlay.resetTimerManager.startTimerToResetGame();
+      plane.gamePlay.resetTimerManager.executeActionsAfterTick(
+        () async {
+          plane.game.riverRaidGameManager.resetNextStageToShow();
+          (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
+          plane.game.riverRaidGameManager.decreaseLife();
+          if (plane.game.riverRaidGameManager.showLifeValue < 0) {
+            plane.game.riverRaidGameManager.startGame();
+          }
+          plane.game.riverRaidRouter
+              .pushReplacement(RiverRaidRouter.startGame, name: RiverRaidGamePlay.id);
+        },
+      );
+    } else {
+      plane.gamePlay.resetTimerManager.runtimeCount(dt);
+      if (plane.gamePlay.resetTimerManager.isTimerToResetGameFinished()) {
+        plane.gamePlay.resetTimerManager.stopTimerToResetGame();
+      }
+    }
+  }
 }

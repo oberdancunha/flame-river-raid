@@ -2,12 +2,16 @@ part of 'plane.dart';
 
 abstract interface class _IPlaneControllerManager {
   void moveUp(double dt);
+  void moveStraight(double dt);
   void moveLeft(double dt);
   void moveRight(double dt);
   void detectMovementDirection(double dt);
   void shootBullets();
   void speedUp();
   void speedDown();
+  set speed(double speed);
+  set maxSpeed(double maxSpeed);
+  void paradeTheVictory(double dt);
 }
 
 final class _PlaneControllerManager implements _IPlaneControllerManager {
@@ -17,10 +21,17 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
 
   final Vector2 _moveDirection = Vector2(0, 1);
   double _speed = 0.0;
+  double _maxSpeed = Globals.defaultMaxSpeed;
 
   @override
   void moveUp(double dt) {
     _moveDirection.y = -1;
+    _makeMovement(dt);
+  }
+
+  @override
+  void moveStraight(double dt) {
+    _moveDirection.x = 0;
     _makeMovement(dt);
   }
 
@@ -38,7 +49,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
 
   void _makeMovement(double dt) {
     _moveDirection.normalize();
-    _speed = lerpDouble(_speed, Globals.defaultSpeed, Globals.acceleration * dt)!;
+    _speed = lerpDouble(_speed, _maxSpeed, Globals.acceleration * dt)!;
     plane.position.addScaled(_moveDirection, _speed * dt);
   }
 
@@ -100,6 +111,26 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
   void speedDown() {
     if (_speed > Globals.minimumSpeedPlane) {
       _speed -= Globals.speedUpDown;
+    }
+  }
+
+  @override
+  set speed(double speed) => _speed = speed;
+
+  @override
+  set maxSpeed(double maxSpeed) => _maxSpeed = maxSpeed;
+
+  @override
+  void paradeTheVictory(dt) {
+    if (plane.position.x > Globals.maxPlaneRightPositionToCenterAdjust) {
+      plane.planeManager.planeLeft();
+      moveLeft(dt);
+    } else if (plane.position.x < Globals.minPlaneLeftPositionToCenterAdjust) {
+      plane.planeManager.planeRight();
+      moveRight(dt);
+    } else {
+      plane.planeManager.planeStraight();
+      moveStraight(dt);
     }
   }
 }

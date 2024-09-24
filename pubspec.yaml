@@ -32,6 +32,8 @@ flutter:
     - assets/tiles/stage_2/
     - assets/tiles/stage_3/
     - assets/tiles/stage_4/
+    - assets/tiles/stage_finish_bottom/
+    - assets/tiles/stage_finish_top/
 
   fonts:
     - family: Atari-Bzzz1

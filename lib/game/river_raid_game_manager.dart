@@ -20,6 +20,9 @@ abstract interface class _IRiverRaidGameManager {
   void addCrossedBridges();
   Joystick get joystick;
   JoystickButton get joystickButton;
+  void removeHudView(double dt);
+  set gameState(RiverRaidGameState gameState);
+  RiverRaidGameState get gameState;
 }
 
 final class _RiverRaidGameManager implements _IRiverRaidGameManager {
@@ -46,6 +49,8 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
 
   final ValueNotifier<int> _totalScore = ValueNotifier<int>(Globals.initialScore);
   final ValueNotifier<int> _totalLife = ValueNotifier<int>(Globals.totalLife);
+
+  var _gameState = RiverRaidGameState.run;
 
   @override
   Future<void> listAllStagesAvailable() async {
@@ -128,4 +133,20 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
 
   @override
   JoystickButton get joystickButton => _joystickButton;
+
+  @override
+  void removeHudView(double dt) {
+    final viewPortPositionY = game.camera.viewport.position.y + (dt * 60);
+    if (viewPortPositionY < 0) {
+      game.camera.viewport.position.y = viewPortPositionY;
+    } else {
+      game.camera.viewport.position.y = 0;
+    }
+  }
+
+  @override
+  set gameState(RiverRaidGameState gameState) => _gameState = gameState;
+
+  @override
+  RiverRaidGameState get gameState => _gameState;
 }

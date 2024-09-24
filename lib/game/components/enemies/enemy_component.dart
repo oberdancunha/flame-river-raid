@@ -29,8 +29,8 @@ class EnemyComponent extends StagePositionComponent {
   }
 
   static final _random = Random();
-  double speed = _random.nextDouble() * Globals.defaultSpeed;
-  final defaultSpeed = _random.nextDouble() * Globals.defaultSpeed * 2;
+  double speed = _random.nextDouble() * Globals.defaultMaxSpeed;
+  final defaultSpeed = _random.nextDouble() * Globals.defaultMaxSpeed * 2;
   late _IEnemyManager enemyManager;
 
   @override

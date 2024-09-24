@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="5" tilewidth="15" tileheight="15" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="stage_finish_top.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="5">
+  <data encoding="base64" compression="zlib">
+   eJwNw4c2QgEAANBHIXuvSBq2CCEjK0RmCNnF/3+De8+5TUEQNBsybIutthmx3Q477bLbHnvts98BBx1y2BFHHXPcqBNOGnPKuNMmTJoy7YyzzjnvgosuuWzGFVfNuua6G+bcdMtt8+646577Fjzw0COPPbHoqWeeW/LCS8teee2Nt955b8UHH32y6rMvvlrzzXc//PTLb3+s2/DXP/8BfPYTuw==
+  </data>
+ </layer>
+</map>

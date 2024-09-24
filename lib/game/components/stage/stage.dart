@@ -1,4 +1,3 @@
-import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,12 +11,12 @@ import '../enemies/fighter_plane.dart';
 import '../enemies/helicopter.dart';
 import '../enemies/ship.dart';
 import '../fuel/fuel.dart';
-import '../river/river.dart';
 import '../river_raid_component.dart';
+import 'stage_mixin.dart';
 
 part 'stage_manager.dart';
 
-final class Stage extends TiledComponent<RiverRaidGame> with HasGamePlayRef {
+final class Stage extends TiledComponent<RiverRaidGame> with StageMixin, HasGamePlayRef {
   Stage(
     super.tileMap, {
     super.position,
@@ -32,11 +31,11 @@ final class Stage extends TiledComponent<RiverRaidGame> with HasGamePlayRef {
     stageManager
       ..showBridge()
       ..showBorders()
-      ..showRivers()
       ..showShips()
       ..showHelicopters()
       ..showFighterPlanes()
       ..showFuels();
+    showRivers(tileMap);
 
     return super.onLoad();
   }

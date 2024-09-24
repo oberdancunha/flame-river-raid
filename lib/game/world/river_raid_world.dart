@@ -2,12 +2,15 @@ import 'dart:async';
 
 import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
+import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 
 import '../components/plane/plane.dart';
 import '../components/river_raid_component.dart';
+import '../components/stage/finish/finish_stage.dart';
 import '../components/stage/stage.dart';
+import '../constants/globals.dart';
 import '../gameplay/river_raid_game_play.dart';
 import '../gameplay/river_raid_game_play_mixin.dart';
 import '../river_raid_game.dart';
