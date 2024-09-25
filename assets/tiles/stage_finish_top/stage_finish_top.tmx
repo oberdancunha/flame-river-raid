@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="5" tilewidth="15" tileheight="15" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="20" height="5" tilewidth="15" tileheight="15" infinite="0" nextlayerid="3" nextobjectid="4">
  <tileset firstgid="1" source="stage_finish_top.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="5">
   <data encoding="base64" compression="zlib">
    eJwNw4c2QgEAANBHIXuvSBq2CCEjK0RmCNnF/3+De8+5TUEQNBsybIutthmx3Q477bLbHnvts98BBx1y2BFHHXPcqBNOGnPKuNMmTJoy7YyzzjnvgosuuWzGFVfNuua6G+bcdMtt8+646577Fjzw0COPPbHoqWeeW/LCS8teee2Nt955b8UHH32y6rMvvlrzzXc//PTLb3+s2/DXP/8BfPYTuw==
   </data>
  </layer>
+ <objectgroup id="2" name="Rivers" visible="0">
+  <object id="1" name="river" x="112" y="-0.0211631" width="64" height="50.0212"/>
+  <object id="2" name="river" x="104" y="50" width="79.9998" height="1.99142"/>
+  <object id="3" name="river" x="96" y="52" width="96" height="2"/>
+  <object id="4" name="river" x="88" y="54" width="112.001" height="2"/>
+  <object id="5" name="river" x="80" y="56" width="127.999" height="2"/>
+  <object id="6" name="river" x="72" y="58" width="144" height="17"/>
+ </objectgroup>
+ <objectgroup id="3" name="Fireworks" visible="0">
+  <object id="7" name="firework" x="109" y="67" width="15" height="15"/>
+  <object id="8" name="firework" x="180" y="67" width="15" height="15"/>
+ </objectgroup>
 </map>

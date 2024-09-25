@@ -134,6 +134,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
       finishStageTopTiled.tileMap,
       position: Vector2(positionX, world.game.camera.visibleWorldRect.top),
       anchor: Anchor.topLeft,
+      isExplodeFireworksAutomatically: true,
     );
     world.add(finishStageTop);
   }

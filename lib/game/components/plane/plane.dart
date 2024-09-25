@@ -83,6 +83,7 @@ final class PlaneComponent extends SpriteComponent
             game.camera.stop();
             unawaited(planeStageManager.loadFinishStageTop());
             game.riverRaidGameManager.gameState = RiverRaidGameState.win;
+            gamePlay.gamePlayManager.isExplodeFireworks = true;
             planeControllerManager
               ..speed = Globals.finishSpeed
               ..maxSpeed = Globals.finishSpeed;

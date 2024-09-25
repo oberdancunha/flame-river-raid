@@ -10,6 +10,9 @@ abstract interface class _IRiverRaidGamePlayManager {
   set isBridgeExploding(bool value);
   bool get isBridgeExploding;
   ValueNotifier get isBridgeExplodingNotifier;
+  set isExplodeFireworks(bool explodeFireworks);
+  bool get isExplodeFireworks;
+  ValueNotifier get isExplodeFireworksNotifier;
 }
 
 final class _RiverRaidGamePlayManager implements _IRiverRaidGamePlayManager {
@@ -17,6 +20,7 @@ final class _RiverRaidGamePlayManager implements _IRiverRaidGamePlayManager {
   final _stagesPositionInWorld = <double>[];
   late Bridge _lastBridge;
   final ValueNotifier<bool> _isBridgeExploding = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _isExplodeFireworks = ValueNotifier<bool>(false);
 
   @override
   set stage(Stage stage) => _stage = stage;
@@ -44,4 +48,13 @@ final class _RiverRaidGamePlayManager implements _IRiverRaidGamePlayManager {
 
   @override
   ValueNotifier get isBridgeExplodingNotifier => _isBridgeExploding;
+
+  @override
+  set isExplodeFireworks(bool explodeFireworks) => _isExplodeFireworks.value = explodeFireworks;
+
+  @override
+  bool get isExplodeFireworks => _isExplodeFireworks.value;
+
+  @override
+  ValueNotifier get isExplodeFireworksNotifier => _isExplodeFireworks;
 }

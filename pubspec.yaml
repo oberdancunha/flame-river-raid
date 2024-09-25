@@ -27,6 +27,7 @@ flutter:
     - assets/images/
     - assets/images/atlas/
     - assets/images/tiles/
+    - assets/images/spritesheet/
     - assets/tiles/bridge/
     - assets/tiles/stage_1/
     - assets/tiles/stage_2/
