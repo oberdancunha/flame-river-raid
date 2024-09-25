@@ -17,7 +17,6 @@ final class _FinishStageManager implements _IFinishStageManager {
       final firework = Firework(
         position: fireworkObject.position,
         size: fireworkObject.size,
-        isExplodeFireworksAutomatically: finishStage.isExplodeFireworksAutomatically,
       );
       finishStage.add(firework);
     }

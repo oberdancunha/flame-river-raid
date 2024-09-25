@@ -7,12 +7,9 @@ import '../../river_raid_game.dart';
 
 final class Firework extends SpriteAnimationComponent
     with HasGameRef<RiverRaidGame>, HasGamePlayRef {
-  final bool isExplodeFireworksAutomatically;
-
   Firework({
     required super.position,
     required super.size,
-    this.isExplodeFireworksAutomatically = false,
   }) : super(
           anchor: Anchor.center,
           removeOnFinish: true,
@@ -21,9 +18,6 @@ final class Firework extends SpriteAnimationComponent
   @override
   FutureOr<void> onLoad() async {
     gamePlay.gamePlayManager.isExplodeFireworksNotifier.addListener(_explodeFireworks);
-    if (isExplodeFireworksAutomatically) {
-      _explodeFireworks();
-    }
 
     return super.onLoad();
   }

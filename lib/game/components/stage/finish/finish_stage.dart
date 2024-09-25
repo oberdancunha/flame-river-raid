@@ -9,13 +9,10 @@ import '../stage_mixin.dart';
 part 'finish_stage_manager.dart';
 
 final class FinishStage extends TiledComponent<RiverRaidGame> with StageMixin {
-  final bool isExplodeFireworksAutomatically;
-
   FinishStage(
     super.tileMap, {
     super.position,
     super.anchor,
-    this.isExplodeFireworksAutomatically = false,
   });
 
   late _IFinishStageManager _finishStageManager;

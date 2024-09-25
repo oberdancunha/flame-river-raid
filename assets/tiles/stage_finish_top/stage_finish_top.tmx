@@ -14,8 +14,4 @@
   <object id="5" name="river" x="80" y="56" width="127.999" height="2"/>
   <object id="6" name="river" x="72" y="58" width="144" height="17"/>
  </objectgroup>
- <objectgroup id="3" name="Fireworks" visible="0">
-  <object id="7" name="firework" x="109" y="67" width="15" height="15"/>
-  <object id="8" name="firework" x="180" y="67" width="15" height="15"/>
- </objectgroup>
 </map>
