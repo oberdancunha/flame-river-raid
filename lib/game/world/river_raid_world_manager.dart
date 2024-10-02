@@ -1,7 +1,6 @@
 part of 'river_raid_world.dart';
 
 abstract interface class _IRiverRaidWorldManager {
-  Future<TiledComponent<FlameGame<World>>> getTiledStage(String stageName, {double? tileSize});
   Future<Stage> showStage(
     String stageName, {
     double? tileSize,
@@ -29,29 +28,13 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
   const _RiverRaidWorldManager(this.world);
 
   @override
-  Future<TiledComponent<FlameGame<World>>> getTiledStage(String stageName,
-      {double? tileSize = 15}) async {
-    final prefixStageName = stageName.split('.').elementAt(0);
-    final tiledStage = await TiledComponent.load(
-      stageName,
-      Vector2.all(tileSize!),
-      prefix: 'assets/tiles/$prefixStageName/',
-      images: Images(
-        prefix: 'assets/images/tiles/',
-      ),
-    );
-
-    return tiledStage;
-  }
-
-  @override
   Future<Stage> showStage(
     String stageName, {
     double? tileSize = 15,
     Vector2? position,
     Anchor? anchor,
   }) async {
-    final tiledStage = await getTiledStage(stageName, tileSize: tileSize);
+    final tiledStage = await RiverRaidComponent.readTiledFile(stageName, tileSize: tileSize);
     final stage = Stage(
       tiledStage.tileMap,
       position: position,
@@ -113,8 +96,9 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
     double? tileSize = 15,
     Anchor? anchor,
   }) async {
-    final finishStageBottomTiled =
-        await getTiledStage(Globals.finishStageBottomFileName, tileSize: tileSize);
+    final finishStageBottomTiled = await RiverRaidComponent.readTiledFile(
+        Globals.finishStageBottomFileName,
+        tileSize: tileSize);
     final finishStageBottom = FinishStage(
       finishStageBottomTiled.tileMap,
       position: position,
@@ -129,7 +113,7 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
     double? tileSize = 15,
   }) async {
     final finishStageTopTiled =
-        await getTiledStage(Globals.finishStageTopFileName, tileSize: tileSize);
+        await RiverRaidComponent.readTiledFile(Globals.finishStageTopFileName, tileSize: tileSize);
     final finishStageTop = FinishStage(
       finishStageTopTiled.tileMap,
       position: Vector2(positionX, world.game.camera.visibleWorldRect.top),

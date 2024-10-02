@@ -25,7 +25,8 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
   late RiverRaidWorld _riverRaidWorld;
 
   static late PlaneComponent plane;
-  static ValueNotifier<double> fuelMarker = ValueNotifier<double>(Globals.indexFullFuel);
+  static ValueNotifier<double> fuelStatusMarker = ValueNotifier<double>(Globals.indexFullFuel);
+  static bool isOutOfFuel = false;
 
   @override
   FutureOr<void> onLoad() async {
@@ -34,7 +35,8 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
     _riverRaidWorld = RiverRaidWorld();
     add(_riverRaidWorld);
     game.world = _riverRaidWorld;
-    fuelMarker.value = Globals.indexFullFuel;
+    fuelStatusMarker.value = Globals.indexFullFuel;
+    isOutOfFuel = false;
 
     return super.onLoad();
   }

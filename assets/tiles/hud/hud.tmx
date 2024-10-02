@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="38" height="15" tilewidth="5" tileheight="5" infinite="0" nextlayerid="7" nextobjectid="6">
+ <tileset firstgid="1" source="hud.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="38" height="15">
+  <data encoding="base64" compression="zlib">
+   eJwV1YOyGAYAAMEX27Zt27Zt23basI1t27Zt27btpNuZ22+4QAEBAYEJQlCCEZwQhCQUoQlDWMIRnghEJBKRiUJUohGdGMQkFrGJQ1ziEZ8EJCQRiUlCUpKRnBSkJBWpSUNa0pGeDGQkE5nJQlaykZ0c5CQXuclDXvKRnwIUpBCFKUJRilGcEpSkFKUpQ1nKUZ4KVKQSlalCVapRnRrUpBa1qUNd6lGfBjSkEY1pQlOa0ZwWtKQVrWlDW9rRng50pBOd6UJXutGdHvSkF73pQ1/60Z8BDOQv/mYQgxnCUIYxnH/4lxGMZBSjGcNYxjGeCUxkEpOZwlSmMZ0ZzGQWs5nDXOYxnwUsZBGLWcJSlrGcFaxkFatZw1rWsZ4NbGQTm9nCVraxnR3sZBe72cNe9rGfAxzkEIc5wlGOcZwTnOQUpznDWc5xngtc5BKXucJVrnGdG9zkFre5w13ucZ8HPOQRj3nCU57xnBe85BWvecNb3vGeD3zkE5/5wle+8Z0f/OQXv/lDQCARmCAEJRjBCUFIQhGaMIQlHOGJQEQiEZkoRCUa0YlBTGIRmzjEJR7xSUBCEpGYJCQlGclJQUpSkZo0pCUd6clARjKRmSxkJRvZyUFOcpGbPOQlH/kpQEEKUZgiFKUYxSlBSUpRmjKUpRzlqUBFKlGZKlSlGtWpQU1qUZs61KUe9WlAQxrRmCY0pRnNaUFLWtGaNrSlHe3pQEc60ZkudKUb3elBT3rRmz70pR/9GcBA/uJvBjGYIQxlGMP5h38ZwUhGMZoxjGUc45nARCYxmSlMZRrTmcFMZjGbOcxlHvNZwEIWsZglLGUZy1nBSlaxmjWsZR3r2cBGNrGZLWxlG9vZwU52sZs97GUf+znAQQ5xmCMc5RjHOcFJTnGaM5zlHOe5wEUucZkrXOUa17nBTW5xmzvc5R73ecBDHvGYJzzlGc95wUte8Zo3vOUd7/nARz7xmS985Rvf+cFPfvGbP/w//kAEJghBCUZwQhCSUIQmDGEJR3giEJFIRCYKUYlGdGIQk1jEJg5xiUd8EpCQRCQmCUlJRnJSkJJUpCYNaUlHejKQkUxkJgtZyUZ2cpCTXOTmP+tfBzU=
+  </data>
+ </layer>
+ <objectgroup id="2" name="Score" visible="0">
+  <object id="1" name="score" x="60" y="4" width="126" height="16"/>
+ </objectgroup>
+ <objectgroup id="3" name="FuelStatusBar" visible="0">
+  <object id="2" name="fuelstatusbar" x="32" y="24" width="158" height="30"/>
+ </objectgroup>
+ <objectgroup id="4" name="FuelStatusFullMarker" visible="0">
+  <object id="3" name="fuelstatusfullmarker" x="168" y="32" width="10" height="20"/>
+ </objectgroup>
+ <objectgroup id="5" name="FuelStatusEmptyMarker" visible="0">
+  <object id="4" name="fuelstatusemptymarker" x="44" y="32" width="10" height="20"/>
+ </objectgroup>
+ <objectgroup id="6" name="Life" visible="0">
+  <object id="5" name="life" x="0" y="58" width="26" height="16"/>
+ </objectgroup>
+</map>

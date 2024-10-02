@@ -1,22 +1,20 @@
 import 'package:flame/components.dart';
 import 'package:flutter/painting.dart';
 
-final class Info extends TextComponent {
-  final double fontSize;
+import '../../constants/globals.dart';
 
+final class Info extends TextComponent {
   Info({
     required super.text,
     required super.position,
-    required this.fontSize,
+    required super.anchor,
   }) : super(
           textRenderer: TextPaint(
-            style: TextStyle(
-              fontFamily: 'Atari-Bzzz1',
-              fontSize: fontSize,
-              color: const Color(0xFFE8E84A),
-              letterSpacing: 1.5,
+            style: const TextStyle(
+              fontFamily: 'River-Raid-Font',
+              fontSize: 16,
+              color: Globals.hudContentColor,
             ),
           ),
-          anchor: Anchor.topCenter,
         );
 }

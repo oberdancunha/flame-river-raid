@@ -22,5 +22,6 @@ final class Joystick extends JoystickComponent {
             size: knobSize,
           ),
           margin: EdgeInsets.only(left: marginLeft, bottom: 3.5),
+          priority: 2,
         );
 }

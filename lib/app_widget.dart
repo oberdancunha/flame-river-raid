@@ -10,10 +10,6 @@ final class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Center(
-            child: GameWidget.controlled(gameFactory: RiverRaidGame.new),
-          ),
-        ),
+        home: GameWidget.controlled(gameFactory: RiverRaidGame.new),
       );
 }

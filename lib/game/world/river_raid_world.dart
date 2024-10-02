@@ -1,8 +1,6 @@
 import 'dart:async';
 
-import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
-import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/foundation.dart';
 

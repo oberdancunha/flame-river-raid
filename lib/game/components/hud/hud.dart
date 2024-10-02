@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 
 import '../../extensions/size_extension.dart';
 import '../../river_raid_game.dart';
-import 'fuel_status_bar/fuel_status_bar.dart';
-import 'info.dart';
+import '../river_raid_component.dart';
+import 'hud_tiled/hud_tiled.dart';
 
-part 'hud_life_manager.dart';
-part 'hud_score_manager.dart';
+part 'hud_manager.dart';
 
 final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
   Hud()
@@ -24,33 +23,17 @@ final class Hud extends RectangleComponent with HasGameRef<RiverRaidGame> {
           ],
         );
 
-  late _IHudScoreManager hudScoreManager;
-  late _IHudLifeManager hudLifeManager;
+  late _IHudManager _hudManager;
 
   @override
-  FutureOr<void> onLoad() {
-    hudScoreManager = _HudScoreManager(this);
-    hudLifeManager = _HudLifeManager(this);
+  FutureOr<void> onLoad() async {
     size = game.size.hudSize;
     position = Vector2(0, game.size.y + (game.camera.viewport.position.y * -1));
-    hudScoreManager.show();
-    hudLifeManager.show();
-    addAll([
-      game.riverRaidGameManager.joystick,
-      FuelStatusBar(),
-      game.riverRaidGameManager.joystickButton,
-    ]);
-    game.riverRaidGameManager.showScore.addListener(hudScoreManager.update);
-    game.riverRaidGameManager.showLife.addListener(hudLifeManager.update);
+    add(game.riverRaidGameManager.joystick);
+    _hudManager = _HudManager(this);
+    await _hudManager.loadHudTiled();
+    add(game.riverRaidGameManager.joystickButton);
 
     return super.onLoad();
-  }
-
-  @override
-  void onRemove() {
-    game.riverRaidGameManager.showScore.removeListener(hudScoreManager.update);
-    game.riverRaidGameManager.showLife.removeListener(hudLifeManager.update);
-
-    super.onRemove();
   }
 }

@@ -8,7 +8,6 @@ abstract interface class _IPlaneManager {
   void planeRight();
   void planeExplosion();
   void reduceFuel(double dt);
-  bool isOutOfFuel();
   void fuelPlane();
   set deltaTime(dt);
   set planeState(PlaneState state);
@@ -52,15 +51,12 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   void reduceFuel(double dt) =>
-      RiverRaidGamePlay.fuelMarker.value -= dt * Globals.fuelMarkerModificationIndex;
-
-  @override
-  bool isOutOfFuel() => RiverRaidGamePlay.fuelMarker.value <= Globals.indexIsOutOfFuel;
+      RiverRaidGamePlay.fuelStatusMarker.value -= dt * Globals.fuelMarkerModificationIndex;
 
   @override
   void fuelPlane() {
-    if (RiverRaidGamePlay.fuelMarker.value < Globals.indexFullFuel) {
-      RiverRaidGamePlay.fuelMarker.value +=
+    if (RiverRaidGamePlay.fuelStatusMarker.value < Globals.indexFullFuel) {
+      RiverRaidGamePlay.fuelStatusMarker.value +=
           _deltaTime * (pow(Globals.fuelMarkerModificationIndex, 6));
     }
   }

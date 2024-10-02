@@ -35,9 +35,10 @@ flutter:
     - assets/tiles/stage_4/
     - assets/tiles/stage_finish_bottom/
     - assets/tiles/stage_finish_top/
+    - assets/tiles/hud/
 
   fonts:
-    - family: Atari-Bzzz1
+    - family: River-Raid-Font
       fonts:
-        - asset: 'assets/fonts/Atari-Bzzz1.ttf'
+        - asset: 'assets/fonts/River-Raid-Font.ttf'
           weight: 400

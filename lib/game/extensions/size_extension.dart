@@ -10,13 +10,7 @@ extension SizeExtension on Vector2 {
   double get joystickButtonSizeMargin => joystickButtonSize.x + joystickHorizontalMargin;
   double get sizeBetweenJoystickAndButton =>
       hudSize.x - joystickSizeMargin - joystickButtonSizeMargin;
-  Vector2 get fuelStatusBarSize => Vector2(sizeBetweenJoystickAndButton * 0.6, hudSize.y / 2.5);
-  double get fuelStatusBarHorizontalPosition => joystickSizeMargin + (fuelStatusBarSize.x / 3);
-  double get fuelStatusBarVerticalPosition => hudSize.y / 3.6;
-  Vector2 get fullFuelMarkerSize => Vector2(fuelStatusBarSize.x * 0.051, fuelStatusBarSize.y * 0.7);
-  double get infoFontSize => hudSize.y / 4;
+  double get fuelStatusBarHorizontalPosition =>
+      joystickSizeMargin + (sizeBetweenJoystickAndButton / 2);
   double get heightPositionOfTheRespectiveStage => y - 3.8;
-  double get fuelMarkerHorizontalPosition =>
-      (fuelStatusBarHorizontalPosition - (fuelStatusBarSize.x / 13));
-  double get fuelMarkerVerticalPosition => hudSize.y / 8.5;
 }

@@ -62,7 +62,7 @@ final class PlaneComponent extends SpriteComponent
       if (game.riverRaidGameManager.gameState == RiverRaidGameState.run) {
         planeControllerManager.detectMovementDirection(dt);
         planeManager.reduceFuel(dt);
-        if (planeManager.isOutOfFuel()) {
+        if (RiverRaidGamePlay.isOutOfFuel) {
           planeManager.planeState = PlaneState.isDead;
         }
         if (planeStageManager.isTimeToLoadTheNextStage() &&
