@@ -36,7 +36,6 @@ final class _FuelStatusManager implements _IFuelStatusManager {
         fuelStatus.fuelStatusMarker.position.x + (fuelStatus.fuelStatusMarker.size.x / 2);
     if (fuelStatusMarkerCenter <= _fuelStatusEmptyMarkerCenter) {
       RiverRaidGamePlay.isOutOfFuel = true;
-      fuelStatus.game.paused = true;
     }
   }
 }
