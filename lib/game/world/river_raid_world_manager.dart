@@ -35,10 +35,17 @@ final class _RiverRaidWorldManager implements _IRiverRaidWorldManager {
     Anchor? anchor,
   }) async {
     final tiledStage = await RiverRaidComponent.readTiledFile(stageName, tileSize: tileSize);
+    int priority = 0;
+    if (stageName.contains(RegExp(r'stage_\d+')) && position != null) {
+      final prefixTiledFileName = stageName.split('.').elementAt(0);
+      priority = int.parse(prefixTiledFileName.split('_').elementAt(1));
+      position = Vector2(position.x, position.y + Globals.adjustVerticalPositionBridgeOnRestart);
+    }
     final stage = Stage(
       tiledStage.tileMap,
       position: position,
       anchor: anchor,
+      priority: priority * -1,
     );
     world.add(stage);
     world.gamePlay.gamePlayManager.addStagePositionInWorld(stage.position.y);

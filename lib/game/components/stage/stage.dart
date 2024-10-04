@@ -19,8 +19,9 @@ part 'stage_manager.dart';
 final class Stage extends TiledComponent<RiverRaidGame> with StageMixin, HasGamePlayRef {
   Stage(
     super.tileMap, {
-    super.position,
-    super.anchor,
+    required super.position,
+    required super.anchor,
+    super.priority,
   });
 
   late _IStageManager stageManager;

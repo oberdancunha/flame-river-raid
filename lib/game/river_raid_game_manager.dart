@@ -42,8 +42,8 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
   }
 
   late List<String> _stages;
-  late int _nextStageToShow = 1;
-  late int _crossedBridges = 0;
+  late int _nextStageToShow;
+  late int _crossedBridges;
   late Joystick _joystick;
   late JoystickButton _joystickButton;
 

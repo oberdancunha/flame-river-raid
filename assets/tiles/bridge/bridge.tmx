@@ -6,7 +6,7 @@
    eJwNw4cWgVAAANBHaJAyMrIyM+L/P8+959xeCKFv5MChI2MTUzPHTsydWlg6c+7CpZUr127cWrtz78GjJxvPXrx68+7D1qcv337s/PrzDw8HBDo=
   </data>
  </layer>
- <objectgroup id="2" name="Plane" visible="0">
-  <object id="1" name="plane" x="138" y="13" width="14" height="13"/>
+ <objectgroup id="2" name="Plane">
+  <object id="1" name="plane" x="138" y="21" width="14" height="13"/>
  </objectgroup>
 </map>

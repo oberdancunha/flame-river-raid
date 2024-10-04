@@ -39,6 +39,7 @@ final class PlaneComponent extends SpriteComponent
   late _IPlaneManager planeManager;
   late _IPlaneControllerManager planeControllerManager;
   late _IPlaneStageManager planeStageManager;
+  bool _haveRemovePastStage = false;
 
   @override
   FutureOr<void> onLoad() {
@@ -76,8 +77,11 @@ final class PlaneComponent extends SpriteComponent
           }
         }
         if (planeStageManager.crossedTheBridge()) {
+          _haveRemovePastStage = true;
           Future.delayed(const Duration(seconds: 2), () {
-            planeStageManager.removePastStage();
+            if (_haveRemovePastStage) {
+              planeStageManager.removePastStage();
+            }
           });
           if (planeStageManager.isLastBridgeBroken()) {
             game.camera.stop();
@@ -100,6 +104,7 @@ final class PlaneComponent extends SpriteComponent
       }
     } else {
       if (planeManager.planeState == PlaneState.isDead) {
+        _haveRemovePastStage = false;
         planeManager.planeExplosion();
         if (gamePlay.gamePlayManager.isBridgeExploding == false) {
           planeManager.runTimerToResetGame(dt);

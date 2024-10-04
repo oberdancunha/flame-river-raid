@@ -75,7 +75,7 @@ final class _PlaneManager implements _IPlaneManager {
     if (!plane.gamePlay.resetTimerManager.isTimerToResetGameRunning()) {
       plane.gamePlay.resetTimerManager.startTimerToResetGame();
       plane.gamePlay.resetTimerManager.executeActionsAfterTick(
-        () async {
+        () {
           plane.game.riverRaidGameManager.resetNextStageToShow();
           (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
           plane.game.riverRaidGameManager.decreaseLife();
