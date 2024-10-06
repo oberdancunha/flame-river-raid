@@ -23,7 +23,7 @@ final class Globals {
   static const explosionTime = 0.25;
 
   // Minimal plane distance to enemy movement
-  static const minimumDistanceFromEnemyToPlane = 110.0;
+  static const minimalPlaneDistanceToEnemyMovement = 110.0;
 
   // Plane movement
   static const acceleration = 0.5;

@@ -73,7 +73,7 @@ final class _EnemyManager implements _IEnemyManager {
 
   @override
   void makeMovement(double dt) {
-    if (distanceFromPlane <= Globals.minimumDistanceFromEnemyToPlane) {
+    if (distanceFromPlane <= Globals.minimalPlaneDistanceToEnemyMovement) {
       if (enemy.isReverse) {
         moveLeft();
       } else {
@@ -105,7 +105,7 @@ final class _EnemyManager implements _IEnemyManager {
       return calculateDistanceInOtherStages();
     }
 
-    return Globals.minimumDistanceFromEnemyToPlane + 10.0;
+    return Globals.minimalPlaneDistanceToEnemyMovement + 10.0;
   }
 
   @override
