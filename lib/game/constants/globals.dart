@@ -44,4 +44,8 @@ final class Globals {
   static const hudContentColor = Color(0xFFE8E84A);
 
   static const adjustVerticalPositionBridgeOnRestart = 30;
+
+  // Plane audios
+  static const flyStart = 'flyStart.wav';
+  static const flyNoise = 'flyNoise.wav';
 }

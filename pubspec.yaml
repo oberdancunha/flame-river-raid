@@ -7,16 +7,18 @@ environment:
   sdk: '>=3.5.3 <4.0.0'
 
 dependencies:
+  audioplayers: 5.2.1
   flame: ^1.19.0
   flame_texturepacker: ^4.1.0
   flame_tiled: ^1.20.3
   flutter:
     sdk: flutter
+  flutter_soloud: 2.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   custom_lint: ^0.6.5
   pyramid_lint: ^2.0.1
 
@@ -24,18 +26,19 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/audio/
     - assets/images/
     - assets/images/atlas/
-    - assets/images/tiles/
     - assets/images/spritesheet/
+    - assets/images/tiles/
     - assets/tiles/bridge/
+    - assets/tiles/hud/
     - assets/tiles/stage_1/
     - assets/tiles/stage_2/
     - assets/tiles/stage_3/
     - assets/tiles/stage_4/
     - assets/tiles/stage_finish_bottom/
     - assets/tiles/stage_finish_top/
-    - assets/tiles/hud/
 
   fonts:
     - family: River-Raid-Font

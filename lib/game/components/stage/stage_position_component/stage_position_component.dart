@@ -4,13 +4,14 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../gameplay/river_raid_game_play_mixin.dart';
 import '../../../river_raid_game.dart';
 import '../stage.dart';
 
 part 'stage_position_component_manager.dart';
 
 class StagePositionComponent extends PositionComponent
-    with HasGameRef<RiverRaidGame>, CollisionCallbacks {
+    with HasGameRef<RiverRaidGame>, HasGamePlayRef, CollisionCallbacks {
   final Stage stage;
 
   StagePositionComponent({
@@ -36,5 +37,6 @@ class StagePositionComponent extends PositionComponent
     stagePositionComponentManager
       ..remove()
       ..sumScore();
+    gamePlay.audioManager.componentCrash();
   }
 }

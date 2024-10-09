@@ -25,8 +25,10 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   void waitToStartFlight() {
-    Future.delayed(const Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 300), () async {
       _planeState = PlaneState.isAlive;
+      plane.gamePlay.audioManager.flyStart();
+      plane.gamePlay.audioManager.fly(timeToStartInMilliseconds: 1500);
     });
   }
 

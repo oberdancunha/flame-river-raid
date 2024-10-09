@@ -5,14 +5,13 @@ import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
-import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../sprites/sprites_explosion.dart';
 import '../border/border.dart';
 import '../stage/stage_position_component/stage_position_component.dart';
 
 part 'bridge_manager.dart';
 
-final class Bridge extends StagePositionComponent with HasGamePlayRef {
+final class Bridge extends StagePositionComponent {
   Bridge({
     required super.position,
     required super.size,

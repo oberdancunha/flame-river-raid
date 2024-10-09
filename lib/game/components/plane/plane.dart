@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
@@ -14,10 +15,12 @@ import '../../river_raid_game.dart';
 import '../../river_raid_game_state.dart';
 import '../../router/river_raid_router.dart';
 import '../../world/river_raid_world.dart';
+import '../border/border.dart';
 import '../bullet/bullet.dart';
 import '../fuel/fuel.dart';
 import '../hud/joystick/joystick.dart';
 import '../stage/stage.dart';
+import 'plane_speed_enum.dart';
 import 'plane_state.dart';
 
 part 'plane_controller_manager.dart';
@@ -38,18 +41,20 @@ final class PlaneComponent extends SpriteComponent
 
   late _IPlaneManager planeManager;
   late _IPlaneControllerManager planeControllerManager;
-  late _IPlaneStageManager planeStageManager;
+  late _IPlaneStageManager _planeStageManager;
   bool _haveRemovePastStage = false;
 
   @override
   FutureOr<void> onLoad() {
     planeManager = _PlaneManager(this);
     planeControllerManager = _PlaneControllerManager(this);
-    planeStageManager = _PlaneStageManger(this);
+    _planeStageManager = _PlaneStageManger(this);
     planeManager
       ..planeStraight()
       ..waitToStartFlight()
       ..makeAreaCollideable();
+    planeControllerManager.planeSpeedTypeNotifier
+        .addListener(gamePlay.audioManager.flyVolumeAndSpeed);
 
     return super.onLoad();
   }
@@ -65,32 +70,35 @@ final class PlaneComponent extends SpriteComponent
         planeManager.reduceFuel(dt);
         if (RiverRaidGamePlay.isOutOfFuel) {
           planeManager.planeState = PlaneState.isDead;
+          gamePlay.audioManager.stopFlyNoise();
+          gamePlay.audioManager.planeCrash();
         }
-        if (planeStageManager.isTimeToLoadTheNextStage() &&
-            planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
-          if (planeStageManager.isThereNewStageToLoad()) {
+        if (_planeStageManager.isTimeToLoadTheNextStage() &&
+            _planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
+          if (_planeStageManager.isThereNewStageToLoad()) {
             game.riverRaidGameManager.addNextStageToShow();
-            unawaited(planeStageManager.loadNewStage());
+            unawaited(_planeStageManager.loadNewStage());
           } else {
-            unawaited(planeStageManager.loadFinishStageBottom());
-            planeStageManager.isCheckNextStage = false;
+            unawaited(_planeStageManager.loadFinishStageBottom());
+            _planeStageManager.isCheckNextStage = false;
           }
         }
-        if (planeStageManager.crossedTheBridge()) {
+        if (_planeStageManager.crossedTheBridge()) {
           _haveRemovePastStage = true;
           Future.delayed(const Duration(seconds: 2), () {
             if (_haveRemovePastStage) {
-              planeStageManager.removePastStage();
+              _planeStageManager.removePastStage();
             }
           });
-          if (planeStageManager.isLastBridgeBroken()) {
+          if (_planeStageManager.isLastBridgeBroken()) {
             game.camera.stop();
-            unawaited(planeStageManager.loadFinishStageTop());
+            unawaited(_planeStageManager.loadFinishStageTop());
             game.riverRaidGameManager.gameState = RiverRaidGameState.win;
             gamePlay.gamePlayManager.isExplodeFireworks = true;
             planeControllerManager
               ..speed = Globals.finishSpeed
-              ..maxSpeed = Globals.finishSpeed;
+              ..maxSpeed = Globals.finishSpeed
+              ..planeSpeedType = PlaneSpeedEnum.slow;
           }
         }
       } else {
@@ -99,6 +107,7 @@ final class PlaneComponent extends SpriteComponent
           planeControllerManager.paradeTheVictory(dt);
           if (!game.camera.canSee(this)) {
             game.riverRaidGameManager.finish();
+            gamePlay.audioManager.stopFlyNoise();
           }
         }
       }
@@ -106,10 +115,26 @@ final class PlaneComponent extends SpriteComponent
       if (planeManager.planeState == PlaneState.isDead) {
         _haveRemovePastStage = false;
         planeManager.planeExplosion();
+
         if (gamePlay.gamePlayManager.isBridgeExploding == false) {
           planeManager.runTimerToResetGame(dt);
         }
       }
+    }
+  }
+
+  @override
+  void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
+    super.onCollisionStart(intersectionPoints, other);
+    if (other is Fuel) {
+      return;
+    }
+    planeManager.planeState = PlaneState.isDead;
+    gamePlay.audioManager.stopFlyNoise();
+    if (other is BorderComponent) {
+      gamePlay.audioManager.planeCrash();
+
+      return;
     }
   }
 
@@ -121,6 +146,12 @@ final class PlaneComponent extends SpriteComponent
 
       return;
     }
-    planeManager.planeState = PlaneState.isDead;
+  }
+
+  @override
+  void onRemove() {
+    planeControllerManager.planeSpeedTypeNotifier
+        .removeListener(gamePlay.audioManager.flyVolumeAndSpeed);
+    super.onRemove();
   }
 }

@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 
 import 'app_widget.dart';
 import 'game/constants/assets.dart';
+import 'game/soloud.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.setPortrait();
   await Flame.device.fullScreen();
   await Assets.load();
+  await initSoLoud();
 
   runApp(const AppWidget());
 }

@@ -12,6 +12,9 @@ abstract interface class _IPlaneControllerManager {
   set speed(double speed);
   set maxSpeed(double maxSpeed);
   void paradeTheVictory(double dt);
+  PlaneSpeedEnum get planeSpeedType;
+  set planeSpeedType(PlaneSpeedEnum planeSpeedType);
+  ValueNotifier get planeSpeedTypeNotifier;
 }
 
 final class _PlaneControllerManager implements _IPlaneControllerManager {
@@ -22,6 +25,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
   final Vector2 _moveDirection = Vector2(0, 1);
   double _speed = 0.0;
   double _maxSpeed = Globals.defaultMaxSpeed;
+  final ValueNotifier<PlaneSpeedEnum> _planeSpeedType = ValueNotifier(PlaneSpeedEnum.normal);
 
   @override
   void moveUp(double dt) {
@@ -32,7 +36,6 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
   @override
   void moveStraight(double dt) {
     _moveDirection.x = 0;
-    _makeMovement(dt);
   }
 
   @override
@@ -59,6 +62,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
       case JoystickDirection.left || JoystickDirection.upLeft || JoystickDirection.downLeft:
         plane.planeManager.planeLeft();
         moveLeft(dt);
+        planeSpeedType = PlaneSpeedEnum.normal;
         if (plane.joystick.direction == JoystickDirection.upLeft) {
           speedUp();
           break;
@@ -71,6 +75,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
       case JoystickDirection.right || JoystickDirection.upRight || JoystickDirection.downRight:
         plane.planeManager.planeRight();
         moveRight(dt);
+        planeSpeedType = PlaneSpeedEnum.normal;
         if (plane.joystick.direction == JoystickDirection.upRight) {
           speedUp();
           break;
@@ -82,12 +87,16 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
         break;
       case JoystickDirection.up:
         speedUp();
+        moveStraight(dt);
         break;
       case JoystickDirection.down:
         speedDown();
+        moveStraight(dt);
         break;
       default:
         plane.planeManager.planeStraight();
+        moveStraight(dt);
+        planeSpeedType = PlaneSpeedEnum.normal;
     }
   }
 
@@ -98,6 +107,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
         position: plane.center,
       ),
     );
+    plane.gamePlay.audioManager.shootBullet();
   }
 
   @override
@@ -105,6 +115,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
     if (_speed < Globals.maximumSpeedPlane) {
       _speed += Globals.speedUpDown;
     }
+    planeSpeedType = PlaneSpeedEnum.fast;
   }
 
   @override
@@ -112,6 +123,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
     if (_speed > Globals.minimumSpeedPlane) {
       _speed -= Globals.speedUpDown;
     }
+    planeSpeedType = PlaneSpeedEnum.slow;
   }
 
   @override
@@ -133,4 +145,13 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
       moveStraight(dt);
     }
   }
+
+  @override
+  PlaneSpeedEnum get planeSpeedType => _planeSpeedType.value;
+
+  @override
+  set planeSpeedType(PlaneSpeedEnum planeSpeedType) => _planeSpeedType.value = planeSpeedType;
+
+  @override
+  ValueNotifier get planeSpeedTypeNotifier => _planeSpeedType;
 }
