@@ -38,6 +38,6 @@ class StagePositionComponent extends PositionComponent
     stagePositionComponentManager
       ..remove()
       ..sumScore();
-    RiverRaidGamePlay.audioManager.componentCrash();
+    RiverRaidGamePlay.audioManager.playComponentCrash();
   }
 }

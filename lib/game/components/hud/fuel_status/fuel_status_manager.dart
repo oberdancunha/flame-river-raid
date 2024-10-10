@@ -85,7 +85,7 @@ final class _FuelStatusManager implements _IFuelStatusManager {
   @override
   void warnLowFuel() {
     _isLowFuelWarnActive = true;
-    unawaited(RiverRaidGamePlay.audioManager.lowFuel());
+    unawaited(RiverRaidGamePlay.audioManager.playLowFuel());
   }
 
   @override
@@ -96,7 +96,7 @@ final class _FuelStatusManager implements _IFuelStatusManager {
   }
 
   @override
-  void warnAlmostOutOfFuel() => unawaited(RiverRaidGamePlay.audioManager.outOfFuel());
+  void warnAlmostOutOfFuel() => unawaited(RiverRaidGamePlay.audioManager.playOutOfFuel());
 
   @override
   bool isOutOfFuel() {

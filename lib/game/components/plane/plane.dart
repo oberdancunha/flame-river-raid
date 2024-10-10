@@ -71,7 +71,7 @@ final class PlaneComponent extends SpriteComponent
         if (RiverRaidGamePlay.isOutOfFuel) {
           planeManager.planeState = PlaneState.isDead;
           RiverRaidGamePlay.audioManager.stopAudios();
-          RiverRaidGamePlay.audioManager.planeCrash();
+          RiverRaidGamePlay.audioManager.playPlaneCrash();
         }
         if (_planeStageManager.isTimeToLoadTheNextStage() &&
             _planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
@@ -106,7 +106,7 @@ final class PlaneComponent extends SpriteComponent
           game.riverRaidGameManager.removeHudView(dt);
           planeControllerManager.paradeTheVictory(dt);
           RiverRaidGamePlay.audioManager.stopWarnFuel();
-          RiverRaidGamePlay.audioManager.fireworks();
+          RiverRaidGamePlay.audioManager.playFireworks();
           if (!game.camera.canSee(this)) {
             game.riverRaidGameManager.finish();
             RiverRaidGamePlay.audioManager.stopAudios();
@@ -136,7 +136,7 @@ final class PlaneComponent extends SpriteComponent
     planeManager.planeState = PlaneState.isDead;
     RiverRaidGamePlay.audioManager.stopAudios();
     if (other is BorderComponent) {
-      RiverRaidGamePlay.audioManager.planeCrash();
+      RiverRaidGamePlay.audioManager.playPlaneCrash();
 
       return;
     }

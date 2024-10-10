@@ -30,8 +30,8 @@ final class _PlaneManager implements _IPlaneManager {
   void waitToStartFlight() {
     Future.delayed(const Duration(milliseconds: 300), () async {
       _planeState = PlaneState.isAlive;
-      RiverRaidGamePlay.audioManager.flyStart();
-      RiverRaidGamePlay.audioManager.fly(timeToStartInMilliseconds: 1500);
+      RiverRaidGamePlay.audioManager.playFlyStart();
+      RiverRaidGamePlay.audioManager.playFly(timeToStartInMilliseconds: 1500);
     });
   }
 

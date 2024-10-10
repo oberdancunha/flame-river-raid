@@ -54,7 +54,7 @@ final class Fuel extends StagePositionComponent {
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     if (other is PlaneComponent) {
-      RiverRaidGamePlay.audioManager.fuelUp(
+      RiverRaidGamePlay.audioManager.playFuelUp(
         RiverRaidGamePlay.fuelStatusMarker.value.roundToDouble() == Globals.fullFuelIndex
             ? soloudFuelTankFilled
             : soloudFuelUp,
@@ -66,7 +66,7 @@ final class Fuel extends StagePositionComponent {
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
     if (other is PlaneComponent) {
-      RiverRaidGamePlay.audioManager.fly();
+      RiverRaidGamePlay.audioManager.playFly();
       RiverRaidGamePlay.audioManager.isAudioStopped = false;
     }
   }

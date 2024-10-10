@@ -1,22 +1,22 @@
 part of 'river_raid_game_play.dart';
 
 abstract interface class _IRiverRaidGamePlayAudioManager {
-  void flyStart();
-  void fly({int timeToStartInMilliseconds});
+  void playFlyStart();
+  void playFly({int timeToStartInMilliseconds});
   void flyVolumeAndSpeed();
   void stopFly();
   void stopAudios();
   void stopWarnFuel();
-  void shootBullet();
-  void planeCrash();
-  void componentCrash();
-  void fuelUp(AudioSource soloudFuel);
-  Future<void> lowFuel();
+  void playFuelUp(AudioSource soloudFuel);
+  Future<void> playLowFuel();
   void stopLowFuel();
-  Future<void> outOfFuel();
+  Future<void> playOutOfFuel();
   void stopOutOfFuel();
+  void playShootBullet();
+  void playPlaneCrash();
+  void playComponentCrash();
   set isAudioStopped(bool isAudioStopped);
-  void fireworks();
+  void playFireworks();
 }
 
 final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayAudioManager {
@@ -28,12 +28,12 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   bool _isAudioStopped = false;
 
   @override
-  void flyStart() {
+  void playFlyStart() {
     soloud.play(soloudFlyStart);
   }
 
   @override
-  void fly({int timeToStartInMilliseconds = 0}) {
+  void playFly({int timeToStartInMilliseconds = 0}) {
     Future.delayed(Duration(milliseconds: timeToStartInMilliseconds), () async {
       if (RiverRaidGamePlay.plane.planeManager.planeState == PlaneState.isAlive) {
         _soloudFlyHandle = await soloud.play(
@@ -86,16 +86,7 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   }
 
   @override
-  void shootBullet() async => soloud.play(soloudShootBullets);
-
-  @override
-  void planeCrash() async => soloud.play(soloudPlaneCrash);
-
-  @override
-  void componentCrash() async => soloud.play(soloudComponentCrash);
-
-  @override
-  void fuelUp(AudioSource soloudFuel) async {
+  void playFuelUp(AudioSource soloudFuel) async {
     final noFuelAudioActive = soloud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudFuel.hashCode,
@@ -109,7 +100,7 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   }
 
   @override
-  Future<void> lowFuel() async {
+  Future<void> playLowFuel() async {
     final noLowFuelAudioActive = soloud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudLowFuel.hashCode,
@@ -139,7 +130,7 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   }
 
   @override
-  Future<void> outOfFuel() async {
+  Future<void> playOutOfFuel() async {
     final noOutOfFuelAudioActive = soloud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudOutOfFuel.hashCode,
@@ -161,10 +152,19 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   }
 
   @override
+  void playShootBullet() async => soloud.play(soloudShootBullets);
+
+  @override
+  void playPlaneCrash() async => soloud.play(soloudPlaneCrash);
+
+  @override
+  void playComponentCrash() async => soloud.play(soloudComponentCrash);
+
+  @override
   set isAudioStopped(bool isAudioStopped) => _isAudioStopped = isAudioStopped;
 
   @override
-  void fireworks() {
+  void playFireworks() {
     final noFireworksAudioActive = soloud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudFireworks.hashCode,
