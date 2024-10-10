@@ -4,17 +4,27 @@ abstract interface class _IRiverRaidGamePlayAudioManager {
   void flyStart();
   void fly({int timeToStartInMilliseconds});
   void flyVolumeAndSpeed();
-  Future<void> stopFlyNoise();
-  Future<void> shootBullet();
-  Future<void> planeCrash();
-  Future<void> componentCrash();
-  Future<void> fuel(AudioSource soloudFuel);
+  void stopFly();
+  void stopAudios();
+  void stopWarnFuel();
+  void shootBullet();
+  void planeCrash();
+  void componentCrash();
+  void fuelUp(AudioSource soloudFuel);
+  Future<void> lowFuel();
+  void stopLowFuel();
+  Future<void> outOfFuel();
+  void stopOutOfFuel();
+  set isAudioStopped(bool isAudioStopped);
 }
 
 final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayAudioManager {
   _RiverRaidGamePlayAudioSoloudManager();
 
   SoundHandle? _soloudFlyHandle;
+  SoundHandle? _soloudLowFuelHandle;
+  SoundHandle? _soloudOutOfFuelHandle;
+  bool _isAudioStopped = false;
 
   @override
   void flyStart() {
@@ -56,32 +66,99 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
   }
 
   @override
-  Future<void> stopFlyNoise() async {
+  void stopFly() {
     if (_soloudFlyHandle != null) {
-      await soloud.stop(_soloudFlyHandle!);
+      soloud.stop(_soloudFlyHandle!);
     }
   }
 
   @override
-  Future<void> shootBullet() async => soloud.play(soloudShootBullets);
+  void stopAudios() {
+    stopFly();
+    stopWarnFuel();
+  }
 
   @override
-  Future<void> planeCrash() async => soloud.play(soloudPlaneCrash);
+  void stopWarnFuel() {
+    stopLowFuel();
+    stopOutOfFuel();
+  }
 
   @override
-  Future<void> componentCrash() async => soloud.play(soloudComponentCrash);
+  void shootBullet() async => soloud.play(soloudShootBullets);
 
   @override
-  Future<void> fuel(AudioSource soloudFuel) async {
-    final noAudioActive = soloud.activeSounds
+  void planeCrash() async => soloud.play(soloudPlaneCrash);
+
+  @override
+  void componentCrash() async => soloud.play(soloudComponentCrash);
+
+  @override
+  void fuelUp(AudioSource soloudFuel) async {
+    final noFuelAudioActive = soloud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudFuel.hashCode,
         )
         .first
         .handles
         .isEmpty;
-    if (noAudioActive) {
+    if (noFuelAudioActive) {
       await soloud.play(soloudFuel);
     }
   }
+
+  @override
+  Future<void> lowFuel() async {
+    final noLowFuelAudioActive = soloud.activeSounds
+        .where(
+          (sound) => sound.hashCode == soloudLowFuel.hashCode,
+        )
+        .first
+        .handles
+        .isEmpty;
+    if (noLowFuelAudioActive && !_isAudioStopped) {
+      _soloudLowFuelHandle = await soloud.play(soloudLowFuel, looping: true);
+    }
+  }
+
+  @override
+  void stopLowFuel() {
+    if (_soloudLowFuelHandle != null) {
+      final isLowFuelAudioActive = soloud.activeSounds
+          .where(
+            (sound) => sound.hashCode == soloudLowFuel.hashCode,
+          )
+          .first
+          .handles
+          .isNotEmpty;
+      if (isLowFuelAudioActive) {
+        soloud.stop(_soloudLowFuelHandle!);
+      }
+    }
+  }
+
+  @override
+  Future<void> outOfFuel() async {
+    final noOutOfFuelAudioActive = soloud.activeSounds
+        .where(
+          (sound) => sound.hashCode == soloudOutOfFuel.hashCode,
+        )
+        .first
+        .handles
+        .isEmpty;
+    if (noOutOfFuelAudioActive) {
+      stopLowFuel();
+      _soloudOutOfFuelHandle = await soloud.play(soloudOutOfFuel);
+    }
+  }
+
+  @override
+  void stopOutOfFuel() {
+    if (_soloudOutOfFuelHandle != null) {
+      soloud.stop(_soloudOutOfFuelHandle!);
+    }
+  }
+
+  @override
+  set isAudioStopped(bool isAudioStopped) => _isAudioStopped = isAudioStopped;
 }

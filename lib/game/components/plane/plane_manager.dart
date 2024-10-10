@@ -8,11 +8,13 @@ abstract interface class _IPlaneManager {
   void planeRight();
   void planeExplosion();
   void reduceFuel(double dt);
-  void fuelPlane();
+  void refuelThePlane();
   set deltaTime(dt);
   set planeState(PlaneState state);
   PlaneState get planeState;
   void runTimerToResetGame(double dt);
+  set isThePlaneBeingRefueled(bool isThePlaneBeingRefueled);
+  bool get isThePlaneBeingRefueled;
 }
 
 final class _PlaneManager implements _IPlaneManager {
@@ -22,13 +24,14 @@ final class _PlaneManager implements _IPlaneManager {
 
   PlaneState _planeState = PlaneState.idle;
   late double _deltaTime;
+  bool _isThePlaneBeingRefueled = false;
 
   @override
   void waitToStartFlight() {
     Future.delayed(const Duration(milliseconds: 300), () async {
       _planeState = PlaneState.isAlive;
-      plane.gamePlay.audioManager.flyStart();
-      plane.gamePlay.audioManager.fly(timeToStartInMilliseconds: 1500);
+      RiverRaidGamePlay.audioManager.flyStart();
+      RiverRaidGamePlay.audioManager.fly(timeToStartInMilliseconds: 1500);
     });
   }
 
@@ -52,12 +55,15 @@ final class _PlaneManager implements _IPlaneManager {
   void planeExplosion() => plane.sprite = Assets.planeExplosion;
 
   @override
-  void reduceFuel(double dt) =>
+  void reduceFuel(double dt) {
+    if (_isThePlaneBeingRefueled == false) {
       RiverRaidGamePlay.fuelStatusMarker.value -= dt * Globals.fuelMarkerModificationIndex;
+    }
+  }
 
   @override
-  void fuelPlane() {
-    if (RiverRaidGamePlay.fuelStatusMarker.value < Globals.indexFullFuel) {
+  void refuelThePlane() {
+    if (RiverRaidGamePlay.fuelStatusMarker.value < Globals.fullFuelIndex) {
       RiverRaidGamePlay.fuelStatusMarker.value +=
           _deltaTime * (pow(Globals.fuelMarkerModificationIndex, 6));
     }
@@ -95,4 +101,11 @@ final class _PlaneManager implements _IPlaneManager {
       }
     }
   }
+
+  @override
+  set isThePlaneBeingRefueled(bool isThePlaneBeingRefueled) =>
+      _isThePlaneBeingRefueled = isThePlaneBeingRefueled;
+
+  @override
+  bool get isThePlaneBeingRefueled => _isThePlaneBeingRefueled;
 }

@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../gameplay/river_raid_game_play.dart';
 import '../../../gameplay/river_raid_game_play_mixin.dart';
 import '../../../river_raid_game.dart';
 import '../stage.dart';
@@ -37,6 +38,6 @@ class StagePositionComponent extends PositionComponent
     stagePositionComponentManager
       ..remove()
       ..sumScore();
-    gamePlay.audioManager.componentCrash();
+    RiverRaidGamePlay.audioManager.componentCrash();
   }
 }

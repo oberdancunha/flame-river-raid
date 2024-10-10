@@ -16,8 +16,10 @@ final class Globals {
   // Hud
   static const totalLife = 3;
   static const initialScore = 0;
-  static const indexFullFuel = 100.0;
+  static const fullFuelIndex = 100.0;
   static const fuelMarkerModificationIndex = 1.5;
+  static const lowFuelIndex = 30.0;
+  static const almostOutOfFuelIndex = 1.0;
 
   // Explosion time (enemy, bridge and fuel)
   static const explosionTime = 0.25;

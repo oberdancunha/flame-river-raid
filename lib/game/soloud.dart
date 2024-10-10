@@ -8,6 +8,8 @@ late AudioSource soloudPlaneCrash;
 late AudioSource soloudComponentCrash;
 late AudioSource soloudFuelUp;
 late AudioSource soloudFuelTankFilled;
+late AudioSource soloudLowFuel;
+late AudioSource soloudOutOfFuel;
 
 Future<void> initSoLoud() async {
   await soloud.init();
@@ -18,4 +20,6 @@ Future<void> initSoLoud() async {
   soloudComponentCrash = await soloud.loadAsset('assets/audio/component_crash.wav');
   soloudFuelUp = await soloud.loadAsset('assets/audio/fuel_up.wav');
   soloudFuelTankFilled = await soloud.loadAsset('assets/audio/fuel_tank_filled.wav');
+  soloudLowFuel = await soloud.loadAsset('assets/audio/low_fuel.wav');
+  soloudOutOfFuel = await soloud.loadAsset('assets/audio/out_of_fuel.wav');
 }

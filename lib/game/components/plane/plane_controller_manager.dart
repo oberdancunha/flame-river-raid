@@ -107,7 +107,7 @@ final class _PlaneControllerManager implements _IPlaneControllerManager {
         position: plane.center,
       ),
     );
-    plane.gamePlay.audioManager.shootBullet();
+    RiverRaidGamePlay.audioManager.shootBullet();
   }
 
   @override

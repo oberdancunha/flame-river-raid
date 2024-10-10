@@ -27,22 +27,21 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
 
   late _IRiverRaidGamePlayResetTimerManager resetTimerManager;
   late _IRiverRaidGamePlayManager gamePlayManager;
-  late _IRiverRaidGamePlayAudioManager audioManager;
+  static _IRiverRaidGamePlayAudioManager audioManager = _RiverRaidGamePlayAudioSoloudManager();
   late RiverRaidWorld _riverRaidWorld;
 
   static late PlaneComponent plane;
-  static ValueNotifier<double> fuelStatusMarker = ValueNotifier<double>(Globals.indexFullFuel);
+  static ValueNotifier<double> fuelStatusMarker = ValueNotifier<double>(Globals.fullFuelIndex);
   static bool isOutOfFuel = false;
 
   @override
   FutureOr<void> onLoad() async {
     resetTimerManager = _RiverRaidGamePlayResetTimerManager();
     gamePlayManager = _RiverRaidGamePlayManager();
-    audioManager = _RiverRaidGamePlayAudioSoloudManager();
     _riverRaidWorld = RiverRaidWorld();
     add(_riverRaidWorld);
     game.world = _riverRaidWorld;
-    fuelStatusMarker.value = Globals.indexFullFuel;
+    fuelStatusMarker.value = Globals.fullFuelIndex;
     isOutOfFuel = false;
 
     return super.onLoad();

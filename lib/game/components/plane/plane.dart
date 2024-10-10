@@ -54,7 +54,7 @@ final class PlaneComponent extends SpriteComponent
       ..waitToStartFlight()
       ..makeAreaCollideable();
     planeControllerManager.planeSpeedTypeNotifier
-        .addListener(gamePlay.audioManager.flyVolumeAndSpeed);
+        .addListener(RiverRaidGamePlay.audioManager.flyVolumeAndSpeed);
 
     return super.onLoad();
   }
@@ -70,8 +70,8 @@ final class PlaneComponent extends SpriteComponent
         planeManager.reduceFuel(dt);
         if (RiverRaidGamePlay.isOutOfFuel) {
           planeManager.planeState = PlaneState.isDead;
-          gamePlay.audioManager.stopFlyNoise();
-          gamePlay.audioManager.planeCrash();
+          RiverRaidGamePlay.audioManager.stopAudios();
+          RiverRaidGamePlay.audioManager.planeCrash();
         }
         if (_planeStageManager.isTimeToLoadTheNextStage() &&
             _planeStageManager.lastBrokenBridgeBelongsToNewStage()) {
@@ -105,9 +105,10 @@ final class PlaneComponent extends SpriteComponent
         if (game.riverRaidGameManager.gameState == RiverRaidGameState.win) {
           game.riverRaidGameManager.removeHudView(dt);
           planeControllerManager.paradeTheVictory(dt);
+          RiverRaidGamePlay.audioManager.stopWarnFuel();
           if (!game.camera.canSee(this)) {
             game.riverRaidGameManager.finish();
-            gamePlay.audioManager.stopFlyNoise();
+            RiverRaidGamePlay.audioManager.stopAudios();
           }
         }
       }
@@ -127,12 +128,14 @@ final class PlaneComponent extends SpriteComponent
   void onCollisionStart(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollisionStart(intersectionPoints, other);
     if (other is Fuel) {
+      planeManager.isThePlaneBeingRefueled = true;
+
       return;
     }
     planeManager.planeState = PlaneState.isDead;
-    gamePlay.audioManager.stopFlyNoise();
+    RiverRaidGamePlay.audioManager.stopAudios();
     if (other is BorderComponent) {
-      gamePlay.audioManager.planeCrash();
+      RiverRaidGamePlay.audioManager.planeCrash();
 
       return;
     }
@@ -142,16 +145,24 @@ final class PlaneComponent extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     super.onCollision(intersectionPoints, other);
     if (other is Fuel) {
-      planeManager.fuelPlane();
+      planeManager.refuelThePlane();
 
       return;
     }
   }
 
   @override
+  void onCollisionEnd(PositionComponent other) {
+    super.onCollisionEnd(other);
+    if (other is Fuel) {
+      planeManager.isThePlaneBeingRefueled = false;
+    }
+  }
+
+  @override
   void onRemove() {
     planeControllerManager.planeSpeedTypeNotifier
-        .removeListener(gamePlay.audioManager.flyVolumeAndSpeed);
+        .removeListener(RiverRaidGamePlay.audioManager.flyVolumeAndSpeed);
     super.onRemove();
   }
 }
