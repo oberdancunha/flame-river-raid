@@ -16,6 +16,7 @@ abstract interface class _IRiverRaidGamePlayAudioManager {
   Future<void> outOfFuel();
   void stopOutOfFuel();
   set isAudioStopped(bool isAudioStopped);
+  void fireworks();
 }
 
 final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayAudioManager {
@@ -161,4 +162,18 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
 
   @override
   set isAudioStopped(bool isAudioStopped) => _isAudioStopped = isAudioStopped;
+
+  @override
+  void fireworks() {
+    final noFireworksAudioActive = soloud.activeSounds
+        .where(
+          (sound) => sound.hashCode == soloudFireworks.hashCode,
+        )
+        .first
+        .handles
+        .isEmpty;
+    if (noFireworksAudioActive) {
+      soloud.play(soloudFireworks);
+    }
+  }
 }

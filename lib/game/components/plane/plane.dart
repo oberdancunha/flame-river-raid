@@ -106,6 +106,7 @@ final class PlaneComponent extends SpriteComponent
           game.riverRaidGameManager.removeHudView(dt);
           planeControllerManager.paradeTheVictory(dt);
           RiverRaidGamePlay.audioManager.stopWarnFuel();
+          RiverRaidGamePlay.audioManager.fireworks();
           if (!game.camera.canSee(this)) {
             game.riverRaidGameManager.finish();
             RiverRaidGamePlay.audioManager.stopAudios();
