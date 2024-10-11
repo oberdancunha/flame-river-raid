@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 final soLoud = SoLoud.instance;
@@ -24,4 +26,8 @@ Future<void> initSoLoud() async {
   soLoudLowFuel = await soLoud.loadAsset('assets/audio/low_fuel.wav');
   soLoudOutOfFuel = await soLoud.loadAsset('assets/audio/out_of_fuel.wav');
   soLoudFireworks = await soLoud.loadAsset('assets/audio/fireworks.wav');
+}
+
+void disposeSoLoud() {
+  unawaited(soLoud.disposeAllSources());
 }

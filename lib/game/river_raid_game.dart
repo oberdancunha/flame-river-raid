@@ -13,6 +13,7 @@ import 'constants/globals.dart';
 import 'extensions/size_extension.dart';
 import 'river_raid_game_state.dart';
 import 'router/river_raid_router.dart';
+import 'soloud.dart';
 
 part 'river_raid_game_manager.dart';
 
@@ -43,5 +44,11 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
     add(riverRaidRouter);
 
     return super.onLoad();
+  }
+
+  @override
+  void onRemove() {
+    disposeSoLoud();
+    super.onRemove();
   }
 }
