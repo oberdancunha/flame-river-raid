@@ -56,8 +56,8 @@ final class Fuel extends StagePositionComponent {
     if (other is PlaneComponent) {
       RiverRaidGamePlay.audioManager.playFuelUp(
         RiverRaidGamePlay.fuelStatusMarker.value.roundToDouble() == Globals.fullFuelIndex
-            ? soloudFuelTankFilled
-            : soloudFuelUp,
+            ? soLoudFuelTankFilled
+            : soLoudFuelUp,
       );
     }
   }

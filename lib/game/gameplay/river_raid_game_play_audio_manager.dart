@@ -22,22 +22,22 @@ abstract interface class _IRiverRaidGamePlayAudioManager {
 final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayAudioManager {
   _RiverRaidGamePlayAudioSoloudManager();
 
-  SoundHandle? _soloudFlyHandle;
-  SoundHandle? _soloudLowFuelHandle;
-  SoundHandle? _soloudOutOfFuelHandle;
+  SoundHandle? _soLoudFlyHandle;
+  SoundHandle? _soLoudLowFuelHandle;
+  SoundHandle? _soLoudOutOfFuelHandle;
   bool _isAudioStopped = false;
 
   @override
   void playFlyStart() {
-    soloud.play(soloudFlyStart);
+    soLoud.play(soLoudFlyStart);
   }
 
   @override
   void playFly({int timeToStartInMilliseconds = 0}) {
     Future.delayed(Duration(milliseconds: timeToStartInMilliseconds), () async {
       if (RiverRaidGamePlay.plane.planeManager.planeState == PlaneState.isAlive) {
-        _soloudFlyHandle = await soloud.play(
-          soloudFlyNoise,
+        _soLoudFlyHandle = await soLoud.play(
+          soLoudFlyNoise,
           looping: true,
         );
       }
@@ -46,7 +46,7 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
 
   @override
   void flyVolumeAndSpeed() {
-    if (_soloudFlyHandle != null) {
+    if (_soLoudFlyHandle != null) {
       late double volume;
       late double speed;
       switch (RiverRaidGamePlay.plane.planeControllerManager.planeSpeedType) {
@@ -60,16 +60,16 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
           volume = 0.9;
           speed = 0.9;
       }
-      soloud
-        ..setVolume(_soloudFlyHandle!, volume)
-        ..setRelativePlaySpeed(_soloudFlyHandle!, speed);
+      soLoud
+        ..setVolume(_soLoudFlyHandle!, volume)
+        ..setRelativePlaySpeed(_soLoudFlyHandle!, speed);
     }
   }
 
   @override
   void stopFly() {
-    if (_soloudFlyHandle != null) {
-      soloud.stop(_soloudFlyHandle!);
+    if (_soLoudFlyHandle != null) {
+      soLoud.stop(_soLoudFlyHandle!);
     }
   }
 
@@ -87,7 +87,7 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
 
   @override
   void playFuelUp(AudioSource soloudFuel) async {
-    final noFuelAudioActive = soloud.activeSounds
+    final noFuelAudioActive = soLoud.activeSounds
         .where(
           (sound) => sound.hashCode == soloudFuel.hashCode,
         )
@@ -95,85 +95,85 @@ final class _RiverRaidGamePlayAudioSoloudManager implements _IRiverRaidGamePlayA
         .handles
         .isEmpty;
     if (noFuelAudioActive) {
-      await soloud.play(soloudFuel);
+      await soLoud.play(soloudFuel);
     }
   }
 
   @override
   Future<void> playLowFuel() async {
-    final noLowFuelAudioActive = soloud.activeSounds
+    final noLowFuelAudioActive = soLoud.activeSounds
         .where(
-          (sound) => sound.hashCode == soloudLowFuel.hashCode,
+          (sound) => sound.hashCode == soLoudLowFuel.hashCode,
         )
         .first
         .handles
         .isEmpty;
     if (noLowFuelAudioActive && !_isAudioStopped) {
-      _soloudLowFuelHandle = await soloud.play(soloudLowFuel, looping: true);
+      _soLoudLowFuelHandle = await soLoud.play(soLoudLowFuel, looping: true);
     }
   }
 
   @override
   void stopLowFuel() {
-    if (_soloudLowFuelHandle != null) {
-      final isLowFuelAudioActive = soloud.activeSounds
+    if (_soLoudLowFuelHandle != null) {
+      final isLowFuelAudioActive = soLoud.activeSounds
           .where(
-            (sound) => sound.hashCode == soloudLowFuel.hashCode,
+            (sound) => sound.hashCode == soLoudLowFuel.hashCode,
           )
           .first
           .handles
           .isNotEmpty;
       if (isLowFuelAudioActive) {
-        soloud.stop(_soloudLowFuelHandle!);
+        soLoud.stop(_soLoudLowFuelHandle!);
       }
     }
   }
 
   @override
   Future<void> playOutOfFuel() async {
-    final noOutOfFuelAudioActive = soloud.activeSounds
+    final noOutOfFuelAudioActive = soLoud.activeSounds
         .where(
-          (sound) => sound.hashCode == soloudOutOfFuel.hashCode,
+          (sound) => sound.hashCode == soLoudOutOfFuel.hashCode,
         )
         .first
         .handles
         .isEmpty;
     if (noOutOfFuelAudioActive) {
       stopLowFuel();
-      _soloudOutOfFuelHandle = await soloud.play(soloudOutOfFuel);
+      _soLoudOutOfFuelHandle = await soLoud.play(soLoudOutOfFuel);
     }
   }
 
   @override
   void stopOutOfFuel() {
-    if (_soloudOutOfFuelHandle != null) {
-      soloud.stop(_soloudOutOfFuelHandle!);
+    if (_soLoudOutOfFuelHandle != null) {
+      soLoud.stop(_soLoudOutOfFuelHandle!);
     }
   }
 
   @override
-  void playShootBullet() async => soloud.play(soloudShootBullets);
+  void playShootBullet() async => soLoud.play(soLoudShootBullets);
 
   @override
-  void playPlaneCrash() async => soloud.play(soloudPlaneCrash);
+  void playPlaneCrash() async => soLoud.play(soLoudPlaneCrash);
 
   @override
-  void playComponentCrash() async => soloud.play(soloudComponentCrash);
+  void playComponentCrash() async => soLoud.play(soLoudComponentCrash);
 
   @override
   set isAudioStopped(bool isAudioStopped) => _isAudioStopped = isAudioStopped;
 
   @override
   void playFireworks() {
-    final noFireworksAudioActive = soloud.activeSounds
+    final noFireworksAudioActive = soLoud.activeSounds
         .where(
-          (sound) => sound.hashCode == soloudFireworks.hashCode,
+          (sound) => sound.hashCode == soLoudFireworks.hashCode,
         )
         .first
         .handles
         .isEmpty;
     if (noFireworksAudioActive) {
-      soloud.play(soloudFireworks);
+      soLoud.play(soLoudFireworks);
     }
   }
 }
