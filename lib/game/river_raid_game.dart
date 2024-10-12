@@ -31,11 +31,12 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
             ..viewfinder.anchor = Anchor.bottomLeft,
         );
 
-  late _IRiverRaidGameManager riverRaidGameManager;
-  late final riverRaidRouter = RiverRaidRouter();
+  late final _IRiverRaidGameManager riverRaidGameManager;
+  late final RiverRaidRouter riverRaidRouter;
 
   @override
   FutureOr<void> onLoad() async {
+    riverRaidRouter = RiverRaidRouter(this);
     riverRaidGameManager = _RiverRaidGameManager(this);
     camera.viewport.position.y = -(size.y / 7.1);
     riverRaidGameManager

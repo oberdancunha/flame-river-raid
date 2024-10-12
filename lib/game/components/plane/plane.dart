@@ -14,6 +14,7 @@ import '../../gameplay/river_raid_game_play_mixin.dart';
 import '../../river_raid_game.dart';
 import '../../river_raid_game_state.dart';
 import '../../router/river_raid_router.dart';
+import '../../router/widgets/game_over.dart';
 import '../../world/river_raid_world.dart';
 import '../border/border.dart';
 import '../bullet/bullet.dart';

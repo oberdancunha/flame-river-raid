@@ -88,10 +88,13 @@ final class _PlaneManager implements _IPlaneManager {
           (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
           plane.game.riverRaidGameManager.decreaseLife();
           if (plane.game.riverRaidGameManager.showLifeValue < 0) {
-            plane.game.riverRaidGameManager.startGame();
+            plane.game.riverRaidRouter.pushOverlay(GameOver.id);
+            plane.game.pauseEngine();
+
+            return;
           }
           plane.game.riverRaidRouter
-              .pushReplacement(RiverRaidRouter.startGame, name: RiverRaidGamePlay.id);
+              .pushReplacement(RiverRaidRouter.gamePlayRoute, name: RiverRaidGamePlay.id);
         },
       );
     } else {
