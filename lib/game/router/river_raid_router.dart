@@ -1,9 +1,9 @@
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
+import '../end/game_over.dart';
 import '../gameplay/river_raid_game_play.dart';
 import '../river_raid_game.dart';
-import 'widgets/game_over.dart';
 
 final class RiverRaidRouter extends RouterComponent {
   final RiverRaidGame _game;
