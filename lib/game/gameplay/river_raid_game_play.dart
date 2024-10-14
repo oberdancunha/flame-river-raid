@@ -34,6 +34,8 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
   static ValueNotifier<double> fuelStatusMarker = ValueNotifier<double>(Globals.fullFuelIndex);
   static bool isOutOfFuel = false;
 
+  static ValueNotifier<bool> isWinnerEnd = ValueNotifier(false);
+
   @override
   FutureOr<void> onLoad() async {
     resetTimerManager = _RiverRaidGamePlayResetTimerManager();
@@ -43,6 +45,7 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
     game.world = _riverRaidWorld;
     fuelStatusMarker.value = Globals.fullFuelIndex;
     isOutOfFuel = false;
+    isWinnerEnd.value = false;
 
     return super.onLoad();
   }

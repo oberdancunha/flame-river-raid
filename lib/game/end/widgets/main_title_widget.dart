@@ -4,9 +4,11 @@ import '../../theme/message_menu_theme_extension.dart';
 
 class MainTitleWidget extends StatelessWidget {
   final String title;
+  final Color? textColor;
 
   const MainTitleWidget({
     required this.title,
+    this.textColor,
     super.key,
   });
 
@@ -19,7 +21,7 @@ class MainTitleWidget extends StatelessWidget {
       title,
       style: TextStyle(
         fontSize: mediaSize.width * 0.048,
-        color: themeExtension.textColor,
+        color: textColor ?? themeExtension.textColor,
       ),
     );
   }

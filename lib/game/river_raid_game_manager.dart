@@ -2,7 +2,7 @@ part of 'river_raid_game.dart';
 
 abstract interface class _IRiverRaidGameManager {
   Future<void> listAllStagesAvailable();
-  void startGame();
+  void start();
   void finish();
   ValueListenable get showLife;
   int get showLifeValue;
@@ -50,7 +50,7 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
   final ValueNotifier<int> _totalScore = ValueNotifier<int>(Globals.initialScore);
   final ValueNotifier<int> _totalLife = ValueNotifier<int>(Globals.totalLife);
 
-  var _gameState = RiverRaidGameState.run;
+  late RiverRaidGameState _gameState;
 
   @override
   Future<void> listAllStagesAvailable() async {
@@ -64,16 +64,20 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
   }
 
   @override
-  void startGame() {
+  void start() {
     _nextStageToShow = 1;
     _crossedBridges = 0;
     _totalScore.value = Globals.initialScore;
     _totalLife.value = Globals.totalLife;
+    _gameState = RiverRaidGameState.run;
+    if (game.camera.viewport.position.y == 0) {
+      game.camera.viewport.position.y = -(game.size.y / 7.1);
+    }
   }
 
   @override
   void finish() {
-    game.paused = true;
+    game.pauseEngine();
   }
 
   @override

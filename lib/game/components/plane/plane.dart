@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart';
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
 import '../../end/game_over.dart';
+import '../../end/winner.dart';
 import '../../extensions/size_extension.dart';
 import '../../gameplay/river_raid_game_play.dart';
 import '../../gameplay/river_raid_game_play_mixin.dart';
@@ -108,9 +109,11 @@ final class PlaneComponent extends SpriteComponent
           planeControllerManager.paradeTheVictory(dt);
           RiverRaidGamePlay.audioManager.stopWarnFuel();
           RiverRaidGamePlay.audioManager.playFireworks();
+          game.riverRaidRouter.pushOverlay(Winner.id);
           if (!game.camera.canSee(this)) {
-            game.riverRaidGameManager.finish();
+            RiverRaidGamePlay.isWinnerEnd.value = true;
             RiverRaidGamePlay.audioManager.stopAudios();
+            game.riverRaidGameManager.finish();
           }
         }
       }

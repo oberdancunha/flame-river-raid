@@ -2,24 +2,19 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 
 import '../end/game_over.dart';
+import '../end/winner.dart';
 import '../gameplay/river_raid_game_play.dart';
-import '../river_raid_game.dart';
 
 final class RiverRaidRouter extends RouterComponent {
-  final RiverRaidGame _game;
-
-  RiverRaidRouter(this._game)
+  RiverRaidRouter()
       : super(
           initialRoute: RiverRaidGamePlay.id,
           routes: {
             RiverRaidGamePlay.id: gamePlayRoute,
             GameOver.id: gameOverRoute,
+            Winner.id: winnerRoute,
           },
-        ) {
-    game = _game;
-  }
-
-  static late RiverRaidGame game;
+        );
 
   static Route get gamePlayRoute => Route(
         () => RiverRaidGamePlay(
@@ -31,12 +26,7 @@ final class RiverRaidRouter extends RouterComponent {
         (_, __) => GameOver(),
       );
 
-  static void startGame() {
-    game.riverRaidGameManager.startGame();
-    game.riverRaidRouter.pop();
-    game.riverRaidRouter.pushReplacement(RiverRaidRouter.gamePlayRoute, name: RiverRaidGamePlay.id);
-    if (game.paused) {
-      game.resumeEngine();
-    }
-  }
+  static OverlayRoute get winnerRoute => OverlayRoute(
+        (_, __) => Winner(),
+      );
 }

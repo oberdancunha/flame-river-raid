@@ -11,6 +11,7 @@ import 'components/hud/joystick/joystick.dart';
 import 'components/hud/joystick/joystick_button.dart';
 import 'constants/globals.dart';
 import 'extensions/size_extension.dart';
+import 'gameplay/river_raid_game_play.dart';
 import 'river_raid_game_state.dart';
 import 'router/river_raid_router.dart';
 import 'soloud.dart';
@@ -29,18 +30,20 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
             ..viewfinder.visibleGameSize = Globals.gameSize
             ..viewfinder.position = Vector2(0, 0)
             ..viewfinder.anchor = Anchor.bottomLeft,
-        );
+        ) {
+    game = this;
+  }
 
   late final _IRiverRaidGameManager riverRaidGameManager;
   late final RiverRaidRouter riverRaidRouter;
+  static late RiverRaidGame game;
 
   @override
   FutureOr<void> onLoad() async {
-    riverRaidRouter = RiverRaidRouter(this);
+    riverRaidRouter = RiverRaidRouter();
     riverRaidGameManager = _RiverRaidGameManager(this);
-    camera.viewport.position.y = -(size.y / 7.1);
     riverRaidGameManager
-      ..startGame()
+      ..start()
       ..listAllStagesAvailable();
     add(riverRaidRouter);
 
@@ -51,5 +54,14 @@ final class RiverRaidGame extends FlameGame with HasCollisionDetection {
   void onRemove() {
     disposeSoLoud();
     super.onRemove();
+  }
+
+  static void start() {
+    game.riverRaidGameManager.start();
+    game.riverRaidRouter.pop();
+    game.riverRaidRouter.pushReplacement(RiverRaidRouter.gamePlayRoute, name: RiverRaidGamePlay.id);
+    if (game.paused) {
+      game.resumeEngine();
+    }
   }
 }

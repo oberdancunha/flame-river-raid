@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
-import '../../router/river_raid_router.dart';
+import '../../river_raid_game.dart';
 import '../../theme/message_menu_theme_extension.dart';
 
 final class PlayAgainWidget extends StatelessWidget {
@@ -18,10 +16,7 @@ final class PlayAgainWidget extends StatelessWidget {
     return InkWell(
       highlightColor: Colors.transparent,
       hoverColor: Colors.transparent,
-      onTap: () {
-        RiverRaidRouter.startGame();
-        log('Recomeçar o jogo......');
-      },
+      onTap: RiverRaidGame.start,
       child: Text(
         'Jogar novamente',
         style: TextStyle(
