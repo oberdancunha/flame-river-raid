@@ -23,6 +23,8 @@ abstract interface class _IRiverRaidGameManager {
   void removeHudView(double dt);
   set gameState(RiverRaidGameState gameState);
   RiverRaidGameState get gameState;
+  bool isGameOver();
+  void gameOver();
 }
 
 final class _RiverRaidGameManager implements _IRiverRaidGameManager {
@@ -153,4 +155,13 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
 
   @override
   RiverRaidGameState get gameState => _gameState;
+
+  @override
+  bool isGameOver() => _totalLife.value < 0;
+
+  @override
+  void gameOver() {
+    game.riverRaidRouter.pushOverlay(GameOver.id);
+    game.pauseEngine();
+  }
 }

@@ -1,6 +1,7 @@
 part of 'river_raid_game_play.dart';
 
 abstract interface class _IRiverRaidGamePlayManager {
+  void start();
   set stage(Stage stage);
   Stage get stage;
   List<double> get stagesPositionInWorld;
@@ -21,6 +22,13 @@ final class _RiverRaidGamePlayManager implements _IRiverRaidGamePlayManager {
   late Bridge _lastBridge;
   final ValueNotifier<bool> _isBridgeExploding = ValueNotifier<bool>(false);
   final ValueNotifier<bool> _isExplodeFireworks = ValueNotifier<bool>(false);
+
+  @override
+  void start() {
+    RiverRaidGamePlay.fuelStatusMarker.value = Globals.fullFuelIndex;
+    RiverRaidGamePlay.isOutOfFuel = false;
+    RiverRaidGamePlay.isWinnerEnd.value = false;
+  }
 
   @override
   set stage(Stage stage) => _stage = stage;

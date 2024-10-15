@@ -15,6 +15,8 @@ abstract interface class _IPlaneManager {
   void runTimerToResetGame(double dt);
   set isThePlaneBeingRefueled(bool isThePlaneBeingRefueled);
   bool get isThePlaneBeingRefueled;
+  bool isFinish();
+  void finish();
 }
 
 final class _PlaneManager implements _IPlaneManager {
@@ -87,9 +89,8 @@ final class _PlaneManager implements _IPlaneManager {
           plane.game.riverRaidGameManager.resetNextStageToShow();
           (plane.game.world as RiverRaidWorld).riverRaidWorldManager.removeAllStages();
           plane.game.riverRaidGameManager.decreaseLife();
-          if (plane.game.riverRaidGameManager.showLifeValue < 0) {
-            plane.game.riverRaidRouter.pushOverlay(GameOver.id);
-            plane.game.pauseEngine();
+          if (plane.game.riverRaidGameManager.isGameOver()) {
+            plane.game.riverRaidGameManager.gameOver();
 
             return;
           }
@@ -111,4 +112,14 @@ final class _PlaneManager implements _IPlaneManager {
 
   @override
   bool get isThePlaneBeingRefueled => _isThePlaneBeingRefueled;
+
+  @override
+  bool isFinish() => !plane.game.camera.canSee(plane);
+
+  @override
+  void finish() {
+    RiverRaidGamePlay.isWinnerEnd.value = true;
+    RiverRaidGamePlay.audioManager.stopAudios();
+    plane.game.riverRaidGameManager.finish();
+  }
 }

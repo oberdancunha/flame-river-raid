@@ -8,7 +8,6 @@ import 'package:flutter/foundation.dart';
 
 import '../../constants/assets.dart';
 import '../../constants/globals.dart';
-import '../../end/game_over.dart';
 import '../../end/winner.dart';
 import '../../extensions/size_extension.dart';
 import '../../gameplay/river_raid_game_play.dart';
@@ -103,28 +102,28 @@ final class PlaneComponent extends SpriteComponent
               ..planeSpeedType = PlaneSpeedEnum.slow;
           }
         }
-      } else {
-        if (game.riverRaidGameManager.gameState == RiverRaidGameState.win) {
-          game.riverRaidGameManager.removeHudView(dt);
-          planeControllerManager.paradeTheVictory(dt);
-          RiverRaidGamePlay.audioManager.stopWarnFuel();
-          RiverRaidGamePlay.audioManager.playFireworks();
-          game.riverRaidRouter.pushOverlay(Winner.id);
-          if (!game.camera.canSee(this)) {
-            RiverRaidGamePlay.isWinnerEnd.value = true;
-            RiverRaidGamePlay.audioManager.stopAudios();
-            game.riverRaidGameManager.finish();
-          }
+
+        return;
+      }
+      if (game.riverRaidGameManager.gameState == RiverRaidGameState.win) {
+        game.riverRaidGameManager.removeHudView(dt);
+        planeControllerManager.paradeTheVictory(dt);
+        RiverRaidGamePlay.audioManager.stopWarnFuel();
+        RiverRaidGamePlay.audioManager.playFireworks();
+        game.riverRaidRouter.pushOverlay(Winner.id);
+        if (planeManager.isFinish()) {
+          planeManager.finish();
         }
       }
-    } else {
-      if (planeManager.planeState == PlaneState.isDead) {
-        _haveRemovePastStage = false;
-        planeManager.planeExplosion();
 
-        if (gamePlay.gamePlayManager.isBridgeExploding == false) {
-          planeManager.runTimerToResetGame(dt);
-        }
+      return;
+    }
+    if (planeManager.planeState == PlaneState.isDead) {
+      _haveRemovePastStage = false;
+      planeManager.planeExplosion();
+
+      if (gamePlay.gamePlayManager.isBridgeExploding == false) {
+        planeManager.runTimerToResetGame(dt);
       }
     }
   }

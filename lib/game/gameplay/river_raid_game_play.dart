@@ -43,9 +43,7 @@ final class RiverRaidGamePlay extends Component with HasGameRef<RiverRaidGame> {
     _riverRaidWorld = RiverRaidWorld();
     add(_riverRaidWorld);
     game.world = _riverRaidWorld;
-    fuelStatusMarker.value = Globals.fullFuelIndex;
-    isOutOfFuel = false;
-    isWinnerEnd.value = false;
+    gamePlayManager.start();
 
     return super.onLoad();
   }
