@@ -16,5 +16,5 @@ final class _StagePositionComponentManager implements _IStagePositionComponentMa
 
   @override
   void sumScore() =>
-      stagePositionComponent.game.riverRaidGameManager.sumScore(stagePositionComponent.score);
+      stagePositionComponent.game.riverRaidGameManager.addScore(stagePositionComponent.score);
 }

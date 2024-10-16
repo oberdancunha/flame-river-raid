@@ -9,7 +9,7 @@ abstract interface class _IRiverRaidGameManager {
   void decreaseLife();
   ValueListenable get showScore;
   int get showScoreValue;
-  void sumScore(int value);
+  void addScore(int value);
   List<String> get allStagesInGame;
   int get allStagesTotal;
   void addNextStageToShow();
@@ -100,8 +100,12 @@ final class _RiverRaidGameManager implements _IRiverRaidGameManager {
   int get showScoreValue => _totalScore.value;
 
   @override
-  void sumScore(value) {
-    _totalScore.value += value;
+  void addScore(int score) {
+    var addedScore = _totalScore.value + score;
+    if (addedScore > Globals.maxScore) {
+      addedScore = Globals.maxScore;
+    }
+    _totalScore.value = addedScore;
   }
 
   @override
