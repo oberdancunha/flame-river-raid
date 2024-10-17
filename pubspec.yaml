@@ -13,6 +13,7 @@ dependencies:
   flame_tiled: ^1.20.3
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.1
   flutter_soloud: 2.0.2
 
 dev_dependencies:
@@ -45,3 +46,17 @@ flutter:
       fonts:
         - asset: 'assets/fonts/River-Raid-Font.ttf'
           weight: 400
+
+flutter_native_splash:
+  background_image: assets/images/splash/splash.png
+  android_12:
+    image: assets/images/splash/splash_android_12.png
+    color: "#751B1F"
+  android: true
+  android_gravity: center
+  ios: true
+  ios_content_mode: center
+  web: false
+  fullscreen: true
+
+
