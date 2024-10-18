@@ -20,7 +20,7 @@ class MenuTemplateBodyWidget extends StatelessWidget {
       body: Center(
         child: SizedBox(
           width: mediaSize.width,
-          height: mediaSize.height / 3,
+          height: mediaSize.height * 0.2,
           child: child,
         ),
       ),

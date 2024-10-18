@@ -17,9 +17,8 @@ final class MenuTemplatePlayAgainWidget extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             child,
-            Positioned(
-              bottom: 40,
-              height: 20,
+            Align(
+              alignment: Alignment.bottomCenter,
               child: PlayAgainWidget(),
             ),
           ],
