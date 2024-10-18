@@ -48,10 +48,10 @@ flutter:
           weight: 400
 
 flutter_native_splash:
-  background_image: assets/images/splash/splash.png
+  image: assets/images/splash/splash.png
+  color: "#751B1F"
   android_12:
     image: assets/images/splash/splash_android_12.png
-    color: "#751B1F"
   android: true
   android_gravity: center
   ios: true
