@@ -1,5 +1,5 @@
 name: river_raid_game
-description: "A new Flutter project."
+description: "Flame project that simulates the River Raid game originally developed for the Atari 2600 in 1982."
 publish_to: 'none'
 version: 0.1.0
 
@@ -22,6 +22,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   custom_lint: ^0.6.5
   pyramid_lint: ^2.0.1
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
@@ -59,4 +60,14 @@ flutter_native_splash:
   web: false
   fullscreen: true
 
-
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path_ios: assets/images/icons_launcher/icon_launcher_ios.png
+  image_path_android: assets/images/icons_launcher/icon_launcher_android.png
+  windows:
+    generate: false
+  macos:
+    generate: false
+  web:
+    generate: false
