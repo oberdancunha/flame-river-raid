@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../gameplay/river_raid_game_play.dart';
 import 'widgets/blink_widget.dart';
@@ -10,28 +11,31 @@ final class Winner extends StatelessWidget {
   const Winner({super.key});
 
   static const id = 'Winner';
-  static const _title = 'Vencedor!';
 
   @override
-  Widget build(BuildContext context) => ValueListenableBuilder(
-        valueListenable: RiverRaidGamePlay.isWinnerEnd,
-        builder: (context, isWinnerEnd, child) {
-          if (!isWinnerEnd) {
-            return MenuTemplateWidget(
-              child: BlinkWidget(
-                children: [
-                  child!,
-                  MainTitleWidget(
-                    title: _title,
-                    textColor: Colors.transparent,
-                  ),
-                ],
-              ),
-            );
-          }
+  Widget build(BuildContext context) {
+    final title = AppLocalizations.of(context)!.youWin;
 
-          return MenuTemplatePlayAgainWidget(child: child!);
-        },
-        child: MainTitleWidget(title: _title),
-      );
+    return ValueListenableBuilder(
+      valueListenable: RiverRaidGamePlay.isWinnerEnd,
+      builder: (context, isWinnerEnd, child) {
+        if (!isWinnerEnd) {
+          return MenuTemplateWidget(
+            child: BlinkWidget(
+              children: [
+                child!,
+                MainTitleWidget(
+                  title: title,
+                  textColor: Colors.transparent,
+                ),
+              ],
+            ),
+          );
+        }
+
+        return MenuTemplatePlayAgainWidget(child: child!);
+      },
+      child: MainTitleWidget(title: title),
+    );
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "@@locale": "pt",
+  "gameOver": "Fim de jogo!",
+  "@gameOver": {
+    "description": "Mensagem de fim de jogo."
+  },
+  "playAgain": "Jogar novamente",
+  "@playAgain": {
+    "description": "Mensagem de jogar novamente."
+  },
+  "youWin": "Vencedor!",
+  "@youWin": {
+    "description": "Mensagem de vitoria."
+  }
+}

@@ -20,7 +20,7 @@ class MainTitleWidget extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        fontSize: mediaSize.width * 0.048,
+        fontSize: (mediaSize.width / title.length) * 0.49,
         color: textColor ?? themeExtension.textColor,
       ),
     );

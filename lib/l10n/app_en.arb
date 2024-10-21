@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "gameOver": "Game over!",
+  "@gameOver": {
+    "description": "Game over message."
+  },
+  "playAgain": "Play again",
+  "@playAgain": {
+    "description": "Play again message."
+  },
+  "youWin": "You win!",
+  "@youWin": {
+    "description": "You win message."
+  }
+}

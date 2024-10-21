@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../river_raid_game.dart';
 import '../../theme/message_menu_theme_extension.dart';
@@ -18,7 +19,7 @@ final class PlayAgainWidget extends StatelessWidget {
       hoverColor: Colors.transparent,
       onTap: RiverRaidGame.start,
       child: Text(
-        'Jogar novamente',
+        AppLocalizations.of(context)!.playAgain,
         style: TextStyle(
           fontSize: mediaSize.width * 0.024,
           color: themeExtension.textColor,
