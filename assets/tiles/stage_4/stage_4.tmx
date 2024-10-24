@@ -10,7 +10,7 @@
   <object id="1" name="bridge" x="110" y="4" width="64" height="22"/>
  </objectgroup>
  <objectgroup id="3" name="Rivers" visible="0">
-  <object id="2" name="river" x="112" y="998" width="64" height="22"/>
+  <object id="2" name="river" x="112" y="998" width="64" height="52"/>
   <object id="3" name="river" x="104" y="996" width="80" height="2"/>
   <object id="4" name="river" x="96" y="994" width="96" height="2"/>
   <object id="5" name="river" x="88" y="992" width="112" height="2"/>
@@ -111,12 +111,12 @@
   <object id="100" name="river" x="208" y="486" width="64" height="72"/>
  </objectgroup>
  <objectgroup id="4" name="Borders" visible="0">
-  <object id="101" name="border" x="111.95" y="998" width="0.05" height="22"/>
+  <object id="101" name="border" x="111.95" y="998" width="0.05" height="52"/>
   <object id="102" name="border" x="104" y="998" width="7.99536" height="0.05"/>
   <object id="103" name="border" x="96" y="996" width="7.99536" height="2"/>
   <object id="104" name="border" x="88" y="994" width="7.99536" height="2"/>
   <object id="105" name="border" x="80" y="992" width="7.99536" height="2"/>
-  <object id="106" name="border" x="176" y="998" width="0.05" height="22"/>
+  <object id="106" name="border" x="176" y="998" width="0.05" height="52"/>
   <object id="107" name="border" x="176" y="998" width="7.99536" height="0.05"/>
   <object id="108" name="border" x="184.002" y="996" width="7.99536" height="2"/>
   <object id="109" name="border" x="192" y="994" width="7.99536" height="2"/>

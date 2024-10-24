@@ -20,13 +20,13 @@
   <object id="9" name="river" x="88" y="990" width="112.001" height="2"/>
   <object id="10" name="river" x="96" y="992" width="96" height="2"/>
   <object id="11" name="river" x="104" y="994" width="79.9998" height="1.99142"/>
-  <object id="12" name="river" x="112" y="996" width="64" height="24"/>
+  <object id="12" name="river" x="112" y="996" width="64" height="54"/>
  </objectgroup>
  <objectgroup id="4" name="Borders" visible="0">
-  <object id="13" name="border" x="112" y="996" height="24"/>
+  <object id="13" name="border" x="112" y="996" height="54"/>
   <object id="14" name="border" x="104" y="996" width="8" height="0.05"/>
   <object id="15" name="border" x="176" y="996" width="7.99541" height="0.05"/>
-  <object id="16" name="border" x="176" y="996" height="24"/>
+  <object id="16" name="border" x="176" y="996" height="54"/>
   <object id="17" name="border" x="96" y="992" width="8" height="2"/>
   <object id="18" name="border" x="88" y="990" width="8" height="2"/>
   <object id="19" name="border" x="80" y="988" width="8" height="2"/>
